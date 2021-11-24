@@ -1,9 +1,9 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/evidence/exported"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/evidence/exported"
 )
 
 // Message types for the evidence module

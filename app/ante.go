@@ -1,11 +1,11 @@
 package app
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/auth/ante"
-	"github.com/anathatech/project-anatha/x/distribution"
-	"github.com/anathatech/project-anatha/x/fee"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/auth"
+	"github.com/DFWallet/anatha/x/auth/ante"
+	"github.com/DFWallet/project-anatha/x/distribution"
+	"github.com/DFWallet/project-anatha/x/fee"
 )
 
 func (app *AnathaApp) NewAnteHandler() sdk.AnteHandler {

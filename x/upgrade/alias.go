@@ -3,8 +3,8 @@ package upgrade
 // nolint
 
 import (
-	"github.com/anathatech/project-anatha/x/upgrade/internal/keeper"
-	"github.com/anathatech/project-anatha/x/upgrade/internal/types"
+	"github.com/DFWallet/project-anatha/x/upgrade/internal/keeper"
+	"github.com/DFWallet/project-anatha/x/upgrade/internal/types"
 )
 
 const (

@@ -1,11 +1,11 @@
-module github.com/anathatech/project-anatha
+module github.com/DFWallet/project-anatha
 
 go 1.13
 
 require (
 	github.com/anathatech/cosmosd v0.2.2
 	github.com/btcsuite/btcd v0.0.0-20190523000118-16327141da8c // indirect
-	github.com/cosmos/cosmos-sdk v0.38.4
+	github.com/DFWallet/anatha v0.0.1
 	github.com/gorilla/mux v1.7.3
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
@@ -22,4 +22,3 @@ require (
 	gopkg.in/yaml.v2 v2.2.8
 )
 
-replace github.com/cosmos/cosmos-sdk => github.com/anathatech/cosmos-sdk v0.38.5-0.20201102214748-0d5a47f063a8

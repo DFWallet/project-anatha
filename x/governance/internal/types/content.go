@@ -3,16 +3,14 @@ package types
 import (
 	"strings"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	gov "github.com/cosmos/cosmos-sdk/x/gov"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	gov "github.com/DFWallet/anatha/x/gov"
 )
 
 const (
 	MaxDescriptionLength int = 5000
 	MaxTitleLength       int = 140
 )
-
-
 
 //type Handler func(ctx sdk.Context, content Content) error
 

@@ -2,9 +2,9 @@ package keeper
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/x/distribution/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 )
 
 func (k Keeper) DistributeFromAmc(ctx sdk.Context) (sdk.Coins, sdk.Coins, sdk.Coins) {
@@ -72,7 +72,7 @@ func (k Keeper) DistributeFromHhrm(ctx sdk.Context, amount sdk.Coins) {
 	}
 }
 
-func (k Keeper) DistributeFromNvrp(ctx sdk.Context){
+func (k Keeper) DistributeFromNvrp(ctx sdk.Context) {
 	// Distribute From Nvrp to Savings. The rest of the balance will be allocated for the Validators
 	nvrpBalanceInt := k.supplyKeeper.GetModuleAccount(ctx, types.NvrpModuleName).GetCoins().AmountOf(config.DefaultDenom)
 	nvrpBalanceDec := nvrpBalanceInt.ToDec()
@@ -90,7 +90,7 @@ func (k Keeper) DistributeFromNvrp(ctx sdk.Context){
 
 	forSavingsInt := forSavingsDec.TruncateInt()
 
-	if ! forSavingsInt.IsZero() {
+	if !forSavingsInt.IsZero() {
 		forSavings := sdk.NewCoins(sdk.NewCoin(config.DefaultDenom, forSavingsInt))
 
 		err := k.supplyKeeper.SendCoinsFromModuleToModule(ctx, types.NvrpModuleName, types.SavingsDistributionModuleName, forSavings)

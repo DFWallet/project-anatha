@@ -1,10 +1,10 @@
 package upgrade
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/anathatech/project-anatha/x/upgrade/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	govtypes "github.com/DFWallet/anatha/x/gov/types"
+	"github.com/DFWallet/project-anatha/x/upgrade/internal/types"
 	"strconv"
 )
 

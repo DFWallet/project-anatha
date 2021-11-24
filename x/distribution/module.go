@@ -3,20 +3,20 @@ package distribution
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/cosmos/cosmos-sdk/x/supply"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/module"
+	"github.com/DFWallet/anatha/x/supply"
+	"github.com/DFWallet/project-anatha/x/distribution/client/cli"
 	"github.com/gorilla/mux"
-	"github.com/anathatech/project-anatha/x/distribution/client/cli"
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
 var (
-	_ module.AppModule           = AppModule{}
-	_ module.AppModuleBasic      = AppModuleBasic{}
+	_ module.AppModule      = AppModule{}
+	_ module.AppModuleBasic = AppModuleBasic{}
 )
 
 type AppModuleBasic struct{}
@@ -57,7 +57,7 @@ func (AppModuleBasic) GetTxCmd(cdc *codec.Codec) *cobra.Command {
 type AppModule struct {
 	AppModuleBasic
 
-	keeper Keeper
+	keeper       Keeper
 	supplyKeeper supply.Keeper
 }
 
@@ -65,7 +65,7 @@ func NewAppModule(keeper Keeper, supplyKeeper supply.Keeper) AppModule {
 	return AppModule{
 		AppModuleBasic: AppModuleBasic{},
 		keeper:         keeper,
-		supplyKeeper:  supplyKeeper,
+		supplyKeeper:   supplyKeeper,
 	}
 }
 

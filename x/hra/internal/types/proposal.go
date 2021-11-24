@@ -3,12 +3,12 @@ package types
 import (
 	"fmt"
 
-	gov "github.com/anathatech/project-anatha/x/governance"
+	gov "github.com/DFWallet/project-anatha/x/governance"
 )
 
 const (
-	ProposalTypeRegisterBlockchainId 	= "RegisterBlockchainId"
-	ProposalTypeRemoveBlockchainId 		= "RemoveBlockchainId"
+	ProposalTypeRegisterBlockchainId = "RegisterBlockchainId"
+	ProposalTypeRemoveBlockchainId   = "RemoveBlockchainId"
 )
 
 func init() {
@@ -20,9 +20,9 @@ func init() {
 
 // RegisterBlockchainIdProposal
 type RegisterBlockchainIdProposal struct {
-	Title       	string `json:"title" yaml:"title"`
-	Description 	string `json:"description" yaml:"description"`
-	BlockchainId 	string `json:"blockchain_id" yaml:"blockchain_id"`
+	Title        string `json:"title" yaml:"title"`
+	Description  string `json:"description" yaml:"description"`
+	BlockchainId string `json:"blockchain_id" yaml:"blockchain_id"`
 }
 
 func NewRegisterBlockchainIdProposal(title string, description string, blockchainId string) gov.Content {
@@ -54,9 +54,9 @@ func (p RegisterBlockchainIdProposal) String() string {
 
 // RemoveBlockchainIdProposal
 type RemoveBlockchainIdProposal struct {
-	Title       	string `json:"title" yaml:"title"`
-	Description 	string `json:"description" yaml:"description"`
-	BlockchainId 	string `json:"blockchain_id" yaml:"blockchain_id"`
+	Title        string `json:"title" yaml:"title"`
+	Description  string `json:"description" yaml:"description"`
+	BlockchainId string `json:"blockchain_id" yaml:"blockchain_id"`
 }
 
 func NewRemoveBlockchainIdProposal(title string, description string, blockchainId string) gov.Content {
@@ -71,7 +71,7 @@ func (p RemoveBlockchainIdProposal) GetTitle() string       { return p.Title }
 func (p RemoveBlockchainIdProposal) GetDescription() string { return p.Description }
 func (p RemoveBlockchainIdProposal) ProposalRoute() string  { return RouterKey }
 func (p RemoveBlockchainIdProposal) ProposalType() string   { return ProposalTypeRemoveBlockchainId }
-func (p RemoveBlockchainIdProposal) ValidateBasic() error 	{
+func (p RemoveBlockchainIdProposal) ValidateBasic() error {
 	if err := validateBlockchainId(p.BlockchainId); err != nil {
 		return err
 	}

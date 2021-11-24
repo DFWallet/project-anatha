@@ -7,8 +7,8 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // Calculate the ValidatorUpdates for the current block
@@ -220,7 +220,7 @@ func (k Keeper) unjailValidator(ctx sdk.Context, validator types.Validator) {
 	validator.Jailed = false
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket + 1)
+	k.SetLastTicket(ctx, validator.Ticket+1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)
@@ -274,7 +274,7 @@ func (k Keeper) beginUnbondingValidator(ctx sdk.Context, validator types.Validat
 	validator.UnbondingHeight = ctx.BlockHeader().Height
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket + 1)
+	k.SetLastTicket(ctx, validator.Ticket+1)
 
 	// save the now unbonded validator record and power index
 	k.SetValidator(ctx, validator)

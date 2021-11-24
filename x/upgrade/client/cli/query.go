@@ -6,9 +6,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/codec"
-	upgrade "github.com/anathatech/project-anatha/x/upgrade/internal/types"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/codec"
+	upgrade "github.com/DFWallet/project-anatha/x/upgrade/internal/types"
 )
 
 // GetPlanCmd returns the query upgrade plan command

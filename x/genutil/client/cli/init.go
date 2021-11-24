@@ -15,12 +15,12 @@ import (
 	tmrand "github.com/tendermint/tendermint/libs/rand"
 	"github.com/tendermint/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/server"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/anathatech/project-anatha/x/genutil"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/anatha/server"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/module"
+	"github.com/DFWallet/project-anatha/x/genutil"
 )
 
 const (

@@ -1,9 +1,9 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/config"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/config"
 )
 
 // MsgRegisterName
@@ -81,9 +81,9 @@ func (msg MsgRenewName) GetSigners() []sdk.AccAddress {
 
 // MsgSetPrice
 type MsgSetPrice struct {
-	Name  string         	`json:"name" yaml:"name"`
-	Owner sdk.AccAddress 	`json:"owner" yaml:"owner"`
-	Price sdk.Coins			`json:"price" yaml:"price"`
+	Name  string         `json:"name" yaml:"name"`
+	Owner sdk.AccAddress `json:"owner" yaml:"owner"`
+	Price sdk.Coins      `json:"price" yaml:"price"`
 }
 
 func NewMsgSetPrice(name string, owner sdk.AccAddress, price sdk.Coins) MsgSetPrice {
@@ -122,8 +122,8 @@ func (msg MsgSetPrice) GetSigners() []sdk.AccAddress {
 
 // MsgDeleteName
 type MsgDeleteName struct {
-	Name  string         	`json:"name" yaml:"name"`
-	Owner sdk.AccAddress 	`json:"owner" yaml:"owner"`
+	Name  string         `json:"name" yaml:"name"`
+	Owner sdk.AccAddress `json:"owner" yaml:"owner"`
 }
 
 func NewMsgDeleteName(name string, owner sdk.AccAddress) MsgDeleteName {
@@ -159,8 +159,8 @@ func (msg MsgDeleteName) GetSigners() []sdk.AccAddress {
 
 // MsgBuyName
 type MsgBuyName struct {
-	Name  string         	`json:"name" yaml:"name"`
-	Buyer sdk.AccAddress 	`json:"buyer" yaml:"buyer"`
+	Name  string         `json:"name" yaml:"name"`
+	Buyer sdk.AccAddress `json:"buyer" yaml:"buyer"`
 }
 
 func NewMsgBuyName(name string, buyer sdk.AccAddress) MsgBuyName {
@@ -196,15 +196,15 @@ func (msg MsgBuyName) GetSigners() []sdk.AccAddress {
 
 // MsgTransferName
 type MsgTransferName struct {
-	Name  string         	`json:"name" yaml:"name"`
-	Owner sdk.AccAddress 	`json:"owner" yaml:"owner"`
-	NewOwner sdk.AccAddress	`json:"new_owner" yaml:"new_owner"`
+	Name     string         `json:"name" yaml:"name"`
+	Owner    sdk.AccAddress `json:"owner" yaml:"owner"`
+	NewOwner sdk.AccAddress `json:"new_owner" yaml:"new_owner"`
 }
 
 func NewMsgTransferName(name string, owner sdk.AccAddress, newOwner sdk.AccAddress) MsgTransferName {
 	return MsgTransferName{
-		Name:  name,
-		Owner: owner,
+		Name:     name,
+		Owner:    owner,
 		NewOwner: newOwner,
 	}
 }
@@ -238,17 +238,17 @@ func (msg MsgTransferName) GetSigners() []sdk.AccAddress {
 
 // MsgRegisterAddress
 type MsgRegisterAddress struct {
-	Owner sdk.AccAddress 	`json:"owner" yaml:"owner"`
-	BlockchainId string		`json:"blockchain_id" yaml:"blockchain_id"`
-	Index string			`json:"index" yaml:"index"`
-	BlockchainAddress string`json:"blockchain_address" yaml:"blockchain_address"`
+	Owner             sdk.AccAddress `json:"owner" yaml:"owner"`
+	BlockchainId      string         `json:"blockchain_id" yaml:"blockchain_id"`
+	Index             string         `json:"index" yaml:"index"`
+	BlockchainAddress string         `json:"blockchain_address" yaml:"blockchain_address"`
 }
 
 func NewMsgRegisterAddress(owner sdk.AccAddress, blockchainId string, index string, blockchainAddress string) MsgRegisterAddress {
 	return MsgRegisterAddress{
-		Owner: owner,
-		BlockchainId: blockchainId,
-		Index: index,
+		Owner:             owner,
+		BlockchainId:      blockchainId,
+		Index:             index,
 		BlockchainAddress: blockchainAddress,
 	}
 }
@@ -290,16 +290,16 @@ func (msg MsgRegisterAddress) GetSigners() []sdk.AccAddress {
 
 // MsgRemoveAddress
 type MsgRemoveAddress struct {
-	Owner sdk.AccAddress 	`json:"owner" yaml:"owner"`
-	BlockchainId string		`json:"blockchain_id" yaml:"blockchain_id"`
-	Index string			`json:"index" yaml:"index"`
+	Owner        sdk.AccAddress `json:"owner" yaml:"owner"`
+	BlockchainId string         `json:"blockchain_id" yaml:"blockchain_id"`
+	Index        string         `json:"index" yaml:"index"`
 }
 
 func NewMsgRemoveAddress(owner sdk.AccAddress, blockchainId string, index string) MsgRemoveAddress {
 	return MsgRemoveAddress{
-		Owner: owner,
+		Owner:        owner,
 		BlockchainId: blockchainId,
-		Index: index,
+		Index:        index,
 	}
 }
 
@@ -335,7 +335,7 @@ func (msg MsgRemoveAddress) GetSigners() []sdk.AccAddress {
 
 // MsgRemoveAllAddresses
 type MsgRemoveAllAddresses struct {
-	Owner sdk.AccAddress 	`json:"owner" yaml:"owner"`
+	Owner sdk.AccAddress `json:"owner" yaml:"owner"`
 }
 
 func NewMsgRemoveAllAddresses(owner sdk.AccAddress) MsgRemoveAllAddresses {

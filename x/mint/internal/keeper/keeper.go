@@ -2,23 +2,23 @@ package keeper
 
 import (
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/x/supply"
-	"github.com/anathatech/project-anatha/config"
+	"github.com/DFWallet/anatha/x/supply"
+	"github.com/DFWallet/project-anatha/config"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
-	"github.com/anathatech/project-anatha/x/mint/internal/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/params"
+	"github.com/DFWallet/project-anatha/x/mint/internal/types"
 )
 
 type Keeper struct {
-	cdc              *codec.Codec
-	storeKey         sdk.StoreKey
-	paramSpace       params.Subspace
-	supplyKeeper     supply.Keeper
-	amcModuleName 	 string
-	nvrpModuleName   string
+	cdc            *codec.Codec
+	storeKey       sdk.StoreKey
+	paramSpace     params.Subspace
+	supplyKeeper   supply.Keeper
+	amcModuleName  string
+	nvrpModuleName string
 }
 
 func NewKeeper(
@@ -37,12 +37,12 @@ func NewKeeper(
 	}
 
 	return Keeper{
-		cdc:              cdc,
-		storeKey:         key,
-		paramSpace:       paramSpace.WithKeyTable(types.ParamKeyTable()),
-		supplyKeeper:     supplyKeeper,
-		amcModuleName:    amcModuleName,
-		nvrpModuleName:   nvrpModuleName,
+		cdc:            cdc,
+		storeKey:       key,
+		paramSpace:     paramSpace.WithKeyTable(types.ParamKeyTable()),
+		supplyKeeper:   supplyKeeper,
+		amcModuleName:  amcModuleName,
+		nvrpModuleName: nvrpModuleName,
 	}
 }
 

@@ -2,8 +2,8 @@ package utils
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/config"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/config"
 	"regexp"
 	"strings"
 )
@@ -42,7 +42,7 @@ func ParseAndConvertCoins(input string) (sdk.Coins, error) {
 			amountStr, denomStr := matches[1], matches[2]
 
 			amount, ok := sdk.NewIntFromString(amountStr)
-			if ! ok {
+			if !ok {
 				return sdk.Coins{}, fmt.Errorf("failed to parse coin amount: %s", amountStr)
 			}
 
@@ -79,7 +79,7 @@ func ParseAndConvertCoins(input string) (sdk.Coins, error) {
 				return sdk.Coins{}, fmt.Errorf("failed to parse coin amount: %s", coinStr)
 			}
 		}
-		
+
 		coins[i] = currentCoin
 	}
 
@@ -93,7 +93,6 @@ func ParseAndConvertCoins(input string) (sdk.Coins, error) {
 
 	return coins, nil
 }
-
 
 func ToBaseDenom(coin sdk.Coin) (sdk.Coin, error) {
 	if IsBaseDenom(coin.Denom) {

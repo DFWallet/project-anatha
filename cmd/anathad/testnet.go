@@ -6,9 +6,9 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/crypto/keys"
-	types2 "github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/crypto/keys"
+	types2 "github.com/DFWallet/project-anatha/x/staking/types"
 	"net"
 	"os"
 	"path/filepath"
@@ -22,18 +22,18 @@ import (
 	"github.com/tendermint/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	clientkeys "github.com/cosmos/cosmos-sdk/client/keys"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/server"
-	srvconfig "github.com/cosmos/cosmos-sdk/server/config"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
-	"github.com/anathatech/project-anatha/x/genutil"
-	genutiltypes "github.com/anathatech/project-anatha/x/genutil/types"
-	"github.com/anathatech/project-anatha/x/staking"
-	appConfig "github.com/anathatech/project-anatha/config"
+	clientkeys "github.com/DFWallet/anatha/client/keys"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/anatha/server"
+	srvconfig "github.com/DFWallet/anatha/server/config"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/module"
+	"github.com/DFWallet/anatha/x/auth"
+	authexported "github.com/DFWallet/anatha/x/auth/exported"
+	appConfig "github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/genutil"
+	genutiltypes "github.com/DFWallet/project-anatha/x/genutil/types"
+	"github.com/DFWallet/project-anatha/x/staking"
 )
 
 var (
@@ -120,8 +120,8 @@ func InitTestnet(cmd *cobra.Command, config *tmconfig.Config, cdc *codec.Codec,
 	anathaConfig.MinGasPrices = minGasPrices
 
 	var (
-		genAccounts 	[]authexported.GenesisAccount
-		genFiles		[]string
+		genAccounts []authexported.GenesisAccount
+		genFiles    []string
 	)
 
 	addresses := []string{

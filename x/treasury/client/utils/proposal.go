@@ -1,15 +1,15 @@
 package utils
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
 	"io/ioutil"
 )
 
 type GenericTreasuryProposalJSON struct {
-	Title       string   		`json:"title" yaml:"title"`
-	Description string   		`json:"description" yaml:"description"`
-	Amount      sdk.Coins 		`json:"amount" yaml:"amount"`
+	Title       string    `json:"title" yaml:"title"`
+	Description string    `json:"description" yaml:"description"`
+	Amount      sdk.Coins `json:"amount" yaml:"amount"`
 }
 
 func ParseGenericTreasuryProposalJSON(cdc *codec.Codec, proposalFile string) (GenericTreasuryProposalJSON, error) {

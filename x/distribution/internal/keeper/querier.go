@@ -1,38 +1,38 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/x/distribution/internal/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
 const (
-	QueryParameters = "parameters"
-	QueryNameReward = "name-reward"
+	QueryParameters      = "parameters"
+	QueryNameReward      = "name-reward"
 	QueryValidatorReward = "validator-reward"
-	QuerySavingsReward = "savings-reward"
-	QuerySavings = "savings"
+	QuerySavingsReward   = "savings-reward"
+	QuerySavings         = "savings"
 )
 
 func NewQuerier(k Keeper) sdk.Querier {
 	return func(ctx sdk.Context, path []string, req abci.RequestQuery) ([]byte, error) {
 		switch path[0] {
-			case QueryParameters:
-				return queryParams(ctx, k)
-			case QueryNameReward:
-				return queryNameReward(ctx, path[1:], req, k)
-			case QueryValidatorReward:
-				return queryValidatorReward(ctx, path[1:], req, k)
-			case QuerySavingsReward:
-				return querySavingsReward(ctx,path[1:], req, k)
-			case QuerySavings:
-				return querySavings(ctx, path[1:], req, k)
+		case QueryParameters:
+			return queryParams(ctx, k)
+		case QueryNameReward:
+			return queryNameReward(ctx, path[1:], req, k)
+		case QueryValidatorReward:
+			return queryValidatorReward(ctx, path[1:], req, k)
+		case QuerySavingsReward:
+			return querySavingsReward(ctx, path[1:], req, k)
+		case QuerySavings:
+			return querySavings(ctx, path[1:], req, k)
 
-			default:
-				return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, "unknown distribution query endpoint")
+		default:
+			return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, "unknown distribution query endpoint")
 		}
 	}
 }

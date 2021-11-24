@@ -3,11 +3,11 @@ package keeper
 import (
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/slashing/internal/types"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/slashing/internal/types"
 )
 
 // NewQuerier creates a new querier for slashing clients.

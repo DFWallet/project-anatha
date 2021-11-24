@@ -7,10 +7,10 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/slashing"
-	"github.com/anathatech/project-anatha/x/staking"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/slashing"
+	"github.com/DFWallet/project-anatha/x/staking"
 )
 
 // ExportAppStateAndValidators exports the state of the application for a genesis

@@ -7,8 +7,8 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 	yaml "gopkg.in/yaml.v2"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
 )
 
 // ensure Msg interface compliance at compile time
@@ -23,19 +23,19 @@ var (
 
 // MsgCreateValidator - struct for bonding transactions
 type MsgCreateValidator struct {
-	Description       Description     `json:"description" yaml:"description"`
-	DelegatorAddress  sdk.AccAddress  `json:"delegator_address" yaml:"delegator_address"`
-	ValidatorAddress  sdk.ValAddress  `json:"validator_address" yaml:"validator_address"`
-	PubKey            crypto.PubKey   `json:"pubkey" yaml:"pubkey"`
-	Value             sdk.Coin        `json:"value" yaml:"value"`
+	Description      Description    `json:"description" yaml:"description"`
+	DelegatorAddress sdk.AccAddress `json:"delegator_address" yaml:"delegator_address"`
+	ValidatorAddress sdk.ValAddress `json:"validator_address" yaml:"validator_address"`
+	PubKey           crypto.PubKey  `json:"pubkey" yaml:"pubkey"`
+	Value            sdk.Coin       `json:"value" yaml:"value"`
 }
 
 type msgCreateValidatorJSON struct {
-	Description       Description     `json:"description" yaml:"description"`
-	DelegatorAddress  sdk.AccAddress  `json:"delegator_address" yaml:"delegator_address"`
-	ValidatorAddress  sdk.ValAddress  `json:"validator_address" yaml:"validator_address"`
-	PubKey            string          `json:"pubkey" yaml:"pubkey"`
-	Value             sdk.Coin        `json:"value" yaml:"value"`
+	Description      Description    `json:"description" yaml:"description"`
+	DelegatorAddress sdk.AccAddress `json:"delegator_address" yaml:"delegator_address"`
+	ValidatorAddress sdk.ValAddress `json:"validator_address" yaml:"validator_address"`
+	PubKey           string         `json:"pubkey" yaml:"pubkey"`
+	Value            sdk.Coin       `json:"value" yaml:"value"`
 }
 
 // NewMsgCreateValidator creates a new MsgCreateValidator instance.
@@ -46,11 +46,11 @@ func NewMsgCreateValidator(
 ) MsgCreateValidator {
 
 	return MsgCreateValidator{
-		Description:       description,
-		DelegatorAddress:  sdk.AccAddress(valAddr),
-		ValidatorAddress:  valAddr,
-		PubKey:            pubKey,
-		Value:             selfDelegation,
+		Description:      description,
+		DelegatorAddress: sdk.AccAddress(valAddr),
+		ValidatorAddress: valAddr,
+		PubKey:           pubKey,
+		Value:            selfDelegation,
 	}
 }
 
@@ -78,11 +78,11 @@ func (msg MsgCreateValidator) GetSigners() []sdk.AccAddress {
 // serialization of the MsgCreateValidator type.
 func (msg MsgCreateValidator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(msgCreateValidatorJSON{
-		Description:       msg.Description,
-		DelegatorAddress:  msg.DelegatorAddress,
-		ValidatorAddress:  msg.ValidatorAddress,
-		PubKey:            sdk.MustBech32ifyPubKey(sdk.Bech32PubKeyTypeConsPub, msg.PubKey),
-		Value:             msg.Value,
+		Description:      msg.Description,
+		DelegatorAddress: msg.DelegatorAddress,
+		ValidatorAddress: msg.ValidatorAddress,
+		PubKey:           sdk.MustBech32ifyPubKey(sdk.Bech32PubKeyTypeConsPub, msg.PubKey),
+		Value:            msg.Value,
 	})
 }
 
@@ -110,17 +110,17 @@ func (msg *MsgCreateValidator) UnmarshalJSON(bz []byte) error {
 // MarshalYAML implements a custom marshal yaml function due to consensus pubkey.
 func (msg MsgCreateValidator) MarshalYAML() (interface{}, error) {
 	bs, err := yaml.Marshal(struct {
-		Description       Description
-		DelegatorAddress  sdk.AccAddress
-		ValidatorAddress  sdk.ValAddress
-		PubKey            string
-		Value             sdk.Coin
+		Description      Description
+		DelegatorAddress sdk.AccAddress
+		ValidatorAddress sdk.ValAddress
+		PubKey           string
+		Value            sdk.Coin
 	}{
-		Description:       msg.Description,
-		DelegatorAddress:  msg.DelegatorAddress,
-		ValidatorAddress:  msg.ValidatorAddress,
-		PubKey:            sdk.MustBech32ifyPubKey(sdk.Bech32PubKeyTypeConsPub, msg.PubKey),
-		Value:             msg.Value,
+		Description:      msg.Description,
+		DelegatorAddress: msg.DelegatorAddress,
+		ValidatorAddress: msg.ValidatorAddress,
+		PubKey:           sdk.MustBech32ifyPubKey(sdk.Bech32PubKeyTypeConsPub, msg.PubKey),
+		Value:            msg.Value,
 	})
 
 	if err != nil {
@@ -167,8 +167,8 @@ type MsgEditValidator struct {
 // NewMsgEditValidator creates a new MsgEditValidator instance
 func NewMsgEditValidator(valAddr sdk.ValAddress, description Description) MsgEditValidator {
 	return MsgEditValidator{
-		Description:       description,
-		ValidatorAddress:  valAddr,
+		Description:      description,
+		ValidatorAddress: valAddr,
 	}
 }
 
@@ -240,7 +240,7 @@ func (msg MsgDelegate) ValidateBasic() error {
 	if msg.ValidatorAddress.Empty() {
 		return ErrEmptyValidatorAddr
 	}
-	if ! sdk.AccAddress(msg.ValidatorAddress).Equals(msg.DelegatorAddress) {
+	if !sdk.AccAddress(msg.ValidatorAddress).Equals(msg.DelegatorAddress) {
 		return ErrBadDelegatorAddr
 	}
 	return nil

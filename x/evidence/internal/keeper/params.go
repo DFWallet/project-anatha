@@ -3,8 +3,8 @@ package keeper
 import (
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/evidence/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/evidence/internal/types"
 )
 
 // MaxEvidenceAge returns the maximum age for submitted evidence.

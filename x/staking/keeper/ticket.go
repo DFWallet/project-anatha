@@ -2,8 +2,8 @@ package keeper
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 func (k Keeper) GetLastTicket(ctx sdk.Context) (ticket uint64) {
@@ -23,7 +23,6 @@ func (k Keeper) SetLastTicket(ctx sdk.Context, ticket uint64) {
 	store := ctx.KVStore(k.storeKey)
 	store.Set(types.TicketKey, types.GetTicketBytes(ticket))
 }
-
 
 // validator index
 func (k Keeper) SetValidatorByTicket(ctx sdk.Context, validator types.Validator) {
@@ -66,12 +65,12 @@ func (k Keeper) DumpTickets(ctx sdk.Context) {
 		ticket, operator := types.ParseValidatorTicketKey(iterator.Key())
 
 		validator, found := k.GetValidator(ctx, sdk.ValAddress(operator))
-		if ! found {
+		if !found {
 			continue
 		}
 
 		k.Logger(ctx).Debug(
-			fmt.Sprintf("%d (%s) %s", ticket, validator.GetMoniker() ,sdk.AccAddress(operator)),
+			fmt.Sprintf("%d (%s) %s", ticket, validator.GetMoniker(), sdk.AccAddress(operator)),
 		)
 	}
 }

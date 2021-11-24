@@ -1,9 +1,9 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/config"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/config"
 )
 
 var _, _ sdk.Msg = &MsgWithdrawNameReward{}, &MsgWithdrawValidatorReward{}
@@ -72,7 +72,7 @@ func (msg MsgWithdrawValidatorReward) GetSigners() []sdk.AccAddress {
 // MsgDepositSavings
 type MsgDepositSavings struct {
 	Sender sdk.AccAddress `json:"sender" yaml:"sender"`
-	Amount sdk.Coins `json:"amount" yaml:"amount"`
+	Amount sdk.Coins      `json:"amount" yaml:"amount"`
 }
 
 func NewMsgDepositSavings(sender sdk.AccAddress, amount sdk.Coins) MsgDepositSavings {

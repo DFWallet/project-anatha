@@ -1,14 +1,14 @@
 package utils
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/DFWallet/anatha/codec"
 	"io/ioutil"
 )
 
 type FeeExclusionProposalJSON struct {
-	Title 			string `json:"title" yaml:"title"`
-	Description 	string `json:"description" yaml:"description"`
-	MessageType 	string `json:"message_type" yaml:"message_type"`
+	Title       string `json:"title" yaml:"title"`
+	Description string `json:"description" yaml:"description"`
+	MessageType string `json:"message_type" yaml:"message_type"`
 }
 
 func ParseFeeExclusionProposalJSON(cdc *codec.Codec, proposalFile string) (FeeExclusionProposalJSON, error) {

@@ -1,16 +1,16 @@
 package staking
 
 import (
-	"github.com/anathatech/project-anatha/x/hra"
+	"github.com/DFWallet/project-anatha/x/hra"
 	"time"
 
 	tmstrings "github.com/tendermint/tendermint/libs/strings"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/staking/keeper"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/staking/keeper"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 func NewHandler(k keeper.Keeper) sdk.Handler {
@@ -41,7 +41,7 @@ func NewHandler(k keeper.Keeper) sdk.Handler {
 
 func handleMsgCreateValidator(ctx sdk.Context, msg types.MsgCreateValidator, k keeper.Keeper) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.DelegatorAddress) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.DelegatorAddress) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -77,7 +77,7 @@ func handleMsgCreateValidator(ctx sdk.Context, msg types.MsgCreateValidator, k k
 	validator.MinSelfDelegation = types.DefaultStake
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket + 1)
+	k.SetLastTicket(ctx, validator.Ticket+1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByConsAddr(ctx, validator)
@@ -113,7 +113,7 @@ func handleMsgCreateValidator(ctx sdk.Context, msg types.MsgCreateValidator, k k
 
 func handleMsgEditValidator(ctx sdk.Context, msg types.MsgEditValidator, k keeper.Keeper) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.GetSigners()[0]) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.GetSigners()[0]) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -146,7 +146,7 @@ func handleMsgEditValidator(ctx sdk.Context, msg types.MsgEditValidator, k keepe
 
 func handleMsgDelegate(ctx sdk.Context, msg types.MsgDelegate, k keeper.Keeper) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.GetSigners()[0]) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.GetSigners()[0]) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -156,7 +156,7 @@ func handleMsgDelegate(ctx sdk.Context, msg types.MsgDelegate, k keeper.Keeper) 
 	}
 
 	toDelegate := types.DefaultStake.Sub(validator.Tokens)
-	if ! toDelegate.IsPositive() {
+	if !toDelegate.IsPositive() {
 		return nil, ErrBadDelegationAmount
 	}
 
@@ -184,7 +184,7 @@ func handleMsgDelegate(ctx sdk.Context, msg types.MsgDelegate, k keeper.Keeper) 
 
 func handleMsgUndelegate(ctx sdk.Context, msg types.MsgUndelegate, k keeper.Keeper) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.DelegatorAddress) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.DelegatorAddress) {
 		return nil, hra.ErrNameNotRegistered
 	}
 

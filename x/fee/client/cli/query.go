@@ -2,11 +2,11 @@ package cli
 
 import (
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/anathatech/project-anatha/x/fee/internal/types"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/project-anatha/x/fee/internal/types"
 	"github.com/spf13/cobra"
 )
 

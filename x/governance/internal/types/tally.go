@@ -3,18 +3,18 @@ package types
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 type TallyResult struct {
-	Yes        sdk.Int `json:"yes" yaml:"yes"`
-	No         sdk.Int `json:"no" yaml:"no"`
+	Yes sdk.Int `json:"yes" yaml:"yes"`
+	No  sdk.Int `json:"no" yaml:"no"`
 }
 
 func NewTallyResult(yes, no sdk.Int) TallyResult {
 	return TallyResult{
-		Yes:        yes,
-		No:         no,
+		Yes: yes,
+		No:  no,
 	}
 }
 

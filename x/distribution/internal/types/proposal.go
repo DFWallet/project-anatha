@@ -2,10 +2,10 @@ package types
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/config"
-	gov "github.com/anathatech/project-anatha/x/governance"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/config"
+	gov "github.com/DFWallet/project-anatha/x/governance"
 )
 
 const (
@@ -14,14 +14,14 @@ const (
 )
 
 type DevelopmentFundDistributionProposal struct {
-	Title       string `json:"title" yaml:"title"`
-	Description string `json:"description" yaml:"description"`
-	Amount 		sdk.Coins `json:"amount" yaml:"amount"`
-	Recipient 	sdk.AccAddress `json:"recipient" yaml:"recipient"`
+	Title       string         `json:"title" yaml:"title"`
+	Description string         `json:"description" yaml:"description"`
+	Amount      sdk.Coins      `json:"amount" yaml:"amount"`
+	Recipient   sdk.AccAddress `json:"recipient" yaml:"recipient"`
 }
 
 func NewDevelopmentFundDistributionProposal(title, description string, amount sdk.Coins, recipient sdk.AccAddress) gov.Content {
-	return DevelopmentFundDistributionProposal{title, description, amount,recipient}
+	return DevelopmentFundDistributionProposal{title, description, amount, recipient}
 }
 
 var _ gov.Content = DevelopmentFundDistributionProposal{}
@@ -36,9 +36,11 @@ func init() {
 func (p DevelopmentFundDistributionProposal) GetTitle() string       { return p.Title }
 func (p DevelopmentFundDistributionProposal) GetDescription() string { return p.Description }
 func (p DevelopmentFundDistributionProposal) ProposalRoute() string  { return RouterKey }
-func (p DevelopmentFundDistributionProposal) ProposalType() string   { return ProposalTypeDevelopmentFundDistribution }
+func (p DevelopmentFundDistributionProposal) ProposalType() string {
+	return ProposalTypeDevelopmentFundDistribution
+}
 func (p DevelopmentFundDistributionProposal) ValidateBasic() error {
-	if ! p.Amount.IsValid() || p.Amount.AmountOf(config.DefaultDenom).IsZero() {
+	if !p.Amount.IsValid() || p.Amount.AmountOf(config.DefaultDenom).IsZero() {
 		return sdkerrors.ErrInvalidCoins
 	}
 
@@ -55,18 +57,18 @@ func (sup DevelopmentFundDistributionProposal) String() string {
 }
 
 type SecurityTokenFundDistributionProposal struct {
-	Title       string `json:"title" yaml:"title"`
-	Description string `json:"description" yaml:"description"`
-	Recipients 	[]Recipients `json:"recipients" yaml:"recipients"`
+	Title       string       `json:"title" yaml:"title"`
+	Description string       `json:"description" yaml:"description"`
+	Recipients  []Recipients `json:"recipients" yaml:"recipients"`
 }
 
 type Recipients struct {
-	Amount sdk.Coins `json:"amount" yaml:"amount"`
+	Amount    sdk.Coins      `json:"amount" yaml:"amount"`
 	Recipient sdk.AccAddress `json:"recipient" yaml:"recipient"`
 }
 
 func NewSecurityTokenFundDistributionProposal(title, description string, recipients []Recipients) gov.Content {
-	return SecurityTokenFundDistributionProposal{title, description ,recipients}
+	return SecurityTokenFundDistributionProposal{title, description, recipients}
 }
 
 var _ gov.Content = SecurityTokenFundDistributionProposal{}
@@ -74,11 +76,12 @@ var _ gov.Content = SecurityTokenFundDistributionProposal{}
 func (p SecurityTokenFundDistributionProposal) GetTitle() string       { return p.Title }
 func (p SecurityTokenFundDistributionProposal) GetDescription() string { return p.Description }
 func (p SecurityTokenFundDistributionProposal) ProposalRoute() string  { return RouterKey }
-func (p SecurityTokenFundDistributionProposal) ProposalType() string   { return ProposalTypeSecurityTokenFundDistribution
+func (p SecurityTokenFundDistributionProposal) ProposalType() string {
+	return ProposalTypeSecurityTokenFundDistribution
 }
 func (p SecurityTokenFundDistributionProposal) ValidateBasic() error {
 	for i := 0; i < len(p.Recipients); i++ {
-		if ! p.Recipients[i].Amount.IsValid() || p.Recipients[i].Amount.AmountOf(config.DefaultDenom).IsZero() {
+		if !p.Recipients[i].Amount.IsValid() || p.Recipients[i].Amount.AmountOf(config.DefaultDenom).IsZero() {
 			return sdkerrors.ErrInvalidCoins
 		}
 	}

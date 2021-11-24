@@ -1,8 +1,8 @@
 package utils
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/app"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/app"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
@@ -15,7 +15,7 @@ func init() {
 func TestParseAndConvertCoins(t *testing.T) {
 	cases := []struct {
 		input    string
-		valid    bool  // if false, we expect an error on parse
+		valid    bool      // if false, we expect an error on parse
 		expected sdk.Coins // if valid is true, make sure this is returned
 	}{
 		{"", true, nil},

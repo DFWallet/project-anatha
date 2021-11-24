@@ -1,21 +1,21 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/config"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/config"
 	"time"
 )
 
 // MsgAddOperator
 type MsgAddOperator struct {
-	Sender sdk.AccAddress `json:"sender" yaml:"sender"`
+	Sender   sdk.AccAddress `json:"sender" yaml:"sender"`
 	Operator sdk.AccAddress `json:"operator" yaml:"operator"`
 }
 
 func NewMsgAddOperator(sender sdk.AccAddress, operator sdk.AccAddress) MsgAddOperator {
 	return MsgAddOperator{
-		Sender: sender,
+		Sender:   sender,
 		Operator: operator,
 	}
 }
@@ -44,13 +44,13 @@ func (msg MsgAddOperator) GetSigners() []sdk.AccAddress {
 
 // MsgRemoveOperator
 type MsgRemoveOperator struct {
-	Sender sdk.AccAddress `json:"sender" yaml:"sender"`
+	Sender   sdk.AccAddress `json:"sender" yaml:"sender"`
 	Operator sdk.AccAddress `json:"operator" yaml:"operator"`
 }
 
 func NewMsgRemoveOperator(sender sdk.AccAddress, operator sdk.AccAddress) MsgRemoveOperator {
 	return MsgRemoveOperator{
-		Sender: sender,
+		Sender:   sender,
 		Operator: operator,
 	}
 }
@@ -105,7 +105,7 @@ func (msg MsgDisburse) ValidateBasic() error {
 	if msg.Recipient.Empty() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Operator.String())
 	}
-	if ! msg.Amount.AmountOf(config.DefaultStableDenom).IsPositive() {
+	if !msg.Amount.AmountOf(config.DefaultStableDenom).IsPositive() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "Invalid amount.")
 	}
 	if len(msg.Reference) > 255 {
@@ -145,7 +145,7 @@ func (msg MsgDisburseToEscrow) ValidateBasic() error {
 	if msg.Operator.Empty() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Operator.String())
 	}
-	if ! msg.Amount.AmountOf(config.DefaultStableDenom).IsPositive() {
+	if !msg.Amount.AmountOf(config.DefaultStableDenom).IsPositive() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "Invalid amount.")
 	}
 	if len(msg.Reference) > 255 {
@@ -225,7 +225,7 @@ func (msg MsgRevertFromEscrow) ValidateBasic() error {
 	if msg.Operator.Empty() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Operator.String())
 	}
-	if ! msg.Amount.AmountOf(config.DefaultDenom).IsPositive() {
+	if !msg.Amount.AmountOf(config.DefaultDenom).IsPositive() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "Invalid amount.")
 	}
 	if len(msg.Reference) > 255 {
@@ -244,15 +244,15 @@ func (msg MsgRevertFromEscrow) GetSigners() []sdk.AccAddress {
 
 // MsgCancelDisbursement
 type MsgCancelDisbursement struct {
-	Manager sdk.AccAddress `json:"manager" yaml:"manager"`
-	Recipient sdk.AccAddress `json:"recipient" yaml:"recipient"`
-	ScheduledFor string `json:"scheduled_for" yaml:"scheduled_for"` // has to be string and parsed on server because of broken amino decoding
+	Manager      sdk.AccAddress `json:"manager" yaml:"manager"`
+	Recipient    sdk.AccAddress `json:"recipient" yaml:"recipient"`
+	ScheduledFor string         `json:"scheduled_for" yaml:"scheduled_for"` // has to be string and parsed on server because of broken amino decoding
 }
 
 func NewMsgCancelDisbursement(manager sdk.AccAddress, recipient sdk.AccAddress, scheduledFor string) MsgCancelDisbursement {
 	return MsgCancelDisbursement{
-		Manager: manager,
-		Recipient: recipient,
+		Manager:      manager,
+		Recipient:    recipient,
 		ScheduledFor: scheduledFor,
 	}
 }
@@ -288,14 +288,14 @@ func (msg MsgCancelDisbursement) GetSigners() []sdk.AccAddress {
 
 // MsgCreateSellOrder
 type MsgCreateSellOrder struct {
-	Seller          sdk.AccAddress `json:"seller" yaml:"seller"`
-	Amount          sdk.Coins      `json:"amount" yaml:"amount"`
+	Seller sdk.AccAddress `json:"seller" yaml:"seller"`
+	Amount sdk.Coins      `json:"amount" yaml:"amount"`
 }
 
 func NewMsgCreateSellOrder(seller sdk.AccAddress, amount sdk.Coins) MsgCreateSellOrder {
 	return MsgCreateSellOrder{
-		Seller:          seller,
-		Amount:          amount,
+		Seller: seller,
+		Amount: amount,
 	}
 }
 
@@ -307,7 +307,7 @@ func (msg MsgCreateSellOrder) ValidateBasic() error {
 	if msg.Seller.Empty() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Seller.String())
 	}
-	if ! msg.Amount.AmountOf(config.DefaultDenom).IsPositive() {
+	if !msg.Amount.AmountOf(config.DefaultDenom).IsPositive() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "Invalid amount.")
 	}
 	return nil
@@ -323,13 +323,13 @@ func (msg MsgCreateSellOrder) GetSigners() []sdk.AccAddress {
 
 // MsgCreateBuyOrder
 type MsgCreateBuyOrder struct {
-	Buyer 	sdk.AccAddress 	`json:"buyer" yaml:"buyer"`
-	Amount 	sdk.Coins 		`json:"amount" yaml:"amount"`
+	Buyer  sdk.AccAddress `json:"buyer" yaml:"buyer"`
+	Amount sdk.Coins      `json:"amount" yaml:"amount"`
 }
 
 func NewMsgCreateBuyOrder(buyer sdk.AccAddress, amount sdk.Coins) MsgCreateBuyOrder {
 	return MsgCreateBuyOrder{
-		Buyer: buyer,
+		Buyer:  buyer,
 		Amount: amount,
 	}
 }
@@ -342,7 +342,7 @@ func (msg MsgCreateBuyOrder) ValidateBasic() error {
 	if msg.Buyer.Empty() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Buyer.String())
 	}
-	if ! msg.Amount.AmountOf(config.DefaultStableDenom).IsPositive() {
+	if !msg.Amount.AmountOf(config.DefaultStableDenom).IsPositive() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "Invalid amount.")
 	}
 	return nil
@@ -384,7 +384,7 @@ func (msg MsgSwap) ValidateBasic() error {
 	if msg.Recipient.Empty() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Operator.String())
 	}
-	if ! msg.Amount.AmountOf(config.DefaultDenom).IsPositive() {
+	if !msg.Amount.AmountOf(config.DefaultDenom).IsPositive() {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "Invalid amount.")
 	}
 	if len(msg.Reference) > 255 {

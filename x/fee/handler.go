@@ -2,10 +2,10 @@ package fee
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/anathatech/project-anatha/x/fee/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	govtypes "github.com/DFWallet/anatha/x/gov/types"
+	"github.com/DFWallet/project-anatha/x/fee/internal/types"
 )
 
 func NewHandler(k Keeper) sdk.Handler {
@@ -13,9 +13,9 @@ func NewHandler(k Keeper) sdk.Handler {
 		ctx = ctx.WithEventManager(sdk.NewEventManager())
 		switch msg := msg.(type) {
 
-			default:
-				errMsg := fmt.Sprintf("unrecognized %s message type: %T", ModuleName,  msg)
-				return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, errMsg)
+		default:
+			errMsg := fmt.Sprintf("unrecognized %s message type: %T", ModuleName, msg)
+			return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, errMsg)
 		}
 	}
 }
@@ -23,14 +23,14 @@ func NewHandler(k Keeper) sdk.Handler {
 func NewGovernanceProposalHandler(k Keeper) govtypes.Handler {
 	return func(ctx sdk.Context, content govtypes.Content) error {
 		switch c := content.(type) {
-			case types.AddFeeExcludedMessageProposal:
-				return handleProposalAddFeeExcludedMessage(ctx, k, c)
+		case types.AddFeeExcludedMessageProposal:
+			return handleProposalAddFeeExcludedMessage(ctx, k, c)
 
-			case types.RemoveFeeExcludedMessageProposal:
-				return handleProposalRemoveFeeExcludedMessage(ctx, k, c)
+		case types.RemoveFeeExcludedMessageProposal:
+			return handleProposalRemoveFeeExcludedMessage(ctx, k, c)
 
-			default:
-				return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized hra proposal content type: %T", c)
+		default:
+			return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized hra proposal content type: %T", c)
 		}
 	}
 }

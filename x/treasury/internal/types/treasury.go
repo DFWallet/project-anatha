@@ -1,24 +1,24 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 type Treasury struct {
-	MintGenesisSupply 	bool 		`json:"mint_genesis_supply" yaml:"mint_genesis_supply"`
-	TargetSupply 		sdk.Coins 	`json:"target_supply" yaml:"target_supply"`
-	Distributed			sdk.Coins	`json:"distributed" yaml:"distributed"`
-	CoinsPerStage		sdk.Coins 	`json:"coins_per_stage" yaml:"coins_per_stage"`
-	InboundDin			sdk.Coins	`json:"inbound_din" yaml:"inbound_din"`
+	MintGenesisSupply bool      `json:"mint_genesis_supply" yaml:"mint_genesis_supply"`
+	TargetSupply      sdk.Coins `json:"target_supply" yaml:"target_supply"`
+	Distributed       sdk.Coins `json:"distributed" yaml:"distributed"`
+	CoinsPerStage     sdk.Coins `json:"coins_per_stage" yaml:"coins_per_stage"`
+	InboundDin        sdk.Coins `json:"inbound_din" yaml:"inbound_din"`
 }
 
 func NewTreasury(mintGenesisSupply bool, targetSupply sdk.Coins, distributed sdk.Coins, coinsPerStage sdk.Coins, inboundDin sdk.Coins) Treasury {
 	return Treasury{
-		MintGenesisSupply: 	mintGenesisSupply,
-		TargetSupply: 		targetSupply,
-		Distributed:		distributed,
-		CoinsPerStage: 		coinsPerStage,
-		InboundDin: 		inboundDin,
+		MintGenesisSupply: mintGenesisSupply,
+		TargetSupply:      targetSupply,
+		Distributed:       distributed,
+		CoinsPerStage:     coinsPerStage,
+		InboundDin:        inboundDin,
 	}
 }
 

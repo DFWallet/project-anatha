@@ -2,8 +2,8 @@ package rest
 
 import (
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/types/rest"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/types/rest"
 	"github.com/gorilla/mux"
 	"net/http"
 )
@@ -22,4 +22,3 @@ func resolveNameHandler(cliCtx context.CLIContext, storeName string) http.Handle
 		rest.PostProcessResponse(w, cliCtx, res)
 	}
 }
-

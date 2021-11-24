@@ -11,19 +11,19 @@ import (
 	cfg "github.com/tendermint/tendermint/config"
 	"github.com/tendermint/tendermint/crypto"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/anathatech/project-anatha/x/staking/client/cli"
-	"github.com/anathatech/project-anatha/x/staking/client/rest"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/module"
+	authtypes "github.com/DFWallet/anatha/x/auth/types"
+	"github.com/DFWallet/project-anatha/x/staking/client/cli"
+	"github.com/DFWallet/project-anatha/x/staking/client/rest"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 var (
-	_ module.AppModule           = AppModule{}
-	_ module.AppModuleBasic      = AppModuleBasic{}
+	_ module.AppModule      = AppModule{}
+	_ module.AppModuleBasic = AppModuleBasic{}
 )
 
 // AppModuleBasic defines the basic application module used by the staking module.
@@ -170,4 +170,3 @@ func (am AppModule) BeginBlock(ctx sdk.Context, _ abci.RequestBeginBlock) {
 func (am AppModule) EndBlock(ctx sdk.Context, _ abci.RequestEndBlock) []abci.ValidatorUpdate {
 	return EndBlocker(ctx, am.keeper)
 }
-

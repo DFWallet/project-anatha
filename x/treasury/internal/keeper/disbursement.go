@@ -1,15 +1,15 @@
 package keeper
 
 import (
-	"github.com/anathatech/project-anatha/config"
+	"github.com/DFWallet/project-anatha/config"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 )
 
 func (k Keeper) HandleDisburse(ctx sdk.Context, operator sdk.AccAddress, recipient sdk.AccAddress, dinAmount sdk.Coins, reference string) error {
-	if ! k.IsOperator(ctx, operator) {
+	if !k.IsOperator(ctx, operator) {
 		return types.ErrNotOperator
 	}
 
@@ -56,7 +56,7 @@ func (k Keeper) HandleDisburse(ctx sdk.Context, operator sdk.AccAddress, recipie
 }
 
 func (k Keeper) HandleDisburseToEscrow(ctx sdk.Context, operator sdk.AccAddress, dinAmount sdk.Coins, reference string) error {
-	if ! k.IsOperator(ctx, operator) {
+	if !k.IsOperator(ctx, operator) {
 		return types.ErrNotOperator
 	}
 
@@ -93,13 +93,13 @@ func (k Keeper) HandleDisburseToEscrow(ctx sdk.Context, operator sdk.AccAddress,
 }
 
 func (k Keeper) HandleDisburseFromEscrow(ctx sdk.Context, operator sdk.AccAddress, reference string, recipient sdk.AccAddress) error {
-	if ! k.IsOperator(ctx, operator) {
+	if !k.IsOperator(ctx, operator) {
 		return types.ErrNotOperator
 	}
 
 	found, amount := k.GetDisbursementReferenceAmount(ctx, reference)
 
-	if ! found {
+	if !found {
 		return types.ErrInvalidReference
 	}
 
@@ -130,13 +130,13 @@ func (k Keeper) HandleDisburseFromEscrow(ctx sdk.Context, operator sdk.AccAddres
 }
 
 func (k Keeper) HandleRevertFromEscrow(ctx sdk.Context, operator sdk.AccAddress, amount sdk.Coins, reference string) error {
-	if ! k.IsOperator(ctx, operator) {
+	if !k.IsOperator(ctx, operator) {
 		return types.ErrNotOperator
 	}
 
 	found, escrowBalance := k.GetDisbursementReferenceAmount(ctx, reference)
 
-	if ! found {
+	if !found {
 		return types.ErrInvalidReference
 	}
 
@@ -177,11 +177,11 @@ func (k Keeper) HandleRevertFromEscrow(ctx sdk.Context, operator sdk.AccAddress,
 }
 
 func (k Keeper) HandleCancelDisbursement(ctx sdk.Context, manager sdk.AccAddress, recipient sdk.AccAddress, scheduledFor time.Time) error {
-	if ! k.IsManager(ctx, manager) {
+	if !k.IsManager(ctx, manager) {
 		return types.ErrNotManager
 	}
 
-	if ! k.HasDisbursementInQueue(ctx, recipient, scheduledFor) {
+	if !k.HasDisbursementInQueue(ctx, recipient, scheduledFor) {
 		return types.ErrDisbursementNotScheduled
 	}
 
@@ -204,18 +204,18 @@ func (k Keeper) HandleCancelDisbursement(ctx sdk.Context, manager sdk.AccAddress
 }
 
 func (k Keeper) DisburseFunds(ctx sdk.Context, operator sdk.AccAddress, recipient sdk.AccAddress, dinAmount sdk.Coins, fromBuyBack sdk.Coins, fromTreasury sdk.Coins) error {
-	if ! operator.Empty() && ! k.IsOperator(ctx, operator) {
+	if !operator.Empty() && !k.IsOperator(ctx, operator) {
 		return types.ErrNotOperator
 	}
 
-	if ! fromBuyBack.IsZero() {
+	if !fromBuyBack.IsZero() {
 		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.BuyBackFundModuleName, recipient, fromBuyBack)
 		if err != nil {
 			return err
 		}
 	}
 
-	if ! fromTreasury.IsZero() {
+	if !fromTreasury.IsZero() {
 		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, recipient, fromTreasury)
 		if err != nil {
 			return err
@@ -231,14 +231,14 @@ func (k Keeper) DisburseFunds(ctx sdk.Context, operator sdk.AccAddress, recipien
 }
 
 func (k Keeper) DisburseFundsToEscrow(ctx sdk.Context, reference string, dinAmount sdk.Coins, fromBuyBack sdk.Coins, fromTreasury sdk.Coins) error {
-	if ! fromBuyBack.IsZero() {
+	if !fromBuyBack.IsZero() {
 		err := k.supplyKeeper.SendCoinsFromModuleToModule(ctx, types.BuyBackFundModuleName, types.TreasuryEscrowModuleName, fromBuyBack)
 		if err != nil {
 			return err
 		}
 	}
 
-	if ! fromTreasury.IsZero() {
+	if !fromTreasury.IsZero() {
 		err := k.supplyKeeper.SendCoinsFromModuleToModule(ctx, types.ModuleName, types.TreasuryEscrowModuleName, fromTreasury)
 		if err != nil {
 			return err

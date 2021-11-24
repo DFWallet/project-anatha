@@ -3,8 +3,8 @@ package keeper
 import (
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/slashing/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/slashing/internal/types"
 )
 
 // SignedBlocksWindow - sliding window for downtime slashing

@@ -2,14 +2,14 @@ package cli
 
 import (
 	"bufio"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
-	treasuryutils "github.com/anathatech/project-anatha/x/treasury/client/utils"
-	"github.com/anathatech/project-anatha/x/governance"
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/auth"
+	"github.com/DFWallet/anatha/x/auth/client/utils"
+	"github.com/DFWallet/project-anatha/x/governance"
+	treasuryutils "github.com/DFWallet/project-anatha/x/treasury/client/utils"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 	"github.com/spf13/cobra"
 )
 

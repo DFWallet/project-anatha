@@ -2,12 +2,12 @@ package keeper
 
 import (
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	gov "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
-	"github.com/anathatech/project-anatha/x/governance/internal/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/auth"
+	gov "github.com/DFWallet/anatha/x/gov/types"
+	"github.com/DFWallet/anatha/x/params"
+	"github.com/DFWallet/project-anatha/x/governance/internal/types"
 	"time"
 
 	"github.com/tendermint/tendermint/libs/log"
@@ -17,17 +17,17 @@ type Keeper struct {
 	storeKey   sdk.StoreKey
 	cdc        *codec.Codec
 	paramSpace params.Subspace
-	router gov.Router
+	router     gov.Router
 
-	AccountKeeper 	auth.AccountKeeper
+	AccountKeeper auth.AccountKeeper
 }
 
-func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, paramSpace params.Subspace, router gov.Router, accountKeeper auth.AccountKeeper,) Keeper {
+func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, paramSpace params.Subspace, router gov.Router, accountKeeper auth.AccountKeeper) Keeper {
 	return Keeper{
-		storeKey:     key,
-		paramSpace:   paramSpace,
-		cdc:          cdc,
-		router:       router,
+		storeKey:      key,
+		paramSpace:    paramSpace,
+		cdc:           cdc,
+		router:        router,
 		AccountKeeper: accountKeeper,
 	}
 }

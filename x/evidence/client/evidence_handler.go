@@ -3,9 +3,9 @@ package client
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/anathatech/project-anatha/x/evidence/client/rest"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/project-anatha/x/evidence/client/rest"
 )
 
 type (

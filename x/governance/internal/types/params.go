@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	params "github.com/cosmos/cosmos-sdk/x/params/subspace"
+	sdk "github.com/DFWallet/anatha/types"
+	params "github.com/DFWallet/anatha/x/params/subspace"
 )
 
 const (
@@ -13,13 +13,13 @@ const (
 )
 
 var (
-	DefaultQuorum           = sdk.NewDecWithPrec(334, 3)
-	DefaultThreshold        = sdk.NewDecWithPrec(5, 1)
+	DefaultQuorum    = sdk.NewDecWithPrec(334, 3)
+	DefaultThreshold = sdk.NewDecWithPrec(5, 1)
 )
 
 var (
-	ParamStoreKeyVotingParams  = []byte("votingparams")
-	ParamStoreKeyTallyParams   = []byte("tallyparams")
+	ParamStoreKeyVotingParams = []byte("votingparams")
+	ParamStoreKeyTallyParams  = []byte("tallyparams")
 )
 
 func ParamKeyTable() params.KeyTable {
@@ -107,8 +107,8 @@ func validateVotingParams(i interface{}) error {
 }
 
 type Params struct {
-	VotingParams  VotingParams  `json:"voting_params" yaml:"voting_params"`
-	TallyParams   TallyParams   `json:"tally_params" yaml:"tally_params"`
+	VotingParams VotingParams `json:"voting_params" yaml:"voting_params"`
+	TallyParams  TallyParams  `json:"tally_params" yaml:"tally_params"`
 }
 
 func (gp Params) String() string {
@@ -118,8 +118,8 @@ func (gp Params) String() string {
 
 func NewParams(vp VotingParams, tp TallyParams) Params {
 	return Params{
-		VotingParams:  vp,
-		TallyParams:   tp,
+		VotingParams: vp,
+		TallyParams:  tp,
 	}
 }
 

@@ -2,17 +2,17 @@ package types
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
-	"github.com/anathatech/project-anatha/config"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/params"
+	"github.com/DFWallet/project-anatha/config"
 )
 
 var (
-	DefaultFeePercentage 		= sdk.NewDecWithPrec(2, 3)
-	DefaultMinimumFee 			= sdk.NewCoins(sdk.NewInt64Coin(config.DefaultDenom, 200)) // 200pin
-	DefaultMaximumFee           = sdk.NewCoins(sdk.NewInt64Coin(config.DefaultDenom, 100000000)) // 1 anatha
+	DefaultFeePercentage = sdk.NewDecWithPrec(2, 3)
+	DefaultMinimumFee    = sdk.NewCoins(sdk.NewInt64Coin(config.DefaultDenom, 200))       // 200pin
+	DefaultMaximumFee    = sdk.NewCoins(sdk.NewInt64Coin(config.DefaultDenom, 100000000)) // 1 anatha
 
-	DefaultFeeExcludedMessages = []string {
+	DefaultFeeExcludedMessages = []string{
 		"treasury/disburse",
 		"treasury/disburse_to_escrow",
 		"treasury/disburse_from_escrow",
@@ -22,9 +22,9 @@ var (
 		"governance/expedite",
 	}
 
-	KeyFeePercentage 			= []byte("FeePercentage")
-	KeyMinimumFee				= []byte("MinimumFee")
-	KeyMaximumFee				= []byte("MaximumFee")
+	KeyFeePercentage = []byte("FeePercentage")
+	KeyMinimumFee    = []byte("MinimumFee")
+	KeyMaximumFee    = []byte("MaximumFee")
 )
 
 func ParamKeyTable() params.KeyTable {
@@ -32,24 +32,23 @@ func ParamKeyTable() params.KeyTable {
 }
 
 type Params struct {
-	FeePercentage			sdk.Dec			`json:"fee_percentage" yaml:"fee_percentage"`
-	MinimumFee				sdk.Coins		`json:"minimum_fee" yaml:"minimum_fee"`
-	MaximumFee				sdk.Coins 		`json:"maximum_fee" yaml:"maximum_fee"`
+	FeePercentage sdk.Dec   `json:"fee_percentage" yaml:"fee_percentage"`
+	MinimumFee    sdk.Coins `json:"minimum_fee" yaml:"minimum_fee"`
+	MaximumFee    sdk.Coins `json:"maximum_fee" yaml:"maximum_fee"`
 }
-
 
 func NewParams(feePercentage sdk.Dec, minimumFee sdk.Coins, maximumFee sdk.Coins) Params {
 	return Params{
 		FeePercentage: feePercentage,
-		MinimumFee: minimumFee,
-		MaximumFee: maximumFee,
+		MinimumFee:    minimumFee,
+		MaximumFee:    maximumFee,
 	}
 }
 
 // String implements the stringer interface for Params
 func (p Params) String() string {
 	return fmt.Sprintf(`Params:
-`, )
+`)
 }
 
 // ParamSetPairs - Implements params.ParamSet
@@ -91,10 +90,10 @@ func validateFee(i interface{}) error {
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
-	if ! v.IsValid() {
+	if !v.IsValid() {
 		return fmt.Errorf("invalid name info fee: %s", v)
 	}
-	if ! v.AmountOf(config.DefaultDenom).IsPositive() {
+	if !v.AmountOf(config.DefaultDenom).IsPositive() {
 		return fmt.Errorf("invalid fee denomination. expected: %s", config.DefaultDenom)
 	}
 	return nil

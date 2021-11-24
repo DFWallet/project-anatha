@@ -1,11 +1,11 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 var (
-	DefaultGovernorList = []string {
+	DefaultGovernorList = []string{
 		"anatha170mj6j6veall698u5xwkdhpf2nlza9j6n366v2",
 		"anatha1e4ay99w2v3qqnl8wrmv3s85mexm6eum2vhucmf",
 		"anatha1p470fhtytsym8fpp5j6rak2ec2qrvmwdvpg3ve",

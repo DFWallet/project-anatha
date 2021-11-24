@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 const (
@@ -41,8 +41,8 @@ var (
 	UnbondingDelegationKey           = []byte{0x32} // key for an unbonding-delegation
 	UnbondingDelegationByValIndexKey = []byte{0x33} // prefix for each key for an unbonding-delegation, by validator operator
 
-	UnbondingQueueKey    = []byte{0x41} // prefix for the timestamps in unbonding queue
-	ValidatorQueueKey    = []byte{0x43} // prefix for the timestamps in validator queue
+	UnbondingQueueKey = []byte{0x41} // prefix for the timestamps in unbonding queue
+	ValidatorQueueKey = []byte{0x43} // prefix for the timestamps in validator queue
 
 	HistoricalInfoKey = []byte{0x50} // prefix for the historical info
 
@@ -116,15 +116,15 @@ func getValidatorTicketRank(validator Validator) []byte {
 	ticketBytesLen := len(ticketBytes) // 8
 
 	// key is of format prefix || ticketbytes || addrBytes
-	key := make([]byte, 1 + ticketBytesLen + sdk.AddrLen)
+	key := make([]byte, 1+ticketBytesLen+sdk.AddrLen)
 
 	key[0] = ValidatorsByTicketKey[0]
-	copy(key[1:ticketBytesLen + 1], ticketBytes)
+	copy(key[1:ticketBytesLen+1], ticketBytes)
 	operAddrInvr := sdk.CopyBytes(validator.OperatorAddress)
 	for i, b := range operAddrInvr {
 		operAddrInvr[i] = ^b
 	}
-	copy(key[ticketBytesLen + 1:], operAddrInvr)
+	copy(key[ticketBytesLen+1:], operAddrInvr)
 
 	return key
 }
@@ -145,11 +145,11 @@ func ParseValidatorPowerRankKey(key []byte) (operAddr []byte) {
 // parse the validators operator address from ticket rank key
 func ParseValidatorTicketKey(key []byte) (ticket uint64, operAddr []byte) {
 	ticketBytesLen := 8
-	if len(key) != 1 + ticketBytesLen + sdk.AddrLen {
+	if len(key) != 1+ticketBytesLen+sdk.AddrLen {
 		panic("Invalid validator ticket key length")
 	}
 
-	ticket = binary.BigEndian.Uint64(key[1:ticketBytesLen + 1])
+	ticket = binary.BigEndian.Uint64(key[1 : ticketBytesLen+1])
 
 	operAddr = sdk.CopyBytes(key[ticketBytesLen+1:])
 	for i, b := range operAddr {
@@ -229,7 +229,6 @@ func GetUnbondingDelegationTimeKey(timestamp time.Time) []byte {
 func GetHistoricalInfoKey(height int64) []byte {
 	return append(HistoricalInfoKey, []byte(strconv.FormatInt(height, 10))...)
 }
-
 
 func GetTicketBytes(ticket uint64) (ticketBz []byte) {
 	ticketBz = make([]byte, 8)

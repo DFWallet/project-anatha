@@ -1,9 +1,9 @@
 package types
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	gov "github.com/cosmos/cosmos-sdk/x/gov"
-	"github.com/cosmos/cosmos-sdk/x/params"
+	"github.com/DFWallet/anatha/codec"
+	gov "github.com/DFWallet/anatha/x/gov"
+	"github.com/DFWallet/anatha/x/params"
 )
 
 func RegisterCodec(cdc *codec.Codec) {

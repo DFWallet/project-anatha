@@ -1,24 +1,23 @@
 package fee
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/cosmos/cosmos-sdk/x/supply"
-	"github.com/anathatech/project-anatha/config"
-	types2 "github.com/anathatech/project-anatha/x/fee/internal/types"
-	"github.com/anathatech/project-anatha/x/hra"
-	"github.com/anathatech/project-anatha/x/treasury"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/anatha/x/auth/types"
+	"github.com/DFWallet/anatha/x/bank"
+	"github.com/DFWallet/anatha/x/supply"
+	"github.com/DFWallet/project-anatha/config"
+	types2 "github.com/DFWallet/project-anatha/x/fee/internal/types"
+	"github.com/DFWallet/project-anatha/x/hra"
+	"github.com/DFWallet/project-anatha/x/treasury"
 )
 
-
 type FeeDecorator struct {
-	feeKeeper			Keeper
-	bankKeeper   		bank.Keeper
-	hraKeeper    		hra.Keeper
-	supplyKeeper 		supply.Keeper
-	feeCollectorModule 	string
+	feeKeeper          Keeper
+	bankKeeper         bank.Keeper
+	hraKeeper          hra.Keeper
+	supplyKeeper       supply.Keeper
+	feeCollectorModule string
 }
 
 func NewFeeDecorator(fk Keeper, bk bank.Keeper, hk hra.Keeper, sk supply.Keeper, feeCollectorModule string) FeeDecorator {
@@ -27,10 +26,10 @@ func NewFeeDecorator(fk Keeper, bk bank.Keeper, hk hra.Keeper, sk supply.Keeper,
 	}
 
 	return FeeDecorator{
-		feeKeeper: fk,
-		bankKeeper: bk,
-		hraKeeper: hk,
-		supplyKeeper: sk,
+		feeKeeper:          fk,
+		bankKeeper:         bk,
+		hraKeeper:          hk,
+		supplyKeeper:       sk,
 		feeCollectorModule: feeCollectorModule,
 	}
 }
@@ -111,14 +110,14 @@ func (d FeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next
 
 		txFees = txFees.Add(msgFee...)
 
-		if ! d.feeKeeper.IsMessageFeeExcluded(ctx, msg) {
+		if !d.feeKeeper.IsMessageFeeExcluded(ctx, msg) {
 			systemFees = systemFees.Add(d.CalculateSystemFee(ctx, msgFee)...)
 		}
 	}
 
 	totalFees := txFees.Add(systemFees...)
 
-	if ! d.bankKeeper.HasCoins(ctx, feePayer, totalFees) {
+	if !d.bankKeeper.HasCoins(ctx, feePayer, totalFees) {
 		return ctx, sdkerrors.Wrapf(sdkerrors.ErrInsufficientFee, "insufficient fees; required: %s", totalFees)
 	}
 
@@ -126,7 +125,7 @@ func (d FeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next
 		ctx,
 		feePayer,
 		d.feeCollectorModule,
-		systemFees,			// we deduct only system fees in the ante handler!
+		systemFees, // we deduct only system fees in the ante handler!
 	)
 
 	if err != nil {

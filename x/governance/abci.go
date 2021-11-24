@@ -1,7 +1,7 @@
 package governance
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 func EndBlocker(ctx sdk.Context, keeper Keeper) {

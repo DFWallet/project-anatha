@@ -6,13 +6,13 @@ import (
 	tmbytes "github.com/tendermint/tendermint/libs/bytes"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/store/prefix"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/evidence/exported"
-	"github.com/anathatech/project-anatha/x/evidence/internal/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/anatha/store/prefix"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/anatha/x/params"
+	"github.com/DFWallet/project-anatha/x/evidence/exported"
+	"github.com/DFWallet/project-anatha/x/evidence/internal/types"
 )
 
 // Keeper defines the evidence module's keeper. The keeper is responsible for

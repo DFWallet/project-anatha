@@ -1,8 +1,8 @@
 package client
 
 import (
-	govclient "github.com/anathatech/project-anatha/x/governance/client"
-	"github.com/anathatech/project-anatha/x/treasury/client/cli"
+	govclient "github.com/DFWallet/project-anatha/x/governance/client"
+	"github.com/DFWallet/project-anatha/x/treasury/client/cli"
 )
 
 var AddBuyBackLiquidityProposalHandler = govclient.NewProposalHandler(cli.GetCmdSubmitAddBuyBackLiquidityProposal)

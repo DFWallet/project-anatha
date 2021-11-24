@@ -10,11 +10,11 @@ import (
 	"github.com/tendermint/tendermint/libs/cli"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/server"
-	"github.com/anathatech/project-anatha/x/genutil"
-	"github.com/anathatech/project-anatha/x/genutil/types"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/anatha/server"
+	"github.com/DFWallet/project-anatha/x/genutil"
+	"github.com/DFWallet/project-anatha/x/genutil/types"
 )
 
 const flagGenTxDir = "gentx-dir"

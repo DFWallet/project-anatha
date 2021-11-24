@@ -1,9 +1,9 @@
 package slashing
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/slashing/internal/types"
-	"github.com/anathatech/project-anatha/x/staking/exported"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/slashing/internal/types"
+	"github.com/DFWallet/project-anatha/x/staking/exported"
 )
 
 // InitGenesis initialize default parameters

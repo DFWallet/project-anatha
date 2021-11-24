@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/anathatech/project-anatha/x/evidence/exported"
+	"github.com/DFWallet/project-anatha/x/evidence/exported"
 )
 
 // DONTCOVER

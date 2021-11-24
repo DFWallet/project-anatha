@@ -1,6 +1,6 @@
 package types
 
-import sdk "github.com/cosmos/cosmos-sdk/types"
+import sdk "github.com/DFWallet/anatha/types"
 
 type NameHooks interface {
 	AfterFirstNameCreated(ctx sdk.Context, address sdk.AccAddress) error

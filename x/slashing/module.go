@@ -8,19 +8,19 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/anathatech/project-anatha/x/slashing/client/cli"
-	"github.com/anathatech/project-anatha/x/slashing/client/rest"
-	"github.com/anathatech/project-anatha/x/slashing/internal/types"
-	stakingkeeper "github.com/anathatech/project-anatha/x/staking/keeper"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/module"
+	"github.com/DFWallet/project-anatha/x/slashing/client/cli"
+	"github.com/DFWallet/project-anatha/x/slashing/client/rest"
+	"github.com/DFWallet/project-anatha/x/slashing/internal/types"
+	stakingkeeper "github.com/DFWallet/project-anatha/x/staking/keeper"
 )
 
 var (
-	_ module.AppModule           = AppModule{}
-	_ module.AppModuleBasic      = AppModuleBasic{}
+	_ module.AppModule      = AppModule{}
+	_ module.AppModuleBasic = AppModuleBasic{}
 )
 
 // AppModuleBasic defines the basic application module used by the slashing module.

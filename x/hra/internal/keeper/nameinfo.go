@@ -2,11 +2,10 @@ package keeper
 
 import (
 	"bytes"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/x/hra/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 )
-
 
 func (k Keeper) HandleRegisterName(ctx sdk.Context, name string, owner sdk.AccAddress) error {
 	if k.IsNameRegistered(ctx, name) {
@@ -23,7 +22,7 @@ func (k Keeper) HandleRegisterName(ctx sdk.Context, name string, owner sdk.AccAd
 		return err
 	}
 
-	if ! k.OwnsAnyName(ctx, owner) {
+	if !k.OwnsAnyName(ctx, owner) {
 		k.SetCredits(ctx, owner, k.AddressCredits(ctx))
 		k.AfterFirstNameCreated(ctx, owner)
 	}
@@ -61,11 +60,11 @@ func (k Keeper) RegisterName(ctx sdk.Context, name string, owner sdk.AccAddress)
 
 func (k Keeper) HandleRenewName(ctx sdk.Context, name string, owner sdk.AccAddress) error {
 	nameInfo, found := k.GetNameInfo(ctx, name)
-	if ! found {
+	if !found {
 		return types.ErrNameNotRegistered
 	}
 
-	if ! owner.Equals(nameInfo.Owner) {
+	if !owner.Equals(nameInfo.Owner) {
 		return types.ErrNotOwner
 	}
 
@@ -135,11 +134,11 @@ func (k Keeper) OwnsAnyName(ctx sdk.Context, owner sdk.AccAddress) bool {
 
 func (k Keeper) HandleDeleteName(ctx sdk.Context, name string, owner sdk.AccAddress) error {
 	nameInfo, found := k.GetNameInfo(ctx, name)
-	if ! found {
+	if !found {
 		return types.ErrNameNotRegistered
 	}
 
-	if ! owner.Equals(nameInfo.Owner) {
+	if !owner.Equals(nameInfo.Owner) {
 		return types.ErrNotOwner
 	}
 
@@ -149,7 +148,7 @@ func (k Keeper) HandleDeleteName(ctx sdk.Context, name string, owner sdk.AccAddr
 	k.DeleteNameInfoStatusMap(ctx, owner, name)
 
 	// if last HRA remove all associated addresses
-	if ! k.OwnsAnyName(ctx, owner) {
+	if !k.OwnsAnyName(ctx, owner) {
 		k.RemoveAllAddresses(ctx, owner)
 
 		k.SetCredits(ctx, owner, sdk.ZeroInt())
@@ -164,11 +163,11 @@ func (k Keeper) HandleDeleteName(ctx sdk.Context, name string, owner sdk.AccAddr
 
 func (k Keeper) HandleTransferName(ctx sdk.Context, name string, owner sdk.AccAddress, newOwner sdk.AccAddress) error {
 	nameInfo, found := k.GetNameInfo(ctx, name)
-	if ! found {
+	if !found {
 		return types.ErrNameNotRegistered
 	}
 
-	if ! owner.Equals(nameInfo.Owner) {
+	if !owner.Equals(nameInfo.Owner) {
 		return types.ErrNotOwner
 	}
 
@@ -182,7 +181,7 @@ func (k Keeper) HandleTransferName(ctx sdk.Context, name string, owner sdk.AccAd
 		k.AccountKeeper.SetAccount(ctx, account)
 	}
 
-	if ! k.OwnsAnyName(ctx, newOwner) {
+	if !k.OwnsAnyName(ctx, newOwner) {
 		k.SetCredits(ctx, newOwner, k.AddressCredits(ctx))
 		k.AfterFirstNameCreated(ctx, newOwner)
 	}
@@ -197,7 +196,7 @@ func (k Keeper) HandleTransferName(ctx sdk.Context, name string, owner sdk.AccAd
 
 	k.SetNameInfo(ctx, name, nameInfo)
 
-	if ! k.OwnsAnyName(ctx, owner) {
+	if !k.OwnsAnyName(ctx, owner) {
 		k.RemoveAllAddresses(ctx, owner)
 		k.SetCredits(ctx, owner, sdk.ZeroInt())
 		err := k.AfterLastNameRemoved(ctx, owner)

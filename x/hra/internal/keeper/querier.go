@@ -1,24 +1,24 @@
 package keeper
 
 import (
-	"github.com/anathatech/project-anatha/x/hra/internal/types"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/cosmos/cosmos-sdk/x/supply"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/anatha/x/supply"
+	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
 const (
-	QueryName = "resolve"
-	QueryAddressNames = "names"
-	QueryNameAddress = "address"
-	QueryAddressNameInfos = "name-infos"
+	QueryName                    = "resolve"
+	QueryAddressNames            = "names"
+	QueryNameAddress             = "address"
+	QueryAddressNameInfos        = "name-infos"
 	QueryRegisteredBlockchainIds = "registered-blockchain-ids"
-	QueryAddressCredits = "address-credits"
-	QueryBlockchainAddresses = "blockchain-addresses"
-	QueryParameters = "parameters"
-	QueryModule = "module"
+	QueryAddressCredits          = "address-credits"
+	QueryBlockchainAddresses     = "blockchain-addresses"
+	QueryParameters              = "parameters"
+	QueryModule                  = "module"
 )
 
 func NewQuerier(k Keeper) sdk.Querier {
@@ -50,7 +50,7 @@ func NewQuerier(k Keeper) sdk.Querier {
 
 func queryName(ctx sdk.Context, path []string, req abci.RequestQuery, k Keeper) ([]byte, error) {
 	nameInfo, found := k.GetNameInfo(ctx, path[0])
-	if ! found {
+	if !found {
 		return nil, types.ErrNameNotRegistered
 	}
 
@@ -59,7 +59,7 @@ func queryName(ctx sdk.Context, path []string, req abci.RequestQuery, k Keeper) 
 		Credits:  k.GetCredits(ctx, nameInfo.Owner),
 	}
 
-	k.IterateBlockchainAddressInfos(ctx, nameInfo.Owner, func (info types.BlockchainAddressInfo) (stop bool) {
+	k.IterateBlockchainAddressInfos(ctx, nameInfo.Owner, func(info types.BlockchainAddressInfo) (stop bool) {
 		resNameInfo.Addresses = append(resNameInfo.Addresses, info)
 
 		return false
@@ -140,7 +140,7 @@ func queryAddressNameInfos(ctx sdk.Context, path []string, req abci.RequestQuery
 
 func queryNameAddress(ctx sdk.Context, path []string, req abci.RequestQuery, k Keeper) ([]byte, error) {
 	nameInfo, found := k.GetNameInfo(ctx, path[0])
-	if ! found {
+	if !found {
 		return nil, types.ErrNameNotRegistered
 	}
 
@@ -196,7 +196,7 @@ func queryBlockchainAddresses(ctx sdk.Context, path []string, req abci.RequestQu
 
 	var resBlockchainAddresses types.QueryResBlockchainAddresses
 
-	k.IterateBlockchainAddressInfos(ctx, address, func (info types.BlockchainAddressInfo) (stop bool) {
+	k.IterateBlockchainAddressInfos(ctx, address, func(info types.BlockchainAddressInfo) (stop bool) {
 		resBlockchainAddresses = append(resBlockchainAddresses, info)
 
 		return false

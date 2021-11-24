@@ -1,8 +1,8 @@
 package client
 
 import (
-	"github.com/anathatech/project-anatha/x/distribution/client/cli"
-	govclient "github.com/anathatech/project-anatha/x/governance/client"
+	"github.com/DFWallet/project-anatha/x/distribution/client/cli"
+	govclient "github.com/DFWallet/project-anatha/x/governance/client"
 )
 
 var DevelopmentFundDistributionProposalHandler = govclient.NewProposalHandler(cli.GetCmdSubmitDevelopmentFundDistributionProposal)

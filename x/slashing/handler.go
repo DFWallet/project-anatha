@@ -1,9 +1,9 @@
 package slashing
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/slashing/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/slashing/internal/types"
 )
 
 // NewHandler creates an sdk.Handler for all the slashing type messages

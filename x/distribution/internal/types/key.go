@@ -2,45 +2,45 @@ package types
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 	"time"
 )
 
 const (
 	ModuleName = "distribution"
 
-	AmcModuleName = "amc"
-	NvrpModuleName = "nvrp"
+	AmcModuleName              = "amc"
+	NvrpModuleName             = "nvrp"
 	NvrpDistributionModuleName = "nvrpd"
 
 	HRAHolderRewardModuleName   = "hhrm"
 	DevelopmentFundModuleName   = "dfm"
 	SecurityTokenFundModuleName = "stfm"
 
-	SavingsModuleName = "savings"
+	SavingsModuleName             = "savings"
 	SavingsDistributionModuleName = "savingsdistr"
 
 	DefaultParamspace = ModuleName
-	StoreKey = ModuleName
-	QuerierRoute = StoreKey
-	RouterKey = ModuleName
+	StoreKey          = ModuleName
+	QuerierRoute      = StoreKey
+	RouterKey         = ModuleName
 )
 
 var (
-	NameStakeKey                         = []byte{0x10}
-	NameRewardRateKey                    = []byte{0x11}
-	NameRewardRateByAddressKeyPrefix     = []byte{0x12}
-	PendingNameDistributionKey           = []byte{0x13}
-	NameDepositQueueKeyPrefix            = []byte{0x14}
-	NameRewardEscrowKeyPrefix            = []byte{0x15}
-	NameRewardLeftoverKeyPrefix          = []byte{0x16}
+	NameStakeKey                     = []byte{0x10}
+	NameRewardRateKey                = []byte{0x11}
+	NameRewardRateByAddressKeyPrefix = []byte{0x12}
+	PendingNameDistributionKey       = []byte{0x13}
+	NameDepositQueueKeyPrefix        = []byte{0x14}
+	NameRewardEscrowKeyPrefix        = []byte{0x15}
+	NameRewardLeftoverKeyPrefix      = []byte{0x16}
 
-	SavingsStakeKey                      = []byte{0x20}
-	SavingsStakeByAddressKeyPrefix       = []byte{0x21}
-	SavingsRewardRateKey                 = []byte{0x22}
-	SavingsRewardRateByAddressKeyPrefix  = []byte{0x23}
-	SavingsRewardEscrowKeyPrefix         = []byte{0x24}
-	SavingsRewardLeftoverKeyPrefix       = []byte{0x25}
+	SavingsStakeKey                     = []byte{0x20}
+	SavingsStakeByAddressKeyPrefix      = []byte{0x21}
+	SavingsRewardRateKey                = []byte{0x22}
+	SavingsRewardRateByAddressKeyPrefix = []byte{0x23}
+	SavingsRewardEscrowKeyPrefix        = []byte{0x24}
+	SavingsRewardLeftoverKeyPrefix      = []byte{0x25}
 
 	ValidatorAccumulatedRewardsKeyPrefix = []byte{0x30} // key for accumulated validator rewards
 	NvrpdRemainderKey                    = []byte{0x31}
@@ -187,17 +187,16 @@ func GetSavingsRewardLeftoverAddress(key []byte) (address sdk.AccAddress) {
 // Internal
 
 func splitKeyWithTime(key []byte) (address sdk.AccAddress, endTime time.Time) {
-	if len(key[1:]) != sdk.AddrLen + lenTime {
-		panic(fmt.Sprintf("unexpected key length (%d ≠ %d)", len(key[1:]), sdk.AddrLen + lenTime ))
+	if len(key[1:]) != sdk.AddrLen+lenTime {
+		panic(fmt.Sprintf("unexpected key length (%d ≠ %d)", len(key[1:]), sdk.AddrLen+lenTime))
 	}
 
-
-	endTime, err := sdk.ParseTimeBytes(key[1 : 1 + lenTime])
+	endTime, err := sdk.ParseTimeBytes(key[1 : 1+lenTime])
 	if err != nil {
 		panic(err)
 	}
 
-	address = key[1 + lenTime:]
+	address = key[1+lenTime:]
 
 	return
 }

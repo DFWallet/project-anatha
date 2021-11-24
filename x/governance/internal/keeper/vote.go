@@ -2,14 +2,14 @@ package keeper
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/governance/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/governance/internal/types"
 	"strconv"
 )
 
 func (k Keeper) AddVote(ctx sdk.Context, proposalID uint64, voter sdk.AccAddress, option types.VoteOption) error {
-	if ! k.IsGovernor(ctx, voter) {
+	if !k.IsGovernor(ctx, voter) {
 		return sdkerrors.Wrap(types.ErrNotGovernor, voter.String())
 	}
 
@@ -26,12 +26,12 @@ func (k Keeper) AddVote(ctx sdk.Context, proposalID uint64, voter sdk.AccAddress
 	}
 
 	switch option {
-		case types.OptionYes:
-			proposal.TallyResult.Yes = proposal.TallyResult.Yes.Add(sdk.OneInt())
-		case types.OptionNo:
-			proposal.TallyResult.No = proposal.TallyResult.No.Add(sdk.OneInt())
-		default:
-			return sdkerrors.Wrap(types.ErrInvalidVote, option.String())
+	case types.OptionYes:
+		proposal.TallyResult.Yes = proposal.TallyResult.Yes.Add(sdk.OneInt())
+	case types.OptionNo:
+		proposal.TallyResult.No = proposal.TallyResult.No.Add(sdk.OneInt())
+	default:
+		return sdkerrors.Wrap(types.ErrInvalidVote, option.String())
 	}
 
 	vote := types.NewVote(proposalID, voter, option)

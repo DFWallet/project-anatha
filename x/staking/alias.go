@@ -3,9 +3,9 @@ package staking
 // nolint
 
 import (
-	"github.com/anathatech/project-anatha/x/staking/exported"
-	"github.com/anathatech/project-anatha/x/staking/keeper"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/project-anatha/x/staking/exported"
+	"github.com/DFWallet/project-anatha/x/staking/keeper"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 const (

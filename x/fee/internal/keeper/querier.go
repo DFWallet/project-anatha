@@ -1,29 +1,29 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/fee/internal/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/fee/internal/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
 const (
-	QueryParameters = "parameters"
+	QueryParameters          = "parameters"
 	QueryFeeExcludedMessages = "excluded-messages"
 )
 
 func NewQuerier(k Keeper) sdk.Querier {
 	return func(ctx sdk.Context, path []string, req abci.RequestQuery) ([]byte, error) {
 		switch path[0] {
-			case QueryParameters:
-				return queryParams(ctx, k)
+		case QueryParameters:
+			return queryParams(ctx, k)
 
-			case QueryFeeExcludedMessages:
-				return queryFeeExcludedMessages(ctx, k)
+		case QueryFeeExcludedMessages:
+			return queryFeeExcludedMessages(ctx, k)
 
-			default:
-				return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, "unknown distribution query endpoint")
+		default:
+			return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, "unknown distribution query endpoint")
 		}
 	}
 }

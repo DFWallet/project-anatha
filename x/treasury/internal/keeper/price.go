@@ -1,9 +1,9 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 )
 
 func (k Keeper) CoinsPerStage(ctx sdk.Context) sdk.Int {
@@ -77,7 +77,7 @@ func (k Keeper) CalculateDinAmount(ctx sdk.Context, pinCoins sdk.Coins) sdk.Coin
 
 	canonicalStage := stage
 
-	for ! pinAmount.IsZero() {
+	for !pinAmount.IsZero() {
 
 		remaining := k.RemainingPinInStage(ctx, stage, canonicalStage)
 		stagePrice := k.GetPriceForStage(ctx, stage)
@@ -160,7 +160,7 @@ func (k Keeper) CalculatePinAmount(ctx sdk.Context, dinCoins sdk.Coins) sdk.Coin
 
 	canonicalStage := stage
 
-	for ! dinAmount.IsZero() {
+	for !dinAmount.IsZero() {
 
 		remainingPin := k.RemainingPinInStage(ctx, stage, canonicalStage)
 		stagePrice := k.GetPriceForStage(ctx, stage)

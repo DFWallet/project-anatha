@@ -1,9 +1,9 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/staking/types"
-	"github.com/cosmos/cosmos-sdk/x/supply/exported"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/supply/exported"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // GetBondedPool returns the bonded tokens pool's module account

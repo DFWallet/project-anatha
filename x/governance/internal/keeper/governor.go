@@ -1,8 +1,8 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/governance/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/governance/internal/types"
 )
 
 func (k Keeper) HandleRemoveGovernor(ctx sdk.Context, address sdk.AccAddress) error {
@@ -26,7 +26,7 @@ func (k Keeper) AddGovernor(ctx sdk.Context, address sdk.AccAddress) {
 
 	store := ctx.KVStore(k.storeKey)
 
-	if ! store.Has(types.GetGovernorKey(address)) {
+	if !store.Has(types.GetGovernorKey(address)) {
 		store.Set(types.GetGovernorKey(address), types.StatusPresent)
 
 		count := k.GetGovernorCount(ctx)

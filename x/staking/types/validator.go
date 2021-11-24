@@ -12,10 +12,10 @@ import (
 	tmtypes "github.com/tendermint/tendermint/types"
 	yaml "gopkg.in/yaml.v2"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/staking/exported"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/staking/exported"
 )
 
 // nolint
@@ -49,7 +49,7 @@ type Validator struct {
 	UnbondingHeight         int64          `json:"unbonding_height" yaml:"unbonding_height"`       // if unbonding, height at which this validator has begun unbonding
 	UnbondingCompletionTime time.Time      `json:"unbonding_time" yaml:"unbonding_time"`           // if unbonding, min time for the validator to complete unbonding
 	MinSelfDelegation       sdk.Int        `json:"min_self_delegation" yaml:"min_self_delegation"` // validator's self declared minimum self delegation
-	Ticket                  uint64          `json:"ticket" yaml:"ticket"`
+	Ticket                  uint64         `json:"ticket" yaml:"ticket"`
 }
 
 // custom marshal yaml function due to consensus pubkey

@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/params"
 )
 
 const (
 	DefaultParamspace = ModuleName
 
-	DefaultRiskAssesmentDuration 	= time.Hour * 24 * 3 // devnet: time.Second * 60 * 2
-	DefaultRiskAssesmentAmount		= 10000 // usd
+	DefaultRiskAssesmentDuration = time.Hour * 24 * 3 // devnet: time.Second * 60 * 2
+	DefaultRiskAssesmentAmount   = 10000              // usd
 )
 
 var (
@@ -32,9 +32,9 @@ func ParamKeyTable() params.KeyTable {
 
 type Params struct {
 	Managers               []sdk.AccAddress `json:"managers" yaml:"managers"`
-	RiskAssessmentAmount   sdk.Coins      `json:"risk_assesment_amount" yaml:"risk_assesment_amount"`
-	RiskAssessmentDuration time.Duration  `json:"risk_assesment_duration" yaml:"risk_assesment_duration"`
-	BuyBackPercentage      sdk.Dec        `json:"buyback_percentage" yaml:"buyback_percentage"`
+	RiskAssessmentAmount   sdk.Coins        `json:"risk_assesment_amount" yaml:"risk_assesment_amount"`
+	RiskAssessmentDuration time.Duration    `json:"risk_assesment_duration" yaml:"risk_assesment_duration"`
+	BuyBackPercentage      sdk.Dec          `json:"buyback_percentage" yaml:"buyback_percentage"`
 }
 
 func NewParams(managers []sdk.AccAddress, amount sdk.Coins, riskAssessmentDuration time.Duration, buybackPercentage sdk.Dec) Params {

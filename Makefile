@@ -3,11 +3,11 @@ PACKAGES=$(shell go list ./... | grep -v '/simulation')
 VERSION := 0.3.0
 COMMIT := $(shell git log -1 --format='%H')
 
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=Anatha \
-	-X github.com/cosmos/cosmos-sdk/version.ServerName=anathad \
-	-X github.com/cosmos/cosmos-sdk/version.ClientName=anathacli \
-	-X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
-	-X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) 
+ldflags = -X github.com/DFWallet/anatha/version.Name=Anatha \
+	-X github.com/DFWallet/anatha/version.ServerName=anathad \
+	-X github.com/DFWallet/anatha/version.ClientName=anathacli \
+	-X github.com/DFWallet/anatha/version.Version=$(VERSION) \
+	-X github.com/DFWallet/anatha/version.Commit=$(COMMIT)
 
 BUILD_FLAGS := -ldflags '$(ldflags)'
 

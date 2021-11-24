@@ -3,7 +3,7 @@ package rest
 import (
 	"github.com/gorilla/mux"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/DFWallet/anatha/client/context"
 )
 
 // RegisterRoutes registers treasury-related REST handlers to a router

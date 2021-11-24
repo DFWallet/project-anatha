@@ -2,8 +2,8 @@ package keeper
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/distribution/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 )
 
 func (k Keeper) HandleWithdrawValidatorReward(ctx sdk.Context, valAddr sdk.ValAddress) error {
@@ -20,7 +20,7 @@ func (k Keeper) HandleWithdrawValidatorReward(ctx sdk.Context, valAddr sdk.ValAd
 
 	k.SetValidatorAccumulatedRewards(ctx, valAddr, remainder)
 
-	if ! rewards.IsZero() {
+	if !rewards.IsZero() {
 		accAddr := sdk.AccAddress(valAddr)
 		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.NvrpDistributionModuleName, accAddr, rewards)
 		if err != nil {

@@ -1,8 +1,8 @@
 package hra
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/hra/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
@@ -45,24 +45,24 @@ func ExportGenesis(ctx sdk.Context, k Keeper) GenesisState {
 	params := k.GetParams(ctx)
 
 	var addressCredits []types.AddressCreditsInfo
-	k.IterateAddressCredits(ctx, func (address sdk.AccAddress, credits sdk.Int) (stop bool) {
+	k.IterateAddressCredits(ctx, func(address sdk.AccAddress, credits sdk.Int) (stop bool) {
 		addressCredits = append(addressCredits, types.NewAddressCreditsInfo(address, credits))
 
 		return false
 	})
 
 	var addressRecords []types.BlockchainAddressRecordInfo
-	k.IterateAllBlockchainAddressInfos(ctx, func (addressRecordInfo types.BlockchainAddressRecordInfo) (stop bool) {
+	k.IterateAllBlockchainAddressInfos(ctx, func(addressRecordInfo types.BlockchainAddressRecordInfo) (stop bool) {
 		addressRecords = append(addressRecords, addressRecordInfo)
 
 		return false
 	})
 
 	return GenesisState{
-		Params:      params,
-		NameRecords: nameInfos,
-		AddressCredits: addressCredits,
-		AddressRecords: addressRecords,
+		Params:                  params,
+		NameRecords:             nameInfos,
+		AddressCredits:          addressCredits,
+		AddressRecords:          addressRecords,
 		RegisteredBlockchainIds: k.GetRegisteredBlockchainIds(ctx),
 	}
 }

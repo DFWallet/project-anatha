@@ -1,10 +1,10 @@
 package hra
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/anathatech/project-anatha/x/hra/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	govtypes "github.com/DFWallet/anatha/x/gov/types"
+	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 )
 
 func NewHandler(k Keeper) sdk.Handler {
@@ -38,14 +38,14 @@ func NewHandler(k Keeper) sdk.Handler {
 func NewGovernanceProposalHandler(k Keeper) govtypes.Handler {
 	return func(ctx sdk.Context, content govtypes.Content) error {
 		switch c := content.(type) {
-			case types.RegisterBlockchainIdProposal:
-				return handleProposalRegisterBlockchainId(ctx, k, c)
+		case types.RegisterBlockchainIdProposal:
+			return handleProposalRegisterBlockchainId(ctx, k, c)
 
-			case types.RemoveBlockchainIdProposal:
-				return handleProposalRemoveBlockchainId(ctx, k, c)
+		case types.RemoveBlockchainIdProposal:
+			return handleProposalRemoveBlockchainId(ctx, k, c)
 
-			default:
-					return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized hra proposal content type: %T", c)
+		default:
+			return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized hra proposal content type: %T", c)
 		}
 	}
 }

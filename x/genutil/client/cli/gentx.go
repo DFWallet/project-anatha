@@ -19,17 +19,17 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/crypto/keys"
-	"github.com/cosmos/cosmos-sdk/server"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
-	"github.com/anathatech/project-anatha/x/genutil"
-	"github.com/anathatech/project-anatha/x/genutil/types"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/anatha/crypto/keys"
+	"github.com/DFWallet/anatha/server"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/module"
+	"github.com/DFWallet/anatha/x/auth"
+	"github.com/DFWallet/anatha/x/auth/client/utils"
+	"github.com/DFWallet/project-anatha/x/genutil"
+	"github.com/DFWallet/project-anatha/x/genutil/types"
 )
 
 // StakingMsgBuildingHelpers helpers for message building gen-tx command

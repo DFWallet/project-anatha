@@ -3,8 +3,8 @@ package slashing
 // nolint
 
 import (
-	"github.com/anathatech/project-anatha/x/slashing/internal/keeper"
-	"github.com/anathatech/project-anatha/x/slashing/internal/types"
+	"github.com/DFWallet/project-anatha/x/slashing/internal/keeper"
+	"github.com/DFWallet/project-anatha/x/slashing/internal/types"
 )
 
 const (

@@ -1,10 +1,10 @@
 package types
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	stakingtypes "github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	authtypes "github.com/DFWallet/anatha/x/auth/types"
+	stakingtypes "github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // ModuleCdc defines a generic sealed codec to be used throughout this module

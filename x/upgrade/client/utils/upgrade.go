@@ -1,18 +1,17 @@
 package utils
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/rest"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/rest"
 	"io/ioutil"
 )
 
 type (
-
 	PlanJSON struct {
-		Name 	string 	`json:"name" yaml:"name"`
-		Height 	int64 	`json:"height" yaml:"height"`
-		Info 	string 	`json:"info" yaml:"info"`
+		Name   string `json:"name" yaml:"name"`
+		Height int64  `json:"height" yaml:"height"`
+		Info   string `json:"info" yaml:"info"`
 	}
 
 	SoftwareUpgradeProposalJSON struct {
@@ -22,7 +21,7 @@ type (
 	}
 
 	SoftwareUpgradeProposalReq struct {
-		BaseReq 	rest.BaseReq 	`json:"base_req" yaml:"base_req"`
+		BaseReq rest.BaseReq `json:"base_req" yaml:"base_req"`
 
 		Title       string         `json:"title" yaml:"title"`
 		Description string         `json:"description" yaml:"description"`

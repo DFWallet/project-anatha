@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/params"
 )
 
 // Default parameter namespace
 const (
 	DefaultParamspace           = ModuleName
-	DefaultSignedBlocksWindow   = int64(1800) // mainnet: 100
+	DefaultSignedBlocksWindow   = int64(1800)           // mainnet: 100
 	DefaultDowntimeJailDuration = 60 * 10 * time.Second //devnet: time.Second * 60
 )
 

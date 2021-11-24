@@ -1,6 +1,6 @@
 package fee
 
-import sdk "github.com/cosmos/cosmos-sdk/types"
+import sdk "github.com/DFWallet/anatha/types"
 
 func InitGenesis(ctx sdk.Context, k Keeper, data GenesisState) {
 	k.SetParams(ctx, data.Params)
@@ -14,7 +14,7 @@ func ExportGenesis(ctx sdk.Context, k Keeper) GenesisState {
 	params := k.GetParams(ctx)
 
 	return GenesisState{
-		Params: params,
+		Params:              params,
 		FeeExcludedMessages: k.GetFeeExcludedMessages(ctx),
 	}
 }

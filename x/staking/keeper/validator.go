@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // Cache the amino decoding of validators, as it can be the case that repeated slashing calls
@@ -130,7 +130,7 @@ func (k Keeper) AddValidatorTokensAndShares(ctx sdk.Context, validator types.Val
 	validator, addedShares = validator.AddTokensFromDel(tokensToAdd)
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket + 1)
+	k.SetLastTicket(ctx, validator.Ticket+1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)
@@ -149,7 +149,7 @@ func (k Keeper) RemoveValidatorTokensAndShares(ctx sdk.Context, validator types.
 	validator, removedTokens = validator.RemoveDelShares(sharesToRemove)
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket + 1)
+	k.SetLastTicket(ctx, validator.Ticket+1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)
@@ -172,7 +172,7 @@ func (k Keeper) RemoveValidatorTokens(ctx sdk.Context,
 	validator = validator.RemoveTokens(tokensToRemove)
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket + 1)
+	k.SetLastTicket(ctx, validator.Ticket+1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)

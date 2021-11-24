@@ -1,6 +1,6 @@
 package utils
 
-import "github.com/anathatech/project-anatha/x/governance/internal/types"
+import "github.com/DFWallet/project-anatha/x/governance/internal/types"
 
 func NormalizeVoteOption(option string) string {
 	switch option {

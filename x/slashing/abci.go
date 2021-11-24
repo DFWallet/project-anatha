@@ -3,7 +3,7 @@ package slashing
 import (
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 // BeginBlocker check for infraction evidence or downtime of validators

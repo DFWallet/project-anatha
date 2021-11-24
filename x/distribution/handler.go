@@ -2,43 +2,42 @@ package distribution
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/anathatech/project-anatha/x/distribution/internal/types"
-	"github.com/anathatech/project-anatha/x/hra"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	govtypes "github.com/DFWallet/anatha/x/gov/types"
+	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
+	"github.com/DFWallet/project-anatha/x/hra"
 )
-
 
 func NewHandler(k Keeper) sdk.Handler {
 	return func(ctx sdk.Context, msg sdk.Msg) (*sdk.Result, error) {
 		ctx = ctx.WithEventManager(sdk.NewEventManager())
 		switch msg := msg.(type) {
-			case MsgWithdrawNameReward:
-				return handleMsgWithdrawNameReward(ctx, k, msg)
+		case MsgWithdrawNameReward:
+			return handleMsgWithdrawNameReward(ctx, k, msg)
 
-			case MsgWithdrawValidatorReward:
-				return handleMsgWithdrawValidatorReward(ctx, k, msg)
+		case MsgWithdrawValidatorReward:
+			return handleMsgWithdrawValidatorReward(ctx, k, msg)
 
-			case MsgDepositSavings:
-				return handleMsgDepositSavings(ctx, k, msg)
+		case MsgDepositSavings:
+			return handleMsgDepositSavings(ctx, k, msg)
 
-			case MsgWithdrawSavings:
-				return handleMsgWithdrawSavings(ctx, k, msg)
+		case MsgWithdrawSavings:
+			return handleMsgWithdrawSavings(ctx, k, msg)
 
-			case MsgWithdrawSavingsInterest:
-				return handleMsgWithdrawSavingsInterest(ctx, k, msg)
+		case MsgWithdrawSavingsInterest:
+			return handleMsgWithdrawSavingsInterest(ctx, k, msg)
 
-			default:
-				errMsg := fmt.Sprintf("unrecognized %s message type: %T", ModuleName,  msg)
-				return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, errMsg)
+		default:
+			errMsg := fmt.Sprintf("unrecognized %s message type: %T", ModuleName, msg)
+			return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, errMsg)
 		}
 	}
 }
 
-func handleMsgWithdrawNameReward(ctx sdk.Context, k Keeper, msg MsgWithdrawNameReward)(*sdk.Result, error) {
+func handleMsgWithdrawNameReward(ctx sdk.Context, k Keeper, msg MsgWithdrawNameReward) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -52,7 +51,7 @@ func handleMsgWithdrawNameReward(ctx sdk.Context, k Keeper, msg MsgWithdrawNameR
 
 func handleMsgWithdrawValidatorReward(ctx sdk.Context, k Keeper, msg MsgWithdrawValidatorReward) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.GetSigners()[0]) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.GetSigners()[0]) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -66,7 +65,7 @@ func handleMsgWithdrawValidatorReward(ctx sdk.Context, k Keeper, msg MsgWithdraw
 
 func handleMsgDepositSavings(ctx sdk.Context, k Keeper, msg MsgDepositSavings) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -80,7 +79,7 @@ func handleMsgDepositSavings(ctx sdk.Context, k Keeper, msg MsgDepositSavings) (
 
 func handleMsgWithdrawSavings(ctx sdk.Context, k Keeper, msg MsgWithdrawSavings) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -94,7 +93,7 @@ func handleMsgWithdrawSavings(ctx sdk.Context, k Keeper, msg MsgWithdrawSavings)
 
 func handleMsgWithdrawSavingsInterest(ctx sdk.Context, k Keeper, msg MsgWithdrawSavingsInterest) (*sdk.Result, error) {
 	// check if sender has a HRA
-	if ctx.BlockHeight() > hra.NameConstraintBlock && ! k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
+	if ctx.BlockHeight() > hra.NameConstraintBlock && !k.HraKeeper.OwnsAnyName(ctx, msg.Sender) {
 		return nil, hra.ErrNameNotRegistered
 	}
 
@@ -109,11 +108,11 @@ func handleMsgWithdrawSavingsInterest(ctx sdk.Context, k Keeper, msg MsgWithdraw
 func NewDistributionProposalHandler(k Keeper) govtypes.Handler {
 	return func(ctx sdk.Context, content govtypes.Content) error {
 		switch c := content.(type) {
-			case DevelopmentFundDistributionProposal:
-				return handleDevelopmentFundDistributionProposal(ctx, k, c)
+		case DevelopmentFundDistributionProposal:
+			return handleDevelopmentFundDistributionProposal(ctx, k, c)
 
-			case SecurityTokenFundDistributionProposal:
-				return handleSecurityTokenFundDistributionProposal(ctx, k, c)
+		case SecurityTokenFundDistributionProposal:
+			return handleSecurityTokenFundDistributionProposal(ctx, k, c)
 		default:
 			return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized distribution proposal content type: %T", c)
 		}

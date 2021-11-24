@@ -1,7 +1,7 @@
 package governance
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 func InitGenesis(ctx sdk.Context, k Keeper, data GenesisState) {
@@ -46,6 +46,6 @@ func ExportGenesis(ctx sdk.Context, k Keeper) GenesisState {
 		Proposals:          proposals,
 		VotingParams:       votingParams,
 		TallyParams:        tallyParams,
-		Governors: 			governors,
+		Governors:          governors,
 	}
 }

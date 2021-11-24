@@ -3,7 +3,7 @@ package cli
 import (
 	flag "github.com/spf13/pflag"
 
-	"github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // nolint

@@ -6,9 +6,9 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/staking/exported"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/staking/exported"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // InitGenesis sets the pool and parameters for the provided keeper.  For each
@@ -37,7 +37,7 @@ func InitGenesis(ctx sdk.Context, keeper Keeper, accountKeeper types.AccountKeep
 	for _, validator := range data.Validators {
 		// TODO CHECK IF NEEDED
 		validator.Ticket = keeper.GetLastTicket(ctx)
-		keeper.SetLastTicket(ctx, validator.Ticket + 1)
+		keeper.SetLastTicket(ctx, validator.Ticket+1)
 
 		keeper.SetValidator(ctx, validator)
 
@@ -96,7 +96,7 @@ func InitGenesis(ctx sdk.Context, keeper Keeper, accountKeeper types.AccountKeep
 		panic(fmt.Sprintf("%s module account has not been set", types.BondedPoolName))
 	}
 
-	// TODO remove with genesis 2-phases refactor https://github.com/cosmos/cosmos-sdk/issues/2862
+	// TODO remove with genesis 2-phases refactor https://github.com/DFWallet/anatha/issues/2862
 	// add coins if not provided on genesis
 	if bondedPool.GetCoins().IsZero() {
 		if err := bondedPool.SetCoins(bondedCoins); err != nil {

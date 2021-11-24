@@ -2,14 +2,14 @@ package app
 
 import (
 	"encoding/json"
-	"github.com/anathatech/project-anatha/x/evidence"
-	appConfig "github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/x/distribution"
-	"github.com/anathatech/project-anatha/x/fee"
-	feeclient "github.com/anathatech/project-anatha/x/fee/client"
-	"github.com/anathatech/project-anatha/x/hra"
-	hraclient "github.com/anathatech/project-anatha/x/hra/client"
-	"github.com/anathatech/project-anatha/x/treasury"
+	appConfig "github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/distribution"
+	"github.com/DFWallet/project-anatha/x/evidence"
+	"github.com/DFWallet/project-anatha/x/fee"
+	feeclient "github.com/DFWallet/project-anatha/x/fee/client"
+	"github.com/DFWallet/project-anatha/x/hra"
+	hraclient "github.com/DFWallet/project-anatha/x/hra/client"
+	"github.com/DFWallet/project-anatha/x/treasury"
 	"io"
 	"os"
 	"time"
@@ -19,29 +19,28 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
-	bam "github.com/cosmos/cosmos-sdk/baseapp"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/cosmos/cosmos-sdk/version"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/cosmos/cosmos-sdk/x/crisis"
-	"github.com/anathatech/project-anatha/x/genutil"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
-	"github.com/cosmos/cosmos-sdk/x/supply"
-	distributionclient "github.com/anathatech/project-anatha/x/distribution/client"
-	treasuryclient "github.com/anathatech/project-anatha/x/treasury/client"
-	gov "github.com/anathatech/project-anatha/x/governance"
-	"github.com/anathatech/project-anatha/x/mint"
-	"github.com/anathatech/project-anatha/x/slashing"
-	"github.com/anathatech/project-anatha/x/staking"
-	"github.com/anathatech/project-anatha/x/upgrade"
-	upgradeclient "github.com/anathatech/project-anatha/x/upgrade/client"
+	bam "github.com/DFWallet/anatha/baseapp"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/module"
+	"github.com/DFWallet/anatha/version"
+	"github.com/DFWallet/anatha/x/auth"
+	"github.com/DFWallet/anatha/x/auth/vesting"
+	"github.com/DFWallet/anatha/x/bank"
+	"github.com/DFWallet/anatha/x/crisis"
+	govtypes "github.com/DFWallet/anatha/x/gov/types"
+	"github.com/DFWallet/anatha/x/params"
+	"github.com/DFWallet/anatha/x/supply"
+	distributionclient "github.com/DFWallet/project-anatha/x/distribution/client"
+	"github.com/DFWallet/project-anatha/x/genutil"
+	gov "github.com/DFWallet/project-anatha/x/governance"
+	"github.com/DFWallet/project-anatha/x/mint"
+	"github.com/DFWallet/project-anatha/x/slashing"
+	"github.com/DFWallet/project-anatha/x/staking"
+	treasuryclient "github.com/DFWallet/project-anatha/x/treasury/client"
+	"github.com/DFWallet/project-anatha/x/upgrade"
+	upgradeclient "github.com/DFWallet/project-anatha/x/upgrade/client"
 )
-
 
 var (
 	// default home directories for the application CLI
@@ -85,24 +84,24 @@ var (
 	)
 	// account permissions
 	maccPerms = map[string][]string{
-		auth.FeeCollectorName:           nil,
-		mint.ModuleName:                 {supply.Minter},
-		treasury.ModuleName:             {supply.Minter},
-		treasury.BuyBackLiquidityFundModuleName: {supply.Minter, supply.Burner},
-		treasury.BuyBackFundModuleName:           nil,
-		treasury.DistributionProfitsModuleName:   {supply.Burner},
-		treasury.TreasuryEscrowModuleName:        nil,
-		treasury.SwapEscrowModuleName:            nil,
-		staking.BondedPoolName:                   {supply.Burner, supply.Staking},
-		staking.NotBondedPoolName:                {supply.Burner, supply.Staking},
-		gov.ModuleName:                           nil,
-		distribution.AmcModuleName:               nil,
-		distribution.NvrpModuleName:              nil,
-		distribution.NvrpDistributionModuleName:  nil,
-		distribution.HRAHolderRewardModuleName:   nil,
-		distribution.DevelopmentFundModuleName:   nil,
-		distribution.SecurityTokenFundModuleName: nil,
-		distribution.SavingsModuleName:           nil,
+		auth.FeeCollectorName:                      nil,
+		mint.ModuleName:                            {supply.Minter},
+		treasury.ModuleName:                        {supply.Minter},
+		treasury.BuyBackLiquidityFundModuleName:    {supply.Minter, supply.Burner},
+		treasury.BuyBackFundModuleName:             nil,
+		treasury.DistributionProfitsModuleName:     {supply.Burner},
+		treasury.TreasuryEscrowModuleName:          nil,
+		treasury.SwapEscrowModuleName:              nil,
+		staking.BondedPoolName:                     {supply.Burner, supply.Staking},
+		staking.NotBondedPoolName:                  {supply.Burner, supply.Staking},
+		gov.ModuleName:                             nil,
+		distribution.AmcModuleName:                 nil,
+		distribution.NvrpModuleName:                nil,
+		distribution.NvrpDistributionModuleName:    nil,
+		distribution.HRAHolderRewardModuleName:     nil,
+		distribution.DevelopmentFundModuleName:     nil,
+		distribution.SecurityTokenFundModuleName:   nil,
+		distribution.SavingsModuleName:             nil,
 		distribution.SavingsDistributionModuleName: nil,
 	}
 )
@@ -140,22 +139,22 @@ type AnathaApp struct {
 	subspaces map[string]params.Subspace
 
 	// Keepers
-	accountKeeper  auth.AccountKeeper
-	bankKeeper     bank.Keeper
-	supplyKeeper   supply.Keeper
-	stakingKeeper  staking.Keeper
-	slashingKeeper slashing.Keeper
-	mintKeeper     mint.Keeper
-	govKeeper      gov.Keeper
-	crisisKeeper   crisis.Keeper
-	paramsKeeper   params.Keeper
-	upgradeKeeper  upgrade.Keeper
-	evidenceKeeper evidence.Keeper
-	treasuryKeeper treasury.Keeper
+	accountKeeper      auth.AccountKeeper
+	bankKeeper         bank.Keeper
+	supplyKeeper       supply.Keeper
+	stakingKeeper      staking.Keeper
+	slashingKeeper     slashing.Keeper
+	mintKeeper         mint.Keeper
+	govKeeper          gov.Keeper
+	crisisKeeper       crisis.Keeper
+	paramsKeeper       params.Keeper
+	upgradeKeeper      upgrade.Keeper
+	evidenceKeeper     evidence.Keeper
+	treasuryKeeper     treasury.Keeper
 	distributionKeeper distribution.Keeper
-	feeKeeper 		fee.Keeper
+	feeKeeper          fee.Keeper
 
-	hraKeeper 		hra.Keeper
+	hraKeeper hra.Keeper
 
 	// Module Manager
 	mm *module.Manager
@@ -194,12 +193,12 @@ func NewAnathaApp(logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest
 
 	// Here you initialize your application with the store keys it requires
 	var app = &AnathaApp{
-		BaseApp: 		bApp,
-		cdc:     		cdc,
+		BaseApp:        bApp,
+		cdc:            cdc,
 		invCheckPeriod: invCheckPeriod,
-		keys:    		keys,
-		tkeys:   		tkeys,
-		subspaces: 		make(map[string]params.Subspace),
+		keys:           keys,
+		tkeys:          tkeys,
+		subspaces:      make(map[string]params.Subspace),
 	}
 
 	// The ParamsKeeper handles parameter storage for the application
@@ -525,11 +524,11 @@ func backupGenesisDefaults() {
 
 func setGenesisDefaults() {
 	// Override module defaults for use in testnets and the default init functionality.
-	staking.DefaultGenesisState = func () staking.GenesisState {
+	staking.DefaultGenesisState = func() staking.GenesisState {
 		stakingDefaultGenesisState.Params.BondDenom = appConfig.DefaultDenom
 		return stakingDefaultGenesisState
 	}
-	crisis.DefaultGenesisState = func () crisis.GenesisState {
+	crisis.DefaultGenesisState = func() crisis.GenesisState {
 		crisisDefaultGenesisState.ConstantFee.Denom = appConfig.DefaultDenom
 		crisisDefaultGenesisState.ConstantFee.Amount = sdk.NewInt(50000000000000)
 		return crisisDefaultGenesisState

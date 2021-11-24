@@ -3,14 +3,14 @@ package keeper
 import (
 	"container/list"
 	"fmt"
-	"github.com/anathatech/project-anatha/x/hra"
+	"github.com/DFWallet/project-anatha/x/hra"
 
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/params"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 const aminoCacheSize = 500

@@ -15,12 +15,12 @@ import (
 	cfg "github.com/tendermint/tendermint/config"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/anathatech/project-anatha/x/genutil/types"
-	stakingtypes "github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	authexported "github.com/DFWallet/anatha/x/auth/exported"
+	authtypes "github.com/DFWallet/anatha/x/auth/types"
+	"github.com/DFWallet/project-anatha/x/genutil/types"
+	stakingtypes "github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // GenAppStateFromConfig gets the genesis app state from the config

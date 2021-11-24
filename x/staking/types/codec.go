@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/DFWallet/anatha/codec"
 )
 
 // Register concrete types on codec codec

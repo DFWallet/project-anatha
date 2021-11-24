@@ -3,20 +3,20 @@ package hra
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/supply"
-	"github.com/anathatech/project-anatha/x/hra/client/rest"
+	"github.com/DFWallet/anatha/x/auth"
+	"github.com/DFWallet/anatha/x/supply"
+	"github.com/DFWallet/project-anatha/x/hra/client/rest"
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/anathatech/project-anatha/x/hra/client/cli"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/anatha/types/module"
+	"github.com/DFWallet/anatha/x/bank"
+	"github.com/DFWallet/project-anatha/x/hra/client/cli"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/DFWallet/anatha/client/context"
+	sdk "github.com/DFWallet/anatha/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
@@ -62,10 +62,10 @@ func (AppModuleBasic) GetTxCmd(cdc *codec.Codec) *cobra.Command {
 
 type AppModule struct {
 	AppModuleBasic
-	keeper     Keeper
-	coinKeeper bank.Keeper
+	keeper        Keeper
+	coinKeeper    bank.Keeper
 	accountKeeper auth.AccountKeeper
-	supplyKeeper supply.Keeper
+	supplyKeeper  supply.Keeper
 }
 
 func NewAppModule(k Keeper, bankKeeper bank.Keeper, accountKeeper auth.AccountKeeper, supplyKeeper supply.Keeper) AppModule {
@@ -73,8 +73,8 @@ func NewAppModule(k Keeper, bankKeeper bank.Keeper, accountKeeper auth.AccountKe
 		AppModuleBasic: AppModuleBasic{},
 		keeper:         k,
 		coinKeeper:     bankKeeper,
-		accountKeeper: accountKeeper,
-		supplyKeeper:  supplyKeeper,
+		accountKeeper:  accountKeeper,
+		supplyKeeper:   supplyKeeper,
 	}
 }
 

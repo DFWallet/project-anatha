@@ -2,9 +2,9 @@ package keeper
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/x/distribution/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 )
 
 // Withdrawals are done in full with re-depositing the Name stake
@@ -56,7 +56,7 @@ func (k Keeper) depositName(ctx sdk.Context, address sdk.AccAddress) {
 func (k Keeper) distributeNameReward(ctx sdk.Context, amount sdk.Coins) bool {
 	nameStake := k.GetNameStake(ctx)
 
-	if ! nameStake.IsZero() && amount.AmountOf(config.DefaultDenom).IsPositive() {
+	if !nameStake.IsZero() && amount.AmountOf(config.DefaultDenom).IsPositive() {
 		// S = S + r / T;
 
 		rate := k.GetNameRewardRate(ctx)
@@ -90,7 +90,7 @@ func (k Keeper) calculateNameReward(ctx sdk.Context, address sdk.AccAddress) (sd
 	rate := k.GetNameRewardRate(ctx)
 
 	userRate, found := k.GetNameRewardRateByAddress(ctx, address)
-	if ! found {
+	if !found {
 		return sdk.DecCoins{}, false
 	}
 
@@ -108,7 +108,7 @@ func (k Keeper) NameDeposited(ctx sdk.Context, address sdk.AccAddress) bool {
 }
 
 func (k Keeper) DepositName(ctx sdk.Context, address sdk.AccAddress) (ok bool) {
-	if ! k.NameDeposited(ctx, address) {
+	if !k.NameDeposited(ctx, address) {
 		k.depositName(ctx, address)
 		ok = true
 	} else {
@@ -231,7 +231,7 @@ func (k Keeper) GetPendingNameDistribution(ctx sdk.Context) sdk.Coins {
 func (k Keeper) SetPendingNameDistribution(ctx sdk.Context, distribution sdk.Coins) {
 	store := ctx.KVStore(k.storeKey)
 
-	if ! distribution.IsZero() {
+	if !distribution.IsZero() {
 		store.Set(types.GetPendingNameDistributionKey(), k.cdc.MustMarshalBinaryBare(distribution))
 	} else {
 		store.Delete(types.GetPendingNameDistributionKey())
@@ -284,7 +284,7 @@ func (k Keeper) IterateNameRewardEscrow(ctx sdk.Context, handler func(address sd
 	}
 }
 
-func (k Keeper) GetNameRewardLeftover(ctx sdk.Context, address sdk.AccAddress) (sdk.Dec) {
+func (k Keeper) GetNameRewardLeftover(ctx sdk.Context, address sdk.AccAddress) sdk.Dec {
 	store := ctx.KVStore(k.storeKey)
 
 	bz := store.Get(types.GetNameRewardLeftoverKey(address))

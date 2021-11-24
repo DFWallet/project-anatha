@@ -1,10 +1,10 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 )
 
 func (k Keeper) HandleCreateSellOrder(ctx sdk.Context, sender sdk.AccAddress, pinAmount sdk.Coins) error {
@@ -22,7 +22,7 @@ func (k Keeper) HandleCreateSellOrder(ctx sdk.Context, sender sdk.AccAddress, pi
 
 	dinAmount := sdk.NewCoins(sdk.NewCoin(config.DefaultStableDenom, dinAmountInt))
 
-	if ! dinAmount.IsZero() {
+	if !dinAmount.IsZero() {
 		err := k.TransferToBuyBackFund(ctx, sender, pinAmount)
 		if err != nil {
 			return err
@@ -51,7 +51,7 @@ func (k Keeper) HandleCreateSellOrder(ctx sdk.Context, sender sdk.AccAddress, pi
 }
 
 func (k Keeper) HandleCreateBuyOrder(ctx sdk.Context, buyer sdk.AccAddress, dinAmount sdk.Coins) error {
-	if ! k.BankKeeper.HasCoins(ctx, buyer, dinAmount) {
+	if !k.BankKeeper.HasCoins(ctx, buyer, dinAmount) {
 		return sdkerrors.Wrap(sdkerrors.ErrInsufficientFunds, "Insufficient funds for ANATHA purchase.")
 	}
 

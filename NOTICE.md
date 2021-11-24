@@ -64,7 +64,7 @@ The `anathatech/Project-Anatha` source code is a consumer of the following third
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     ```
 
-* https://github.com/cosmos/cosmos-sdk
+* https://github.com/DFWallet/anatha
   * ```
     Copyright 2016 All in Bits, Inc
     

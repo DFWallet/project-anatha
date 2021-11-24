@@ -1,23 +1,23 @@
 package types
 
 import (
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
 	"regexp"
 	"strconv"
 )
 
 const (
-	validChar = `[a-z0-9\.,\+\-_]`
+	validChar               = `[a-z0-9\.,\+\-_]`
 	blockchainAddressMaxLen = 128
 )
 
 var (
 	validBlockchainId = regexp.MustCompile(`^[a-zA-Z0-9_.-]{3,32}$`).MatchString
-	validName = regexp.MustCompile(`^` + validChar + `{3,64}$`).MatchString
+	validName         = regexp.MustCompile(`^` + validChar + `{3,64}$`).MatchString
 )
 
 func validateName(name string) error {
-	if ! validName(name) {
+	if !validName(name) {
 		return ErrNameNotValid
 	}
 
@@ -25,7 +25,7 @@ func validateName(name string) error {
 }
 
 func validateBlockchainId(blockchainId string) error {
-	if ! validBlockchainId(blockchainId) {
+	if !validBlockchainId(blockchainId) {
 		return ErrBlockchainIdNotValid
 	}
 
@@ -44,7 +44,7 @@ func validateBlockchainAddress(blockchainAddress string) error {
 	length := len(blockchainAddress)
 
 	if length == 0 {
-		return sdkerrors.Wrap(ErrBlockchainAddressNotValid,"address is required")
+		return sdkerrors.Wrap(ErrBlockchainAddressNotValid, "address is required")
 	}
 	if length > blockchainAddressMaxLen {
 		return sdkerrors.Wrap(ErrBlockchainAddressNotValid, "address too long")

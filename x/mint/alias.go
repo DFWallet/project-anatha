@@ -3,17 +3,17 @@ package mint
 // nolint
 
 import (
-	"github.com/anathatech/project-anatha/x/mint/internal/keeper"
-	"github.com/anathatech/project-anatha/x/mint/internal/types"
+	"github.com/DFWallet/project-anatha/x/mint/internal/keeper"
+	"github.com/DFWallet/project-anatha/x/mint/internal/types"
 )
 
 const (
-	ModuleName            = types.ModuleName
-	DefaultParamspace     = types.DefaultParamspace
-	StoreKey              = types.StoreKey
-	QuerierRoute          = types.QuerierRoute
-	RouterKey             = types.RouterKey
-	QueryParameters       = types.QueryParameters
+	ModuleName        = types.ModuleName
+	DefaultParamspace = types.DefaultParamspace
+	StoreKey          = types.StoreKey
+	QuerierRoute      = types.QuerierRoute
+	RouterKey         = types.RouterKey
+	QueryParameters   = types.QueryParameters
 )
 
 var (
@@ -29,9 +29,9 @@ var (
 	NewParams            = types.NewParams
 	DefaultParams        = types.DefaultParams
 
-	ModuleCdc              = types.ModuleCdc
-	MinterKey              = types.MinterKey
-	KeyMintDenom           = types.KeyMintDenom
+	ModuleCdc    = types.ModuleCdc
+	MinterKey    = types.MinterKey
+	KeyMintDenom = types.KeyMintDenom
 )
 
 type (

@@ -2,8 +2,8 @@ package keeper
 
 import (
 	"fmt"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/governance/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/governance/internal/types"
 )
 
 func (k Keeper) Tally(ctx sdk.Context, proposal types.Proposal) (passes bool, tallyResults types.TallyResult) {
@@ -25,7 +25,7 @@ func (k Keeper) Tally(ctx sdk.Context, proposal types.Proposal) (passes bool, ta
 	tallyParams := k.GetTallyParams(ctx)
 	tallyResults = types.NewTallyResultFromMap(results)
 
-	if ! proposal.TallyResult.Equals(tallyResults) {
+	if !proposal.TallyResult.Equals(tallyResults) {
 		panic(fmt.Sprintf("proposal %d tally does not match aggregate", proposal.ProposalID))
 	}
 
@@ -68,4 +68,3 @@ func (k Keeper) Tally(ctx sdk.Context, proposal types.Proposal) (passes bool, ta
 	// If more than 1/2 of voters vote No, proposal fails
 	return false, tallyResults
 }
-

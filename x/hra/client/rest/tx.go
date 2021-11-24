@@ -1,23 +1,24 @@
 package rest
 
 import (
-	denom "github.com/anathatech/project-anatha/utils"
+	denom "github.com/DFWallet/project-anatha/utils"
 	"net/http"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/anathatech/project-anatha/x/hra/internal/types"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/rest"
+	"github.com/DFWallet/anatha/x/auth/client/utils"
 )
 
 type registerNameReq struct {
-	BaseReq rest.BaseReq                    `json:"base_req" yaml:"base_req"`
-	Name    string                          `json:"name" yaml:"name"`
-	Owner   string                          `json:"owner" yaml:"owner"`
+	BaseReq   rest.BaseReq                  `json:"base_req" yaml:"base_req"`
+	Name      string                        `json:"name" yaml:"name"`
+	Owner     string                        `json:"owner" yaml:"owner"`
 	Addresses []types.BlockchainAddressInfo `json:"addresses" yaml:"addresses"`
 }
+
 func registerNameHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req registerNameReq
@@ -54,6 +55,7 @@ type renewNameReq struct {
 	Name    string       `json:"name" yaml:"name"`
 	Owner   string       `json:"owner" yaml:"owner"`
 }
+
 func renewNameHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req renewNameReq
@@ -89,8 +91,9 @@ type setPriceReq struct {
 	BaseReq rest.BaseReq `json:"base_req" yaml:"base_req"`
 	Name    string       `json:"name" yaml:"name"`
 	Owner   string       `json:"owner" yaml:"owner"`
-	Price 	string		 `json:"price" yaml:"price"`
+	Price   string       `json:"price" yaml:"price"`
 }
+
 func setPriceHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req setPriceReq
@@ -133,6 +136,7 @@ type deleteNameReq struct {
 	Name    string       `json:"name" yaml:"name"`
 	Owner   string       `json:"owner" yaml:"owner"`
 }
+
 func deleteNameHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req deleteNameReq
@@ -169,6 +173,7 @@ type buyNameReq struct {
 	Name    string       `json:"name" yaml:"name"`
 	Buyer   string       `json:"buyer" yaml:"buyer"`
 }
+
 func buyNameHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req buyNameReq
@@ -201,11 +206,12 @@ func buyNameHandler(cliCtx context.CLIContext) http.HandlerFunc {
 }
 
 type transferNameReq struct {
-	BaseReq rest.BaseReq `json:"base_req" yaml:"base_req"`
-	Name    string       `json:"name" yaml:"name"`
-	Owner   string       `json:"owner" yaml:"owner"`
-	NewOwner string		 `json:"new_owner" yaml:"new_owner"`
+	BaseReq  rest.BaseReq `json:"base_req" yaml:"base_req"`
+	Name     string       `json:"name" yaml:"name"`
+	Owner    string       `json:"owner" yaml:"owner"`
+	NewOwner string       `json:"new_owner" yaml:"new_owner"`
 }
+
 func transferNameHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req transferNameReq
@@ -244,12 +250,13 @@ func transferNameHandler(cliCtx context.CLIContext) http.HandlerFunc {
 }
 
 type registerAddressHandlerReq struct {
-	BaseReq rest.BaseReq `json:"base_req" yaml:"base_req"`
-	Owner   string       `json:"owner" yaml:"owner"`
-	BlockchainId string		`json:"blockchain_id" yaml:"blockchain_id"`
-	Index string			`json:"index" yaml:"index"`
-	BlockchainAddress string`json:"blockchain_address" yaml:"blockchain_address"`
+	BaseReq           rest.BaseReq `json:"base_req" yaml:"base_req"`
+	Owner             string       `json:"owner" yaml:"owner"`
+	BlockchainId      string       `json:"blockchain_id" yaml:"blockchain_id"`
+	Index             string       `json:"index" yaml:"index"`
+	BlockchainAddress string       `json:"blockchain_address" yaml:"blockchain_address"`
 }
+
 func registerAddressHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req registerAddressHandlerReq
@@ -282,11 +289,12 @@ func registerAddressHandler(cliCtx context.CLIContext) http.HandlerFunc {
 }
 
 type removeAddressHandlerReq struct {
-	BaseReq rest.BaseReq `json:"base_req" yaml:"base_req"`
-	Owner   string       `json:"owner" yaml:"owner"`
-	BlockchainId string		`json:"blockchain_id" yaml:"blockchain_id"`
-	Index string			`json:"index" yaml:"index"`
+	BaseReq      rest.BaseReq `json:"base_req" yaml:"base_req"`
+	Owner        string       `json:"owner" yaml:"owner"`
+	BlockchainId string       `json:"blockchain_id" yaml:"blockchain_id"`
+	Index        string       `json:"index" yaml:"index"`
 }
+
 func removeAddressHandler(cliCtx context.CLIContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req removeAddressHandlerReq

@@ -3,7 +3,7 @@ package types
 import (
 	"fmt"
 
-	gov "github.com/anathatech/project-anatha/x/governance"
+	gov "github.com/DFWallet/project-anatha/x/governance"
 )
 
 const (

@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	"github.com/anathatech/project-anatha/x/evidence/internal/types"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/types/rest"
+	"github.com/DFWallet/project-anatha/x/evidence/internal/types"
 
 	"github.com/gorilla/mux"
 )

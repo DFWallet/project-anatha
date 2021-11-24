@@ -1,8 +1,8 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 )
 
 func (k Keeper) MintCoins(ctx sdk.Context, newCoins sdk.Coins) error {
@@ -29,13 +29,12 @@ func (k Keeper) BurnCoinsFromBuyBackLiquidityFund(ctx sdk.Context, amount sdk.Co
 	return k.supplyKeeper.BurnCoins(ctx, types.BuyBackLiquidityFundModuleName, amount)
 }
 
-
 func (k Keeper) TotalSupply(ctx sdk.Context) sdk.Coins {
 	return k.supplyKeeper.GetSupply(ctx).GetTotal()
 }
 
 func (k Keeper) TransferFromBuyBackFund(ctx sdk.Context, recipient sdk.AccAddress, amount sdk.Coins) error {
-	err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.BuyBackLiquidityFundModuleName, recipient , amount)
+	err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.BuyBackLiquidityFundModuleName, recipient, amount)
 	if err != nil {
 		return err
 	}

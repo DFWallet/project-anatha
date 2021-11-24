@@ -3,9 +3,9 @@ package keeper
 import (
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/params"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/x/params"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 // Default parameter namespace

@@ -3,14 +3,14 @@ package utils
 import (
 	"io/ioutil"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 type GovernorProposalJSON struct {
 	Title       string         `json:"title" yaml:"title"`
 	Description string         `json:"description" yaml:"description"`
-	Governor   	sdk.AccAddress `json:"governor" yaml:"governor"`
+	Governor    sdk.AccAddress `json:"governor" yaml:"governor"`
 }
 
 func ParseGovernorProposalJSON(cdc *codec.Codec, proposalFile string) (GovernorProposalJSON, error) {

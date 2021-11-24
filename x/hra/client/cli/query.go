@@ -2,15 +2,15 @@ package cli
 
 import (
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/supply"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/x/auth"
+	"github.com/DFWallet/anatha/x/supply"
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/anathatech/project-anatha/x/hra/internal/types"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 )
 
 func GetQueryCmd(queryRoute string, cdc *codec.Codec) *cobra.Command {

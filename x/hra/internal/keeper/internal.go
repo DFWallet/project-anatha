@@ -1,10 +1,9 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/anathatech/project-anatha/x/hra/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 )
-
 
 func (k Keeper) GetNameInfo(ctx sdk.Context, name string) (types.NameInfo, bool) {
 	store := ctx.KVStore(k.storeKey)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/x/params"
+	"github.com/DFWallet/anatha/x/params"
 
 	"gopkg.in/yaml.v2"
 )

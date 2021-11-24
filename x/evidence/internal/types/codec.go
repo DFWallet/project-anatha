@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/anathatech/project-anatha/x/evidence/exported"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/project-anatha/x/evidence/exported"
 )
 
 // ModuleCdc defines the evidence module's codec. The codec is not sealed as to

@@ -3,10 +3,10 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
-	"github.com/cosmos/cosmos-sdk/x/params"
-	stakingexported "github.com/anathatech/project-anatha/x/staking/exported"
+	sdk "github.com/DFWallet/anatha/types"
+	authexported "github.com/DFWallet/anatha/x/auth/exported"
+	"github.com/DFWallet/anatha/x/params"
+	stakingexported "github.com/DFWallet/project-anatha/x/staking/exported"
 )
 
 // AccountKeeper expected account keeper

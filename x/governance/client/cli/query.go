@@ -5,20 +5,20 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/version"
-	"github.com/anathatech/project-anatha/x/governance/internal/types"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/version"
+	"github.com/DFWallet/project-anatha/x/governance/internal/types"
 	"github.com/spf13/cobra"
 )
 
 func GetQueryCmd(queryRoute string, cdc *codec.Codec) *cobra.Command {
 	govQueryCmd := &cobra.Command{
 		Use:                        types.ModuleName,
-		Aliases: 					[]string{"gov"},
+		Aliases:                    []string{"gov"},
 		Short:                      "Querying commands for the governance module",
 		DisableFlagParsing:         true,
 		SuggestionsMinimumDistance: 2,
@@ -33,7 +33,7 @@ func GetQueryCmd(queryRoute string, cdc *codec.Codec) *cobra.Command {
 			GetCmdQueryVotes(queryRoute, cdc),
 			GetCmdQueryParams(queryRoute, cdc),
 			GetCmdQueryGovernors(queryRoute, cdc),
-		)...
+		)...,
 	)
 
 	return govQueryCmd
@@ -196,4 +196,3 @@ func GetCmdQueryGovernors(queryRoute string, cdc *codec.Codec) *cobra.Command {
 		},
 	}
 }
-

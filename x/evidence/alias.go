@@ -1,8 +1,8 @@
 package evidence
 
 import (
-	"github.com/anathatech/project-anatha/x/evidence/internal/keeper"
-	"github.com/anathatech/project-anatha/x/evidence/internal/types"
+	"github.com/DFWallet/project-anatha/x/evidence/internal/keeper"
+	"github.com/DFWallet/project-anatha/x/evidence/internal/types"
 )
 
 // nolint

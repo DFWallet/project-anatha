@@ -3,9 +3,9 @@ package types
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	gov "github.com/cosmos/cosmos-sdk/x/gov"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	gov "github.com/DFWallet/anatha/x/gov"
 )
 
 const (
@@ -15,10 +15,9 @@ const (
 
 var _, _ sdk.Msg = MsgSubmitProposal{}, MsgVote{}
 
-
 type MsgSubmitProposal struct {
-	Content        gov.Content        `json:"content" yaml:"content"`
-	Proposer       sdk.AccAddress `json:"proposer" yaml:"proposer"`
+	Content  gov.Content    `json:"content" yaml:"content"`
+	Proposer sdk.AccAddress `json:"proposer" yaml:"proposer"`
 }
 
 func NewMsgSubmitProposal(content gov.Content, proposer sdk.AccAddress) MsgSubmitProposal {
@@ -103,8 +102,8 @@ func (msg MsgVote) GetSigners() []sdk.AccAddress {
 
 // MsgExpedite
 type MsgExpedite struct {
-	ProposalID 	uint64         `json:"proposal_id" yaml:"proposal_id"`
-	Sender 		sdk.AccAddress `json:"sender" yaml:"sender"`
+	ProposalID uint64         `json:"proposal_id" yaml:"proposal_id"`
+	Sender     sdk.AccAddress `json:"sender" yaml:"sender"`
 }
 
 func NewMsgExpedite(sender sdk.AccAddress, proposalID uint64) MsgExpedite {

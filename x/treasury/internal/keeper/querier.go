@@ -1,23 +1,23 @@
 package keeper
 
 import (
-	"github.com/anathatech/project-anatha/config"
-	"github.com/anathatech/project-anatha/utils"
+	"github.com/DFWallet/project-anatha/config"
+	"github.com/DFWallet/project-anatha/utils"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	"github.com/DFWallet/anatha/codec"
+	sdk "github.com/DFWallet/anatha/types"
+	sdkerrors "github.com/DFWallet/anatha/types/errors"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 )
 
 const (
-	QueryParameters = "parameters"
-	QueryTreasury = "treasury"
-	QueryOperators = "operators"
-	QueryDisbursements = "disbursements"
-	QueryPrice = "price"
+	QueryParameters         = "parameters"
+	QueryTreasury           = "treasury"
+	QueryOperators          = "operators"
+	QueryDisbursements      = "disbursements"
+	QueryPrice              = "price"
 	QueryDisbursementEscrow = "disbursement-escrow"
 )
 
@@ -123,7 +123,7 @@ func queryDisbursementEscrow(ctx sdk.Context, path []string, req abci.RequestQue
 
 	found, amount := k.GetDisbursementReferenceAmount(ctx, reference)
 
-	if ! found {
+	if !found {
 		return nil, types.ErrInvalidReference
 	}
 

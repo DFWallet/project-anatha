@@ -1,7 +1,7 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 // GenesisState - all staking state that must be provided at genesis
@@ -13,7 +13,7 @@ type GenesisState struct {
 	Delegations          Delegations           `json:"delegations" yaml:"delegations"`
 	UnbondingDelegations []UnbondingDelegation `json:"unbonding_delegations" yaml:"unbonding_delegations"`
 	Exported             bool                  `json:"exported" yaml:"exported"`
-	StartingTicket       uint64                 `json:"starting_ticket" yaml:"starting_ticket"`
+	StartingTicket       uint64                `json:"starting_ticket" yaml:"starting_ticket"`
 }
 
 // LastValidatorPower required for validator set update logic
@@ -25,9 +25,9 @@ type LastValidatorPower struct {
 // NewGenesisState creates a new GenesisState instanc e
 func NewGenesisState(params Params, validators []Validator, delegations []Delegation, startingTicket uint64) GenesisState {
 	return GenesisState{
-		Params:      params,
-		Validators:  validators,
-		Delegations: delegations,
+		Params:         params,
+		Validators:     validators,
+		Delegations:    delegations,
 		StartingTicket: startingTicket,
 	}
 }
@@ -35,7 +35,7 @@ func NewGenesisState(params Params, validators []Validator, delegations []Delega
 // DefaultGenesisState gets the raw genesis raw message for testing
 func DefaultGenesisState() GenesisState {
 	return GenesisState{
-		Params: DefaultParams(),
+		Params:         DefaultParams(),
 		StartingTicket: 1,
 	}
 }

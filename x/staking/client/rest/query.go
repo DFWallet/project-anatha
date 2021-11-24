@@ -8,10 +8,10 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	"github.com/anathatech/project-anatha/x/staking/types"
+	"github.com/DFWallet/anatha/client/context"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/types/rest"
+	"github.com/DFWallet/project-anatha/x/staking/types"
 )
 
 func registerQueryRoutes(cliCtx context.CLIContext, r *mux.Router) {

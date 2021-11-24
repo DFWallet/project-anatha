@@ -2,16 +2,16 @@ package cli
 
 import (
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/DFWallet/anatha/client/context"
+	sdk "github.com/DFWallet/anatha/types"
 
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
 
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module

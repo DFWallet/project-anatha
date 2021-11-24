@@ -3,20 +3,19 @@ package cli
 import (
 	"bufio"
 	"fmt"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
-	denom "github.com/anathatech/project-anatha/utils"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/x/auth"
+	"github.com/DFWallet/anatha/x/auth/client/utils"
+	denom "github.com/DFWallet/project-anatha/utils"
 
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/anathatech/project-anatha/x/treasury/internal/types"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 
-
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 func GetCmdOrder(cdc *codec.Codec) *cobra.Command {

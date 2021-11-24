@@ -1,7 +1,7 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 	"time"
 )
 
@@ -20,7 +20,7 @@ var lenTime = len(sdk.FormatTimeBytes(time.Now()))
 
 const (
 	// ModuleName is the name of the module
-	ModuleName  					= "treasury"				// Module stores initial supply of Anatha
+	ModuleName = "treasury" // Module stores initial supply of Anatha
 
 	// StoreKey to be used when creating the KVStore
 	StoreKey = ModuleName
@@ -31,13 +31,12 @@ const (
 	// QuerierRoute to be used for querierer msgs
 	QuerierRoute = ModuleName
 
-	BuyBackLiquidityFundModuleName 	= "buyback_liquidity" 		// Module stores the supply of AST for executing BuyBacks
-	BuyBackFundModuleName 			= "treasury_buyback" 		// Module stores the bought back supply of Anatha (participates in distribution)
-	DistributionProfitsModuleName  	= "distribution_profits" 	// Module stores AST profits from Anatha purchases with AST
-	TreasuryEscrowModuleName        = "treasury_escrow"         // Module stores distributions without supplied recipient addresses
-	SwapEscrowModuleName			= "swap_escrow"             // Module stores ERC20 token balance
+	BuyBackLiquidityFundModuleName = "buyback_liquidity"    // Module stores the supply of AST for executing BuyBacks
+	BuyBackFundModuleName          = "treasury_buyback"     // Module stores the bought back supply of Anatha (participates in distribution)
+	DistributionProfitsModuleName  = "distribution_profits" // Module stores AST profits from Anatha purchases with AST
+	TreasuryEscrowModuleName       = "treasury_escrow"      // Module stores distributions without supplied recipient addresses
+	SwapEscrowModuleName           = "swap_escrow"          // Module stores ERC20 token balance
 )
-
 
 func GetOperatorKey(address sdk.AccAddress) []byte {
 	return append(OperatorKeyPrefix, address...)
@@ -67,6 +66,6 @@ func GetDisbursementReferenceIteratorKey() []byte {
 	return DisbursementReferenceKeyPrefix
 }
 
-func SplitDisbursementReferenceKey(key []byte) (string) {
+func SplitDisbursementReferenceKey(key []byte) string {
 	return string(key[1:])
 }

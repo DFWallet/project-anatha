@@ -4,16 +4,16 @@ import (
 	"bytes"
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 type GenesisState struct {
-	StartingProposalID 	uint64        `json:"starting_proposal_id" yaml:"starting_proposal_id"`
-	Votes              	Votes         `json:"votes" yaml:"votes"`
-	Proposals          	Proposals     `json:"proposals" yaml:"proposals"`
-	VotingParams       	VotingParams  `json:"voting_params" yaml:"voting_params"`
-	TallyParams        	TallyParams   `json:"tally_params" yaml:"tally_params"`
-	Governors			[]sdk.AccAddress `json:"governors" yaml:"governors"`
+	StartingProposalID uint64           `json:"starting_proposal_id" yaml:"starting_proposal_id"`
+	Votes              Votes            `json:"votes" yaml:"votes"`
+	Proposals          Proposals        `json:"proposals" yaml:"proposals"`
+	VotingParams       VotingParams     `json:"voting_params" yaml:"voting_params"`
+	TallyParams        TallyParams      `json:"tally_params" yaml:"tally_params"`
+	Governors          []sdk.AccAddress `json:"governors" yaml:"governors"`
 }
 
 func NewGenesisState(startingProposalID uint64, vp VotingParams, tp TallyParams, governors []sdk.AccAddress) GenesisState {
@@ -21,7 +21,7 @@ func NewGenesisState(startingProposalID uint64, vp VotingParams, tp TallyParams,
 		StartingProposalID: startingProposalID,
 		VotingParams:       vp,
 		TallyParams:        tp,
-		Governors: 			governors,
+		Governors:          governors,
 	}
 }
 
@@ -54,6 +54,6 @@ func ValidateGenesis(data GenesisState) error {
 	if len(data.Governors) == 0 {
 		return fmt.Errorf("list of governors should not be empty")
 	}
-	
+
 	return nil
 }

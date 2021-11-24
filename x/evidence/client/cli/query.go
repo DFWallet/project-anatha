@@ -8,13 +8,13 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/version"
-	"github.com/anathatech/project-anatha/x/evidence/exported"
-	"github.com/anathatech/project-anatha/x/evidence/internal/types"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/client/context"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/codec"
+	"github.com/DFWallet/anatha/version"
+	"github.com/DFWallet/project-anatha/x/evidence/exported"
+	"github.com/DFWallet/project-anatha/x/evidence/internal/types"
 )
 
 // GetQueryCmd returns the CLI command with all evidence module query commands

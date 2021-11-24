@@ -5,19 +5,19 @@ import (
 	"os"
 	"path"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/client/keys"
-	"github.com/cosmos/cosmos-sdk/client/lcd"
-	"github.com/cosmos/cosmos-sdk/client/rpc"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/version"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	authcmd "github.com/cosmos/cosmos-sdk/x/auth/client/cli"
-	authrest "github.com/cosmos/cosmos-sdk/x/auth/client/rest"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	bankcmd "github.com/cosmos/cosmos-sdk/x/bank/client/cli"
-	"github.com/anathatech/project-anatha/app"
+	"github.com/DFWallet/anatha/client"
+	"github.com/DFWallet/anatha/client/flags"
+	"github.com/DFWallet/anatha/client/keys"
+	"github.com/DFWallet/anatha/client/lcd"
+	"github.com/DFWallet/anatha/client/rpc"
+	sdk "github.com/DFWallet/anatha/types"
+	"github.com/DFWallet/anatha/version"
+	"github.com/DFWallet/anatha/x/auth"
+	authcmd "github.com/DFWallet/anatha/x/auth/client/cli"
+	authrest "github.com/DFWallet/anatha/x/auth/client/rest"
+	"github.com/DFWallet/anatha/x/bank"
+	bankcmd "github.com/DFWallet/anatha/x/bank/client/cli"
+	"github.com/DFWallet/project-anatha/app"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	amino "github.com/tendermint/go-amino"
@@ -67,8 +67,6 @@ func main() {
 		os.Exit(1)
 	}
 }
-
-
 
 func queryCmd(cdc *amino.Codec) *cobra.Command {
 	queryCmd := &cobra.Command{
