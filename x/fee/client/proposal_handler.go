@@ -6,6 +6,6 @@ import (
 )
 
 var (
-	AddFeeExcludedMessageProposalHandler    = govclient.NewProposalHandler(cli.GetCmdSubmitAddFeeExcludedMessageProposal)
+	AddFeeExcludedMessageProposalHandler = govclient.NewProposalHandler(cli.GetCmdSubmitAddFeeExcludedMessageProposal)
 	RemoveFeeExcludedMessageProposalHandler = govclient.NewProposalHandler(cli.GetCmdSubmitRemoveFeeExcludedMessageProposal)
 )

@@ -153,8 +153,8 @@ func GetCmdUnbond(storeName string, cdc *codec.Codec) *cobra.Command {
 //__________________________________________________________
 
 var (
-	defaultTokens = sdk.TokensFromConsensusPower(100)
-	defaultAmount = defaultTokens.String() + sdk.DefaultBondDenom
+	defaultTokens                  = sdk.TokensFromConsensusPower(100)
+	defaultAmount                  = defaultTokens.String() + sdk.DefaultBondDenom
 )
 
 // Return the flagset, particular flags, and a description of defaults

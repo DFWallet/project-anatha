@@ -8,10 +8,10 @@ import (
 )
 
 type DevelopmentFundDistributionProposalJSON struct {
-	Title       string         `json:"title" yaml:"title"`
-	Description string         `json:"description" yaml:"description"`
-	Amount      sdk.Coins      `json:"amount" yaml:"amount"`
-	Recipient   sdk.AccAddress `json:"recipient" yaml:"recipient"`
+	Title       string   		`json:"title" yaml:"title"`
+	Description string   		`json:"description" yaml:"description"`
+	Amount      sdk.Coins 		`json:"amount" yaml:"amount"`
+	Recipient 	sdk.AccAddress 	`json:"recipient" yaml:"recipient"`
 }
 
 func ParseDevelopmentFundDistributionProposalJSON(cdc *codec.Codec, proposalFile string) (DevelopmentFundDistributionProposalJSON, error) {
@@ -30,9 +30,9 @@ func ParseDevelopmentFundDistributionProposalJSON(cdc *codec.Codec, proposalFile
 }
 
 type SecurityTokenFundDistributionProposalJSON struct {
-	Title       string             `json:"title" yaml:"title"`
-	Description string             `json:"description" yaml:"description"`
-	Recipients  []types.Recipients `json:"recipients" yaml:"recipients"`
+	Title       string 				`json:"title" yaml:"title"`
+	Description string 				`json:"description" yaml:"description"`
+	Recipients 	[]types.Recipients 	`json:"recipients" yaml:"recipients"`
 }
 
 func ParseSecurityTokenFundDistributionProposalJSON(cdc *codec.Codec, proposalFile string) (SecurityTokenFundDistributionProposalJSON, error) {

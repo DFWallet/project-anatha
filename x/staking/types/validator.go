@@ -49,7 +49,7 @@ type Validator struct {
 	UnbondingHeight         int64          `json:"unbonding_height" yaml:"unbonding_height"`       // if unbonding, height at which this validator has begun unbonding
 	UnbondingCompletionTime time.Time      `json:"unbonding_time" yaml:"unbonding_time"`           // if unbonding, min time for the validator to complete unbonding
 	MinSelfDelegation       sdk.Int        `json:"min_self_delegation" yaml:"min_self_delegation"` // validator's self declared minimum self delegation
-	Ticket                  uint64         `json:"ticket" yaml:"ticket"`
+	Ticket                  uint64          `json:"ticket" yaml:"ticket"`
 }
 
 // custom marshal yaml function due to consensus pubkey

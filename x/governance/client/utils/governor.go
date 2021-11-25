@@ -10,7 +10,7 @@ import (
 type GovernorProposalJSON struct {
 	Title       string         `json:"title" yaml:"title"`
 	Description string         `json:"description" yaml:"description"`
-	Governor    sdk.AccAddress `json:"governor" yaml:"governor"`
+	Governor   	sdk.AccAddress `json:"governor" yaml:"governor"`
 }
 
 func ParseGovernorProposalJSON(cdc *codec.Codec, proposalFile string) (GovernorProposalJSON, error) {

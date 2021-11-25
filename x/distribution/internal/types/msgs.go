@@ -72,7 +72,7 @@ func (msg MsgWithdrawValidatorReward) GetSigners() []sdk.AccAddress {
 // MsgDepositSavings
 type MsgDepositSavings struct {
 	Sender sdk.AccAddress `json:"sender" yaml:"sender"`
-	Amount sdk.Coins      `json:"amount" yaml:"amount"`
+	Amount sdk.Coins `json:"amount" yaml:"amount"`
 }
 
 func NewMsgDepositSavings(sender sdk.AccAddress, amount sdk.Coins) MsgDepositSavings {

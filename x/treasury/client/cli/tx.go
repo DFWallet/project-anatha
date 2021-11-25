@@ -221,3 +221,4 @@ func GetCmdRevertFromEscrow(cdc *codec.Codec) *cobra.Command {
 		},
 	}
 }
+

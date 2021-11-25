@@ -7,15 +7,15 @@ import (
 	"github.com/DFWallet/anatha/codec"
 	sdk "github.com/DFWallet/anatha/types"
 	"github.com/DFWallet/anatha/types/module"
-	"github.com/DFWallet/project-anatha/x/fee/client/cli"
 	"github.com/gorilla/mux"
+	"github.com/DFWallet/project-anatha/x/fee/client/cli"
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
 var (
-	_ module.AppModule      = AppModule{}
-	_ module.AppModuleBasic = AppModuleBasic{}
+	_ module.AppModule           = AppModule{}
+	_ module.AppModuleBasic      = AppModuleBasic{}
 )
 
 type AppModuleBasic struct{}

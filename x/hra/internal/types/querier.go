@@ -6,10 +6,11 @@ import (
 	"strings"
 )
 
+
 type QueryResNameInfo struct {
-	NameInfo  NameInfo                `json:"name_info" yaml:"name_info"`
-	Credits   sdk.Int                 `json:"credits" yaml:"credits"`
-	Addresses []BlockchainAddressInfo `json:"addresses" yaml:"addresses"`
+	NameInfo 	NameInfo 					`json:"name_info" yaml:"name_info"`
+	Credits 	sdk.Int 					`json:"credits" yaml:"credits"`
+	Addresses 	[]BlockchainAddressInfo 	`json:"addresses" yaml:"addresses"`
 }
 
 func (n QueryResNameInfo) String() string {

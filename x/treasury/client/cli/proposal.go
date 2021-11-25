@@ -7,8 +7,8 @@ import (
 	sdk "github.com/DFWallet/anatha/types"
 	"github.com/DFWallet/anatha/x/auth"
 	"github.com/DFWallet/anatha/x/auth/client/utils"
-	"github.com/DFWallet/project-anatha/x/governance"
 	treasuryutils "github.com/DFWallet/project-anatha/x/treasury/client/utils"
+	"github.com/DFWallet/project-anatha/x/governance"
 	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
 	"github.com/spf13/cobra"
 )

@@ -220,7 +220,7 @@ func (k Keeper) unjailValidator(ctx sdk.Context, validator types.Validator) {
 	validator.Jailed = false
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket+1)
+	k.SetLastTicket(ctx, validator.Ticket + 1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)
@@ -274,7 +274,7 @@ func (k Keeper) beginUnbondingValidator(ctx sdk.Context, validator types.Validat
 	validator.UnbondingHeight = ctx.BlockHeader().Height
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket+1)
+	k.SetLastTicket(ctx, validator.Ticket + 1)
 
 	// save the now unbonded validator record and power index
 	k.SetValidator(ctx, validator)

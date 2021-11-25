@@ -3,8 +3,8 @@ package keeper
 import (
 	"fmt"
 	sdk "github.com/DFWallet/anatha/types"
-	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 	"github.com/DFWallet/project-anatha/x/staking/exported"
+	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
@@ -51,7 +51,7 @@ func (k Keeper) AllocateTokens(ctx sdk.Context, previousVotes []abci.VoteInfo) {
 
 	accumulatedRemainder := remaining.Add(k.GetNvrpRemainder(ctx)...)
 
-	if !accumulatedRemainder.IsZero() {
+	if ! accumulatedRemainder.IsZero() {
 		k.Logger(ctx).Debug(
 			fmt.Sprintf("NVRPD accumulated remainder : %s", accumulatedRemainder),
 		)
@@ -59,7 +59,7 @@ func (k Keeper) AllocateTokens(ctx sdk.Context, previousVotes []abci.VoteInfo) {
 		whole, remainder := accumulatedRemainder.TruncateDecimal()
 		k.SetNvrpRemainder(ctx, remainder)
 
-		if !whole.IsZero() {
+		if ! whole.IsZero() {
 			err := k.supplyKeeper.SendCoinsFromModuleToModule(ctx, types.NvrpDistributionModuleName, types.NvrpModuleName, whole)
 			if err != nil {
 				panic(err)
@@ -80,3 +80,4 @@ func (k Keeper) AllocateTokensToValidator(ctx sdk.Context, val exported.Validato
 		fmt.Sprintf("nvrpd -> (%s) %s : %s", val.GetMoniker(), sdk.AccAddress(val.GetOperator()), tokens),
 	)
 }
+

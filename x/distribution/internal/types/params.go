@@ -8,25 +8,25 @@ import (
 )
 
 const (
-	DefaultNameDepositDelay              = time.Second * 1      // time.Second * 30
+	DefaultNameDepositDelay              = time.Second * 1 // time.Second * 30
 	DefaultRewardWithdrawalBlockedPeriod = time.Hour * 24 * 365 // time.Second * 30
 )
 
 var (
 	DefaultRewardWithdrawalEnabledTime = time.Time{}
-	DefaultSavingsSplitAdjustment      = sdk.NewDecWithPrec(9, 1)
+	DefaultSavingsSplitAdjustment = sdk.NewDecWithPrec(9, 1)
 
-	DefaultDevelopmentFundShare   = sdk.NewDecWithPrec(25, 2)
+	DefaultDevelopmentFundShare = sdk.NewDecWithPrec(25, 2)
 	DefaultSecurityTokenFundShare = sdk.NewDecWithPrec(25, 2)
 
 	KeyNameDepositDelay              = []byte("NameDepositDelay")
 	KeyRewardWithdrawalBlockedPeriod = []byte("RewardWithdrawalBlockedPeriod")
 	KeyRewardWithdrawalEnabledTime   = []byte("RewardWithdrawalEnabledTime")
 
-	KeySavingsSplitAdjustment = []byte("SavingsSplitAdjustment")
+	KeySavingsSplitAdjustment        = []byte("SavingsSplitAdjustment")
 
-	KeyDevelopmentFundShare   = []byte("DevelopmentFundShare")
-	KeySecurityTokenFundShare = []byte("SecurityTokenFundShare")
+	KeyDevelopmentFundShare          = []byte("DevelopmentFundShare")
+	KeySecurityTokenFundShare        = []byte("SecurityTokenFundShare")
 )
 
 func ParamKeyTable() params.KeyTable {
@@ -36,11 +36,11 @@ func ParamKeyTable() params.KeyTable {
 type Params struct {
 	NameDepositDelay              time.Duration `json:"name_deposit_delay" yaml:"name_deposit_delay"`
 	RewardWithdrawalBlockedPeriod time.Duration `json:"reward_withdrawal_blocked_period" yaml:"reward_withdrawal_blocked_period"`
-	RewardWithdrawalEnabledTime   time.Time     `json:"reward_withdrawal_enabled_time" yaml:"reward_withdrawal_enabled_time"`
-	SavingsSplitAdjustment        sdk.Dec       `json:"savings_split_adjustment" yaml:"savings_split_adjustment"`
+	RewardWithdrawalEnabledTime   time.Time `json:"reward_withdrawal_enabled_time" yaml:"reward_withdrawal_enabled_time"`
+	SavingsSplitAdjustment        sdk.Dec `json:"savings_split_adjustment" yaml:"savings_split_adjustment"`
 
-	DevelopmentFundShare   sdk.Dec `json:"development_fund_share" yaml:"development_fund_share"`
-	SecurityTokenFundShare sdk.Dec `json:"security_token_fund_share" yaml:"security_token_fund_share"`
+	DevelopmentFundShare          sdk.Dec `json:"development_fund_share" yaml:"development_fund_share"`
+	SecurityTokenFundShare        sdk.Dec `json:"security_token_fund_share" yaml:"security_token_fund_share"`
 }
 
 func NewParams(nameDepositDelay time.Duration) Params {

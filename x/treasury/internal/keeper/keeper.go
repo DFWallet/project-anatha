@@ -14,22 +14,22 @@ import (
 )
 
 type Keeper struct {
-	storeKey      sdk.StoreKey
-	cdc           *codec.Codec
-	paramspace    params.Subspace
-	supplyKeeper  supply.Keeper
-	AccountKeeper auth.AccountKeeper
-	BankKeeper    bank.Keeper
+	storeKey 		sdk.StoreKey
+	cdc 			*codec.Codec
+	paramspace 		params.Subspace
+	supplyKeeper 	supply.Keeper
+	AccountKeeper 	auth.AccountKeeper
+	BankKeeper 		bank.Keeper
 }
 
 func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, paramspace params.Subspace, supplyKeeper supply.Keeper, accountKeeper auth.AccountKeeper, bankKeeper bank.Keeper) Keeper {
 	keeper := Keeper{
-		storeKey:      key,
-		cdc:           cdc,
-		paramspace:    paramspace.WithKeyTable(types.ParamKeyTable()),
-		supplyKeeper:  supplyKeeper,
-		AccountKeeper: accountKeeper,
-		BankKeeper:    bankKeeper,
+		storeKey: 		key,
+		cdc: 			cdc,
+		paramspace: 	paramspace.WithKeyTable(types.ParamKeyTable()),
+		supplyKeeper:	supplyKeeper,
+		AccountKeeper: 	accountKeeper,
+		BankKeeper: 	bankKeeper,
 	}
 	return keeper
 }
@@ -54,3 +54,4 @@ func (k Keeper) SetTreasury(ctx sdk.Context, minter types.Treasury) {
 	b := k.cdc.MustMarshalBinaryBare(minter)
 	store.Set(types.TreasuryKey, b)
 }
+

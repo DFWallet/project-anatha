@@ -3,8 +3,8 @@ package types
 import (
 	sdk "github.com/DFWallet/anatha/types"
 	authexported "github.com/DFWallet/anatha/x/auth/exported"
-	supplyexported "github.com/DFWallet/anatha/x/supply/exported"
 	stakingexported "github.com/DFWallet/project-anatha/x/staking/exported"
+	supplyexported "github.com/DFWallet/anatha/x/supply/exported"
 )
 
 // DistributionKeeper expected distribution keeper (noalias)

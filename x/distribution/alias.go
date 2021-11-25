@@ -6,19 +6,19 @@ import (
 )
 
 const (
-	ModuleName        = types.ModuleName
+	ModuleName = types.ModuleName
 	DefaultParamspace = types.DefaultParamspace
-	StoreKey          = types.StoreKey
-	RouterKey         = types.RouterKey
-	QuerierRoute      = types.QuerierRoute
+	StoreKey = types.StoreKey
+	RouterKey = types.RouterKey
+	QuerierRoute = types.QuerierRoute
 
-	AmcModuleName                 = types.AmcModuleName
-	NvrpModuleName                = types.NvrpModuleName
-	NvrpDistributionModuleName    = types.NvrpDistributionModuleName
-	HRAHolderRewardModuleName     = types.HRAHolderRewardModuleName
-	DevelopmentFundModuleName     = types.DevelopmentFundModuleName
-	SecurityTokenFundModuleName   = types.SecurityTokenFundModuleName
-	SavingsModuleName             = types.SavingsModuleName
+	AmcModuleName               = types.AmcModuleName
+	NvrpModuleName              = types.NvrpModuleName
+	NvrpDistributionModuleName  = types.NvrpDistributionModuleName
+	HRAHolderRewardModuleName   = types.HRAHolderRewardModuleName
+	DevelopmentFundModuleName   = types.DevelopmentFundModuleName
+	SecurityTokenFundModuleName = types.SecurityTokenFundModuleName
+	SavingsModuleName           = types.SavingsModuleName
 	SavingsDistributionModuleName = types.SavingsDistributionModuleName
 )
 
@@ -34,22 +34,22 @@ var (
 	NewDevelopmentFundDistributionProposal   = types.NewDevelopmentFundDistributionProposal
 	NewSecurityTokenFundDistributionProposal = types.NewSecurityTokenFundDistributionProposal
 
-	NewMsgWithdrawNameReward = types.NewMsgWithdrawNameReward
-	ModuleCdc                = types.ModuleCdc
-	RegisterCodec            = types.RegisterCodec
+	NewMsgWithdrawNameReward                 = types.NewMsgWithdrawNameReward
+	ModuleCdc                                = types.ModuleCdc
+	RegisterCodec                            = types.RegisterCodec
 )
 
 type (
-	Keeper       = keeper.Keeper
-	Params       = types.Params
+	Keeper = keeper.Keeper
+	Params = types.Params
 	GenesisState = types.GenesisState
 
 	DevelopmentFundDistributionProposal   = types.DevelopmentFundDistributionProposal
 	SecurityTokenFundDistributionProposal = types.SecurityTokenFundDistributionProposal
 
-	MsgWithdrawNameReward      = types.MsgWithdrawNameReward
-	MsgWithdrawValidatorReward = types.MsgWithdrawValidatorReward
-	MsgDepositSavings          = types.MsgDepositSavings
-	MsgWithdrawSavings         = types.MsgWithdrawSavings
-	MsgWithdrawSavingsInterest = types.MsgWithdrawSavingsInterest
+	MsgWithdrawNameReward                 = types.MsgWithdrawNameReward
+	MsgWithdrawValidatorReward            = types.MsgWithdrawValidatorReward
+	MsgDepositSavings                     = types.MsgDepositSavings
+	MsgWithdrawSavings                    = types.MsgWithdrawSavings
+	MsgWithdrawSavingsInterest            = types.MsgWithdrawSavingsInterest
 )

@@ -34,7 +34,7 @@ func (k Keeper) HandleDepositSavings(ctx sdk.Context, sender sdk.AccAddress, amo
 }
 
 func (k Keeper) HandleWithdrawSavings(ctx sdk.Context, sender sdk.AccAddress) error {
-	if !k.HasSavings(ctx, sender) {
+	if ! k.HasSavings(ctx, sender) {
 		return types.ErrHasNoSavings
 	}
 
@@ -43,7 +43,7 @@ func (k Keeper) HandleWithdrawSavings(ctx sdk.Context, sender sdk.AccAddress) er
 		return err
 	}
 
-	if !reward.IsZero() {
+	if ! reward.IsZero() {
 		err := k.DistributeSavingsReward(ctx, sender, reward)
 		if err != nil {
 			return err
@@ -139,7 +139,7 @@ func (k Keeper) depositSavings(ctx sdk.Context, address sdk.AccAddress, amount s
 func (k Keeper) distributeSavingsReward(ctx sdk.Context, amount sdk.Coins) bool {
 	savingsStake := k.GetSavingsStake(ctx)
 
-	if !savingsStake.IsZero() && amount.AmountOf(config.DefaultDenom).IsPositive() {
+	if ! savingsStake.IsZero() && amount.AmountOf(config.DefaultDenom).IsPositive() {
 		// S = S + r / T;
 
 		rate := k.GetSavingsRewardRate(ctx)
@@ -160,7 +160,7 @@ func (k Keeper) distributeSavingsReward(ctx sdk.Context, amount sdk.Coins) bool 
 
 func (k Keeper) withdrawSavingsReward(ctx sdk.Context, address sdk.AccAddress, shouldMoveCoins bool) (sdk.DecCoins, error) {
 	reward, found := k.calculateSavingsReward(ctx, address)
-	if !found {
+	if ! found {
 		return reward, nil
 	}
 
@@ -185,14 +185,14 @@ func (k Keeper) withdrawSavingsReward(ctx sdk.Context, address sdk.AccAddress, s
 
 func (k Keeper) calculateSavingsReward(ctx sdk.Context, address sdk.AccAddress) (sdk.DecCoins, bool) {
 	deposit, found := k.GetSavingsStakeByAddress(ctx, address)
-	if !found {
+	if ! found {
 		return sdk.DecCoins{}, false
 	}
 
 	rate := k.GetSavingsRewardRate(ctx)
 
 	userRate, found := k.GetSavingsRewardRateByAddress(ctx, address)
-	if !found {
+	if ! found {
 		return sdk.DecCoins{}, false
 	}
 
@@ -365,7 +365,7 @@ func (k Keeper) IterateSavingsRewardEscrow(ctx sdk.Context, handler func(address
 	}
 }
 
-func (k Keeper) GetSavingsRewardLeftover(ctx sdk.Context, address sdk.AccAddress) sdk.Dec {
+func (k Keeper) GetSavingsRewardLeftover(ctx sdk.Context, address sdk.AccAddress) (sdk.Dec) {
 	store := ctx.KVStore(k.storeKey)
 
 	bz := store.Get(types.GetSavingsRewardLeftoverKey(address))

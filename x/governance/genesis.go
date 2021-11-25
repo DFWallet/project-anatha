@@ -46,6 +46,6 @@ func ExportGenesis(ctx sdk.Context, k Keeper) GenesisState {
 		Proposals:          proposals,
 		VotingParams:       votingParams,
 		TallyParams:        tallyParams,
-		Governors:          governors,
+		Governors: 			governors,
 	}
 }

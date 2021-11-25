@@ -1,12 +1,12 @@
 package keeper
 
 import (
-	sdk "github.com/DFWallet/anatha/types"
 	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
 )
 
 func (k Keeper) HandleSwap(ctx sdk.Context, operator sdk.AccAddress, recipient sdk.AccAddress, amount sdk.Coins, reference string) error {
-	if !k.IsOperator(ctx, operator) {
+	if ! k.IsOperator(ctx, operator) {
 		return types.ErrNotOperator
 	}
 

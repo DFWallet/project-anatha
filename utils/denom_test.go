@@ -15,7 +15,7 @@ func init() {
 func TestParseAndConvertCoins(t *testing.T) {
 	cases := []struct {
 		input    string
-		valid    bool      // if false, we expect an error on parse
+		valid    bool  // if false, we expect an error on parse
 		expected sdk.Coins // if valid is true, make sure this is returned
 	}{
 		{"", true, nil},

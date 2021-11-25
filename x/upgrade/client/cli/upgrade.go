@@ -30,10 +30,10 @@ func GetCmdSubmitSoftwareUpgradeProposal(cdc *codec.Codec) *cobra.Command {
 			}
 
 			from := cliCtx.GetFromAddress()
-			content := types.NewSoftwareUpgradeProposal(proposal.Title, proposal.Description, types.Plan{
-				Name:   proposal.Plan.Name,
+			content := types.NewSoftwareUpgradeProposal(proposal.Title, proposal.Description, types.Plan {
+				Name: proposal.Plan.Name,
 				Height: proposal.Plan.Height,
-				Info:   proposal.Plan.Info,
+				Info: proposal.Plan.Info,
 			})
 
 			msg := governance.NewMsgSubmitProposal(content, from)

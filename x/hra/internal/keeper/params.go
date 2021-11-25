@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+
 // NameInfoDuration
 func (k Keeper) NameInfoDuration(ctx sdk.Context) (res time.Duration) {
 	k.paramspace.Get(ctx, types.KeyNameInfoDuration, &res)

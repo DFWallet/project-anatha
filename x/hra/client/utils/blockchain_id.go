@@ -7,9 +7,9 @@ import (
 )
 
 type BlockchainIdProposalJSON struct {
-	Title        string `json:"title" yaml:"title"`
-	Description  string `json:"description" yaml:"description"`
-	BlockchainId string `json:"blockchain_id" yaml:"blockchain_id"`
+	Title 			string `json:"title" yaml:"title"`
+	Description 	string `json:"description" yaml:"description"`
+	BlockchainId 	string `json:"blockchain_id" yaml:"blockchain_id"`
 }
 
 func ParseBlockchainIdProposalJSON(cdc *codec.Codec, proposalFile string) (BlockchainIdProposalJSON, error) {

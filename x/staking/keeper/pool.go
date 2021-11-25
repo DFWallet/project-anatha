@@ -2,8 +2,8 @@ package keeper
 
 import (
 	sdk "github.com/DFWallet/anatha/types"
-	"github.com/DFWallet/anatha/x/supply/exported"
 	"github.com/DFWallet/project-anatha/x/staking/types"
+	"github.com/DFWallet/anatha/x/supply/exported"
 )
 
 // GetBondedPool returns the bonded tokens pool's module account

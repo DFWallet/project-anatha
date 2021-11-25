@@ -7,14 +7,14 @@ import (
 )
 
 type Minter struct {
-	PreviousMintTime time.Time `json:"previous_mint_time" yaml:"previous_mint_time"`
-	Leftover         sdk.Dec   `json:"leftover" yaml:"leftover"`
+	PreviousMintTime 	time.Time `json:"previous_mint_time" yaml:"previous_mint_time"`
+	Leftover 			sdk.Dec `json:"leftover" yaml:"leftover"`
 }
 
 func NewMinter(previousMintTime time.Time, leftover sdk.Dec) Minter {
 	return Minter{
 		PreviousMintTime: previousMintTime,
-		Leftover:         leftover,
+		Leftover: leftover,
 	}
 }
 
@@ -67,3 +67,4 @@ func validateLeftover(i interface{}) error {
 
 	return nil
 }
+

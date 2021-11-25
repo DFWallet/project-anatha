@@ -5,6 +5,7 @@ import (
 	"github.com/DFWallet/project-anatha/x/hra/internal/types"
 )
 
+
 func (k Keeper) GetNameInfo(ctx sdk.Context, name string) (types.NameInfo, bool) {
 	store := ctx.KVStore(k.storeKey)
 

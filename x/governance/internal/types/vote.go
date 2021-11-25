@@ -51,9 +51,9 @@ func (v Vote) Empty() bool {
 type VoteOption byte
 
 const (
-	OptionEmpty VoteOption = 0x00
-	OptionYes   VoteOption = 0x01
-	OptionNo    VoteOption = 0x02
+	OptionEmpty      VoteOption = 0x00
+	OptionYes        VoteOption = 0x01
+	OptionNo         VoteOption = 0x02
 )
 
 func VoteOptionFromString(str string) (VoteOption, error) {
@@ -71,7 +71,7 @@ func VoteOptionFromString(str string) (VoteOption, error) {
 
 func ValidVoteOption(option VoteOption) bool {
 	if option == OptionYes ||
-		option == OptionNo {
+		option == OptionNo  {
 		return true
 	}
 	return false

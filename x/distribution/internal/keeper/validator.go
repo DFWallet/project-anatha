@@ -20,7 +20,7 @@ func (k Keeper) HandleWithdrawValidatorReward(ctx sdk.Context, valAddr sdk.ValAd
 
 	k.SetValidatorAccumulatedRewards(ctx, valAddr, remainder)
 
-	if !rewards.IsZero() {
+	if ! rewards.IsZero() {
 		accAddr := sdk.AccAddress(valAddr)
 		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.NvrpDistributionModuleName, accAddr, rewards)
 		if err != nil {

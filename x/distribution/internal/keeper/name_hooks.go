@@ -29,7 +29,7 @@ func (h NameHooks) AfterLastNameRemoved(ctx sdk.Context, address sdk.AccAddress)
 	// withdraw reward and stake
 	reward := h.k.withdrawNameReward(ctx, address)
 
-	if !reward.IsZero() {
+	if ! reward.IsZero() {
 		err := h.k.DistributeNameReward(ctx, address, reward)
 		if err != nil {
 			return err

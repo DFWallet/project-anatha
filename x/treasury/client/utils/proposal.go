@@ -7,9 +7,9 @@ import (
 )
 
 type GenericTreasuryProposalJSON struct {
-	Title       string    `json:"title" yaml:"title"`
-	Description string    `json:"description" yaml:"description"`
-	Amount      sdk.Coins `json:"amount" yaml:"amount"`
+	Title       string   		`json:"title" yaml:"title"`
+	Description string   		`json:"description" yaml:"description"`
+	Amount      sdk.Coins 		`json:"amount" yaml:"amount"`
 }
 
 func ParseGenericTreasuryProposalJSON(cdc *codec.Codec, proposalFile string) (GenericTreasuryProposalJSON, error) {

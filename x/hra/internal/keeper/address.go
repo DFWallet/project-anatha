@@ -9,11 +9,11 @@ import (
 func (k Keeper) HandleRegisterAddress(ctx sdk.Context, address sdk.AccAddress, blockchainId string, index string, blockchainAddress string) error {
 	blockchainAddress = strings.TrimSpace(blockchainAddress)
 
-	if !k.OwnsAnyName(ctx, address) {
+	if ! k.OwnsAnyName(ctx, address) {
 		return types.ErrNoNamesRegistered
 	}
 
-	if !k.IsBlockchainIdRegistered(ctx, blockchainId) {
+	if ! k.IsBlockchainIdRegistered(ctx, blockchainId) {
 		return types.ErrBlockchainIdNotValid
 	}
 
@@ -34,7 +34,7 @@ func (k Keeper) HandleRegisterAddress(ctx sdk.Context, address sdk.AccAddress, b
 		k.SetCredits(ctx, address, credits.Sub(sdk.OneInt()))
 	}
 
-	k.SetAddress(ctx, address, blockchainId, index, blockchainAddress)
+	k.SetAddress(ctx, address, blockchainId,index, blockchainAddress)
 
 	return nil
 }
@@ -166,7 +166,7 @@ func (k Keeper) GetCredits(ctx sdk.Context, address sdk.AccAddress) sdk.Int {
 func (k Keeper) SetCredits(ctx sdk.Context, address sdk.AccAddress, credits sdk.Int) {
 	store := ctx.KVStore(k.storeKey)
 
-	if credits.IsZero() {
+	if credits.IsZero(){
 		store.Delete(types.GetCreditsKey(address))
 	} else {
 		store.Set(types.GetCreditsKey(address), k.cdc.MustMarshalBinaryBare(credits))
@@ -220,17 +220,17 @@ func (k Keeper) GetRegisteredBlockchainIdIterator(ctx sdk.Context) sdk.Iterator 
 }
 
 func (k Keeper) IterateRegisteredBlockchainIds(ctx sdk.Context, cb func(blockchainId string) (stop bool)) {
-	iterator := k.GetRegisteredBlockchainIdIterator(ctx)
-	defer iterator.Close()
+ 	iterator := k.GetRegisteredBlockchainIdIterator(ctx)
+ 	defer iterator.Close()
 
-	for ; iterator.Valid(); iterator.Next() {
-		blockchainId := types.SplitRegisteredBlockchainIdKey(iterator.Key())
+ 	for ; iterator.Valid(); iterator.Next() {
+ 		blockchainId := types.SplitRegisteredBlockchainIdKey(iterator.Key())
 
-		if cb(blockchainId) {
-			break
+ 		if cb(blockchainId) {
+ 			break
 		}
 	}
-}
+ }
 
 func (k Keeper) GetRegisteredBlockchainIds(ctx sdk.Context) []string {
 	var registeredBlockchainIds []string

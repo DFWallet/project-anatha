@@ -7,14 +7,14 @@ import (
 )
 
 type TallyResult struct {
-	Yes sdk.Int `json:"yes" yaml:"yes"`
-	No  sdk.Int `json:"no" yaml:"no"`
+	Yes        sdk.Int `json:"yes" yaml:"yes"`
+	No         sdk.Int `json:"no" yaml:"no"`
 }
 
 func NewTallyResult(yes, no sdk.Int) TallyResult {
 	return TallyResult{
-		Yes: yes,
-		No:  no,
+		Yes:        yes,
+		No:         no,
 	}
 }
 

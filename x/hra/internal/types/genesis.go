@@ -5,29 +5,30 @@ import (
 )
 
 type GenesisState struct {
-	Params                  Params                        `json:"params" yaml:"params"`
-	NameRecords             []NameInfo                    `json:"name_records" yaml:"name_records"`
-	AddressRecords          []BlockchainAddressRecordInfo `json:"address_records" yaml:"address_records"`
-	AddressCredits          []AddressCreditsInfo          `json:"address_credits" yaml:"address_credits"`
-	RegisteredBlockchainIds []string                      `json:"registered_blockchain_ids" yaml:"registered_blockchain_ids"`
+	Params 					Params 		`json:"params" yaml:"params"`
+	NameRecords 			[]NameInfo 	`json:"name_records" yaml:"name_records"`
+	AddressRecords			[]BlockchainAddressRecordInfo `json:"address_records" yaml:"address_records"`
+	AddressCredits          []AddressCreditsInfo    `json:"address_credits" yaml:"address_credits"`
+	RegisteredBlockchainIds []string	`json:"registered_blockchain_ids" yaml:"registered_blockchain_ids"`
 }
+
 
 func NewGenesisState(params Params, nameRecords []NameInfo, addressRecords []BlockchainAddressRecordInfo, addressCredits []AddressCreditsInfo, registeredBlockchainIds []string) GenesisState {
 	return GenesisState{
-		Params:                  params,
-		NameRecords:             nameRecords,
-		AddressRecords:          addressRecords,
-		AddressCredits:          addressCredits,
+		Params: params,
+		NameRecords: nameRecords,
+		AddressRecords: addressRecords,
+		AddressCredits: addressCredits,
 		RegisteredBlockchainIds: registeredBlockchainIds,
 	}
 }
 
 func DefaultGenesisState() GenesisState {
 	return GenesisState{
-		Params:                  DefaultParams(),
-		NameRecords:             []NameInfo{},
-		AddressRecords:          []BlockchainAddressRecordInfo{},
-		AddressCredits:          []AddressCreditsInfo{},
+		Params: DefaultParams(),
+		NameRecords: []NameInfo{},
+		AddressRecords: []BlockchainAddressRecordInfo{},
+		AddressCredits: []AddressCreditsInfo{},
 		RegisteredBlockchainIds: DefaultRegisteredBlockchainIds,
 	}
 }

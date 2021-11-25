@@ -30,10 +30,10 @@ import (
 	"github.com/DFWallet/anatha/types/module"
 	"github.com/DFWallet/anatha/x/auth"
 	authexported "github.com/DFWallet/anatha/x/auth/exported"
-	appConfig "github.com/DFWallet/project-anatha/config"
 	"github.com/DFWallet/project-anatha/x/genutil"
 	genutiltypes "github.com/DFWallet/project-anatha/x/genutil/types"
 	"github.com/DFWallet/project-anatha/x/staking"
+	appConfig "github.com/DFWallet/project-anatha/config"
 )
 
 var (
@@ -120,8 +120,8 @@ func InitTestnet(cmd *cobra.Command, config *tmconfig.Config, cdc *codec.Codec,
 	anathaConfig.MinGasPrices = minGasPrices
 
 	var (
-		genAccounts []authexported.GenesisAccount
-		genFiles    []string
+		genAccounts 	[]authexported.GenesisAccount
+		genFiles		[]string
 	)
 
 	addresses := []string{

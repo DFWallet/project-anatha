@@ -38,14 +38,14 @@ func NewHandler(k Keeper) sdk.Handler {
 func NewGovernanceProposalHandler(k Keeper) govtypes.Handler {
 	return func(ctx sdk.Context, content govtypes.Content) error {
 		switch c := content.(type) {
-		case types.RegisterBlockchainIdProposal:
-			return handleProposalRegisterBlockchainId(ctx, k, c)
+			case types.RegisterBlockchainIdProposal:
+				return handleProposalRegisterBlockchainId(ctx, k, c)
 
-		case types.RemoveBlockchainIdProposal:
-			return handleProposalRemoveBlockchainId(ctx, k, c)
+			case types.RemoveBlockchainIdProposal:
+				return handleProposalRemoveBlockchainId(ctx, k, c)
 
-		default:
-			return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized hra proposal content type: %T", c)
+			default:
+					return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized hra proposal content type: %T", c)
 		}
 	}
 }

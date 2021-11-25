@@ -26,7 +26,7 @@ func (k Keeper) AddGovernor(ctx sdk.Context, address sdk.AccAddress) {
 
 	store := ctx.KVStore(k.storeKey)
 
-	if !store.Has(types.GetGovernorKey(address)) {
+	if ! store.Has(types.GetGovernorKey(address)) {
 		store.Set(types.GetGovernorKey(address), types.StatusPresent)
 
 		count := k.GetGovernorCount(ctx)

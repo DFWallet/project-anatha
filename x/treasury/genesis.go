@@ -1,10 +1,11 @@
 package treasury
 
 import (
-	sdk "github.com/DFWallet/anatha/types"
 	"github.com/DFWallet/project-anatha/x/treasury/internal/types"
+	sdk "github.com/DFWallet/anatha/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
+
 
 func InitGenesis(ctx sdk.Context, k Keeper, data GenesisState) []abci.ValidatorUpdate {
 	for _, record := range data.Operators {

@@ -6,14 +6,15 @@ import (
 	"github.com/DFWallet/anatha/codec"
 )
 
+
 type CLIHandlerFn func(*codec.Codec) *cobra.Command
 
 type ProposalHandler struct {
-	CLIHandler CLIHandlerFn
+	CLIHandler  CLIHandlerFn
 }
 
 func NewProposalHandler(cliHandler CLIHandlerFn) ProposalHandler {
 	return ProposalHandler{
-		CLIHandler: cliHandler,
+		CLIHandler:  cliHandler,
 	}
 }

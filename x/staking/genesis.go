@@ -37,7 +37,7 @@ func InitGenesis(ctx sdk.Context, keeper Keeper, accountKeeper types.AccountKeep
 	for _, validator := range data.Validators {
 		// TODO CHECK IF NEEDED
 		validator.Ticket = keeper.GetLastTicket(ctx)
-		keeper.SetLastTicket(ctx, validator.Ticket+1)
+		keeper.SetLastTicket(ctx, validator.Ticket + 1)
 
 		keeper.SetValidator(ctx, validator)
 

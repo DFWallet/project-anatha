@@ -8,10 +8,11 @@ import (
 )
 
 type (
+
 	PlanJSON struct {
-		Name   string `json:"name" yaml:"name"`
-		Height int64  `json:"height" yaml:"height"`
-		Info   string `json:"info" yaml:"info"`
+		Name 	string 	`json:"name" yaml:"name"`
+		Height 	int64 	`json:"height" yaml:"height"`
+		Info 	string 	`json:"info" yaml:"info"`
 	}
 
 	SoftwareUpgradeProposalJSON struct {
@@ -21,7 +22,7 @@ type (
 	}
 
 	SoftwareUpgradeProposalReq struct {
-		BaseReq rest.BaseReq `json:"base_req" yaml:"base_req"`
+		BaseReq 	rest.BaseReq 	`json:"base_req" yaml:"base_req"`
 
 		Title       string         `json:"title" yaml:"title"`
 		Description string         `json:"description" yaml:"description"`

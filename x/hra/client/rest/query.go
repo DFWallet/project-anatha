@@ -22,3 +22,4 @@ func resolveNameHandler(cliCtx context.CLIContext, storeName string) http.Handle
 		rest.PostProcessResponse(w, cliCtx, res)
 	}
 }
+

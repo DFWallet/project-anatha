@@ -5,20 +5,20 @@ import (
 	"github.com/DFWallet/anatha/codec"
 	sdk "github.com/DFWallet/anatha/types"
 	"github.com/DFWallet/anatha/x/params"
-	"github.com/DFWallet/anatha/x/supply"
-	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 	"github.com/DFWallet/project-anatha/x/hra"
 	"github.com/DFWallet/project-anatha/x/staking"
+	"github.com/DFWallet/anatha/x/supply"
+	"github.com/DFWallet/project-anatha/x/distribution/internal/types"
 	"github.com/tendermint/tendermint/libs/log"
 )
 
 type Keeper struct {
-	cdc           *codec.Codec
-	storeKey      sdk.StoreKey
-	paramSpace    params.Subspace
-	supplyKeeper  supply.Keeper
+	cdc          *codec.Codec
+	storeKey     sdk.StoreKey
+	paramSpace   params.Subspace
+	supplyKeeper supply.Keeper
 	stakingKeeper *staking.Keeper
-	HraKeeper     *hra.Keeper
+	HraKeeper    *hra.Keeper
 }
 
 func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, paramSpace params.Subspace, supplyKeeper supply.Keeper, stakingKeeper *staking.Keeper, hraKeeper *hra.Keeper) Keeper {
@@ -29,12 +29,12 @@ func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, paramSpace params.Subspace, s
 	AccountMustBePresent(&supplyKeeper, types.SecurityTokenFundModuleName)
 
 	return Keeper{
-		cdc:           cdc,
-		storeKey:      key,
-		paramSpace:    paramSpace.WithKeyTable(types.ParamKeyTable()),
-		supplyKeeper:  supplyKeeper,
+		cdc:          cdc,
+		storeKey:     key,
+		paramSpace:   paramSpace.WithKeyTable(types.ParamKeyTable()),
+		supplyKeeper: supplyKeeper,
 		stakingKeeper: stakingKeeper,
-		HraKeeper:     hraKeeper,
+		HraKeeper:    hraKeeper,
 	}
 }
 
@@ -47,3 +47,4 @@ func AccountMustBePresent(supplyKeeper *supply.Keeper, accountName string) {
 		panic(fmt.Sprintf("the %s module account has not been set", accountName))
 	}
 }
+

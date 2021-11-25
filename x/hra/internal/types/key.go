@@ -36,7 +36,7 @@ var (
 	RegisteredBlockchainIdKeyPrefix = []byte{0x15}
 
 	StatusPresent = []byte{0x01}
-	StatusAbsent  = []byte{0x00}
+	StatusAbsent = []byte{0x00}
 )
 
 var lenTime = len(sdk.FormatTimeBytes(time.Now()))
@@ -72,7 +72,7 @@ func GetStatusByAddressAndNameIteratorKey(address sdk.AccAddress) []byte {
 // Address
 func GetAddressKey(address sdk.AccAddress, blockchainId string, index string) []byte {
 	// Craft KVStore key in format: AnathaAddress:BlockchainId:AddressIndex
-	key := append(AddressKeyPrefix, []byte(address)...)
+	key := append(AddressKeyPrefix,[]byte(address)...)
 	key = append(key, []byte(Separator)...)
 	key = append(key, []byte(blockchainId)...)
 	key = append(key, []byte(Separator)...)
@@ -85,13 +85,13 @@ func GetBlockchainAddressIteratorKey(address sdk.AccAddress) []byte {
 	return append(AddressKeyPrefix, address...)
 }
 
-func SplitBlockchainAddressKey(key []byte) (blockchainAddress BlockchainAddressInfo) {
+func SplitBlockchainAddressKey(key []byte) (blockchainAddress BlockchainAddressInfo)  {
 	parts := strings.Split(string(key[22:]), Separator) // prefix + address + first separator
 
 	return NewBlockchainAddressInfo(parts[0], parts[1], "")
 }
 
-func SplitBlockchainAddressRecordKey(key []byte) (blockchainAddressRecord BlockchainAddressRecordInfo) {
+func SplitBlockchainAddressRecordKey(key []byte) (blockchainAddressRecord BlockchainAddressRecordInfo)  {
 	parts := strings.Split(string(key[22:]), Separator) // prefix + address + first separator
 
 	blockchainAddressInfo := NewBlockchainAddressInfo(parts[0], parts[1], "")
@@ -111,24 +111,23 @@ func GetRegisteredBlockchainIdIteratorKey() []byte {
 	return RegisteredBlockchainIdKeyPrefix
 }
 
-func SplitRegisteredBlockchainIdKey(key []byte) string {
+func SplitRegisteredBlockchainIdKey(key []byte) (string) {
 	return string(key[1:])
 }
-
 // private functions
 
 func splitKeyWithTime(key []byte) (name string, endTime time.Time) {
 	/*
-		if len(key[1:]) != 8 + lenTime {
-			panic(fmt.Sprintf("unexpected key length (%d ≠ %d)", len(key[1:]), lenTime + 8))
-		}
+	if len(key[1:]) != 8 + lenTime {
+		panic(fmt.Sprintf("unexpected key length (%d ≠ %d)", len(key[1:]), lenTime + 8))
+	}
 	*/
 
-	endTime, err := sdk.ParseTimeBytes(key[1 : 1+lenTime])
+	endTime, err := sdk.ParseTimeBytes(key[1 : 1 + lenTime])
 	if err != nil {
 		panic(err)
 	}
 
-	name = string(key[1+lenTime:])
+	name = string(key[1 + lenTime:])
 	return
 }

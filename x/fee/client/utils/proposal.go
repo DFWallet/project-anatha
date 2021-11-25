@@ -6,9 +6,9 @@ import (
 )
 
 type FeeExclusionProposalJSON struct {
-	Title       string `json:"title" yaml:"title"`
-	Description string `json:"description" yaml:"description"`
-	MessageType string `json:"message_type" yaml:"message_type"`
+	Title 			string `json:"title" yaml:"title"`
+	Description 	string `json:"description" yaml:"description"`
+	MessageType 	string `json:"message_type" yaml:"message_type"`
 }
 
 func ParseFeeExclusionProposalJSON(cdc *codec.Codec, proposalFile string) (FeeExclusionProposalJSON, error) {

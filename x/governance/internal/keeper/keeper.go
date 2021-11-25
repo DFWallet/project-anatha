@@ -17,17 +17,17 @@ type Keeper struct {
 	storeKey   sdk.StoreKey
 	cdc        *codec.Codec
 	paramSpace params.Subspace
-	router     gov.Router
+	router gov.Router
 
-	AccountKeeper auth.AccountKeeper
+	AccountKeeper 	auth.AccountKeeper
 }
 
-func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, paramSpace params.Subspace, router gov.Router, accountKeeper auth.AccountKeeper) Keeper {
+func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, paramSpace params.Subspace, router gov.Router, accountKeeper auth.AccountKeeper,) Keeper {
 	return Keeper{
-		storeKey:      key,
-		paramSpace:    paramSpace,
-		cdc:           cdc,
-		router:        router,
+		storeKey:     key,
+		paramSpace:   paramSpace,
+		cdc:          cdc,
+		router:       router,
 		AccountKeeper: accountKeeper,
 	}
 }

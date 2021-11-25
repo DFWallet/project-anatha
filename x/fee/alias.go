@@ -6,26 +6,26 @@ import (
 )
 
 const (
-	ModuleName        = types.ModuleName
-	RouterKey         = types.RouterKey
-	StoreKey          = types.StoreKey
-	DefaultParamspace = types.DefaultParamspace
-	QuerierRoute      = types.QuerierRoute
+	ModuleName               = types.ModuleName
+	RouterKey                = types.RouterKey
+	StoreKey                 = types.StoreKey
+	DefaultParamspace        = types.DefaultParamspace
+	QuerierRoute             = types.QuerierRoute
 )
 
 var (
 	// functions aliases
-	NewKeeper           = keeper.NewKeeper
-	NewQuerier          = keeper.NewQuerier
-	RegisterCodec       = types.RegisterCodec
-	NewGenesisState     = types.NewGenesisState
-	DefaultGenesisState = types.DefaultGenesisState
-	ValidateGenesis     = types.ValidateGenesis
+	NewKeeper                          = keeper.NewKeeper
+	NewQuerier                         = keeper.NewQuerier
+	RegisterCodec                      = types.RegisterCodec
+	NewGenesisState                    = types.NewGenesisState
+	DefaultGenesisState                = types.DefaultGenesisState
+	ValidateGenesis                    = types.ValidateGenesis
 
-	NewParams = types.NewParams
+	NewParams                          = types.NewParams
 
 	// variable aliases
-	ModuleCdc = types.ModuleCdc
+	ModuleCdc     = types.ModuleCdc
 )
 
 type (

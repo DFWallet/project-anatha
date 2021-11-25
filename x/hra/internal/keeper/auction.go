@@ -9,11 +9,11 @@ import (
 
 func (k Keeper) HandleSetPrice(ctx sdk.Context, name string, owner sdk.AccAddress, price sdk.Coins) error {
 	nameInfo, found := k.GetNameInfo(ctx, name)
-	if !found {
+	if ! found {
 		return types.ErrNameNotRegistered
 	}
 
-	if !owner.Equals(nameInfo.Owner) {
+	if ! owner.Equals(nameInfo.Owner) {
 		return types.ErrNotOwner
 	}
 
@@ -26,7 +26,7 @@ func (k Keeper) HandleSetPrice(ctx sdk.Context, name string, owner sdk.AccAddres
 
 func (k Keeper) GetPrice(ctx sdk.Context, name string) (sdk.Coins, error) {
 	nameInfo, found := k.GetNameInfo(ctx, name)
-	if !found {
+	if ! found {
 		return nil, types.ErrNameNotRegistered
 	}
 
@@ -35,7 +35,7 @@ func (k Keeper) GetPrice(ctx sdk.Context, name string) (sdk.Coins, error) {
 
 func (k Keeper) HandleBuyName(ctx sdk.Context, name string, buyer sdk.AccAddress) error {
 	nameInfo, found := k.GetNameInfo(ctx, name)
-	if !found {
+	if ! found {
 		return types.ErrNameNotRegistered
 	}
 
@@ -49,7 +49,7 @@ func (k Keeper) HandleBuyName(ctx sdk.Context, name string, buyer sdk.AccAddress
 
 	coins := nameInfo.Price
 
-	if !k.CoinKeeper.HasCoins(ctx, buyer, coins) {
+	if ! k.CoinKeeper.HasCoins(ctx, buyer, coins) {
 		return sdkerrors.Wrap(sdkerrors.ErrInsufficientFunds, "Insufficient funds for HRA purchase.")
 	}
 
@@ -58,14 +58,14 @@ func (k Keeper) HandleBuyName(ctx sdk.Context, name string, buyer sdk.AccAddress
 		return err
 	}
 
-	if !k.OwnsAnyName(ctx, buyer) {
+	if ! k.OwnsAnyName(ctx, buyer) {
 		k.SetCredits(ctx, buyer, k.AddressCredits(ctx))
 		k.AfterFirstNameCreated(ctx, buyer)
 	}
 
 	// update the status mapping
 	k.DeleteNameInfoStatusMap(ctx, nameInfo.Owner, name)
-	k.SetNameInfoStatusMap(ctx, buyer, name)
+	k.SetNameInfoStatusMap(ctx,buyer, name)
 
 	oldOwner := nameInfo.Owner
 
@@ -75,7 +75,7 @@ func (k Keeper) HandleBuyName(ctx sdk.Context, name string, buyer sdk.AccAddress
 
 	k.SetNameInfo(ctx, name, nameInfo)
 
-	if !k.OwnsAnyName(ctx, oldOwner) {
+	if ! k.OwnsAnyName(ctx, oldOwner) {
 		k.RemoveAllAddresses(ctx, oldOwner)
 
 		k.SetCredits(ctx, oldOwner, sdk.ZeroInt())

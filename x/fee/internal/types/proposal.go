@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	ProposalTypeAddFeeExcludedMessage    = "AddFeeExcludedMessage"
+	ProposalTypeAddFeeExcludedMessage = "AddFeeExcludedMessage"
 	ProposalTypeRemoveFeeExcludedMessage = "RemoveFeeExcludedMessage"
 )
 
@@ -19,9 +19,9 @@ func init() {
 
 // AddFeeExcludedMessageProposal
 type AddFeeExcludedMessageProposal struct {
-	Title       string `json:"title" yaml:"title"`
-	Description string `json:"description" yaml:"description"`
-	MessageType string `json:"message_type" yaml:"message_type"`
+	Title       	string `json:"title" yaml:"title"`
+	Description 	string `json:"description" yaml:"description"`
+	MessageType 	string `json:"message_type" yaml:"message_type"`
 }
 
 func NewAddFeeExcludedMessageProposal(title string, description string, messageType string) gov.Content {
@@ -35,9 +35,7 @@ var _ gov.Content = AddFeeExcludedMessageProposal{}
 func (p AddFeeExcludedMessageProposal) GetTitle() string       { return p.Title }
 func (p AddFeeExcludedMessageProposal) GetDescription() string { return p.Description }
 func (p AddFeeExcludedMessageProposal) ProposalRoute() string  { return RouterKey }
-func (p AddFeeExcludedMessageProposal) ProposalType() string {
-	return ProposalTypeAddFeeExcludedMessage
-}
+func (p AddFeeExcludedMessageProposal) ProposalType() string   { return ProposalTypeAddFeeExcludedMessage }
 func (p AddFeeExcludedMessageProposal) ValidateBasic() error {
 	return gov.ValidateAbstract(p)
 }
@@ -52,9 +50,9 @@ func (p AddFeeExcludedMessageProposal) String() string {
 
 // RemoveFeeExcludedMessageProposal
 type RemoveFeeExcludedMessageProposal struct {
-	Title       string `json:"title" yaml:"title"`
-	Description string `json:"description" yaml:"description"`
-	MessageType string `json:"message_type" yaml:"message_type"`
+	Title       	string `json:"title" yaml:"title"`
+	Description 	string `json:"description" yaml:"description"`
+	MessageType 	string `json:"message_type" yaml:"message_type"`
 }
 
 func NewRemoveFeeExcludedMessageProposal(title string, description string, messageType string) gov.Content {
@@ -68,9 +66,7 @@ var _ gov.Content = RemoveFeeExcludedMessageProposal{}
 func (p RemoveFeeExcludedMessageProposal) GetTitle() string       { return p.Title }
 func (p RemoveFeeExcludedMessageProposal) GetDescription() string { return p.Description }
 func (p RemoveFeeExcludedMessageProposal) ProposalRoute() string  { return RouterKey }
-func (p RemoveFeeExcludedMessageProposal) ProposalType() string {
-	return ProposalTypeRemoveFeeExcludedMessage
-}
+func (p RemoveFeeExcludedMessageProposal) ProposalType() string   { return ProposalTypeRemoveFeeExcludedMessage }
 func (p RemoveFeeExcludedMessageProposal) ValidateBasic() error {
 	return gov.ValidateAbstract(p)
 }

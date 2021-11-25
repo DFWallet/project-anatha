@@ -17,8 +17,8 @@ import (
 )
 
 var (
-	_ module.AppModule      = AppModule{}
-	_ module.AppModuleBasic = AppModuleBasic{}
+	_ module.AppModule           = AppModule{}
+	_ module.AppModuleBasic      = AppModuleBasic{}
 )
 
 type AppModuleBasic struct{}
@@ -53,6 +53,8 @@ func (AppModuleBasic) GetQueryCmd(cdc *codec.Codec) *cobra.Command {
 }
 
 func (AppModuleBasic) GetTxCmd(_ *codec.Codec) *cobra.Command { return nil }
+
+
 
 type AppModule struct {
 	AppModuleBasic

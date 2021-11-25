@@ -68,6 +68,8 @@ func main() {
 	}
 }
 
+
+
 func queryCmd(cdc *amino.Codec) *cobra.Command {
 	queryCmd := &cobra.Command{
 		Use:     "query",

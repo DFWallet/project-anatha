@@ -10,9 +10,9 @@ import (
 	"github.com/DFWallet/anatha/store/prefix"
 	sdk "github.com/DFWallet/anatha/types"
 	sdkerrors "github.com/DFWallet/anatha/types/errors"
-	"github.com/DFWallet/anatha/x/params"
 	"github.com/DFWallet/project-anatha/x/evidence/exported"
 	"github.com/DFWallet/project-anatha/x/evidence/internal/types"
+	"github.com/DFWallet/anatha/x/params"
 )
 
 // Keeper defines the evidence module's keeper. The keeper is responsible for

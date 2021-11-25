@@ -8,7 +8,7 @@ import (
 )
 
 func (k Keeper) TransferFromDevelopmentFund(ctx sdk.Context, recipient sdk.AccAddress, amount sdk.Coins) error {
-	err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.DevelopmentFundModuleName, recipient, amount)
+	err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.DevelopmentFundModuleName, recipient , amount)
 	if err != nil {
 		return err
 	}
@@ -21,7 +21,7 @@ func (k Keeper) TransferFromDevelopmentFund(ctx sdk.Context, recipient sdk.AccAd
 
 func (k Keeper) TransferFromSecurityTokenFund(ctx sdk.Context, recipients []types.Recipients) error {
 	for i := 0; i < len(recipients); i++ {
-		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.SecurityTokenFundModuleName, recipients[i].Recipient, recipients[i].Amount)
+		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.SecurityTokenFundModuleName, recipients[i].Recipient , recipients[i].Amount)
 		if err != nil {
 			return err
 		}
@@ -63,7 +63,7 @@ func (k Keeper) DistributeNameReward(ctx sdk.Context, recipient sdk.AccAddress, 
 	rewardInt := rewardDec.TruncateInt()
 	rewardLeftover := rewardDec.Sub(rewardInt.ToDec())
 
-	if !rewardLeftover.IsZero() {
+	if ! rewardLeftover.IsZero() {
 		// Current reward leftover is greater than 0.
 		// This means that we need to add it to the existing leftovers and send whole pin while persisting fractions
 
@@ -87,7 +87,7 @@ func (k Keeper) DistributeNameReward(ctx sdk.Context, recipient sdk.AccAddress, 
 
 	toTransfer := sdk.NewCoins(sdk.NewCoin(config.DefaultDenom, rewardInt))
 
-	err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.HRAHolderRewardModuleName, recipient, toTransfer)
+	err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.HRAHolderRewardModuleName, recipient , toTransfer)
 	if err != nil {
 		return err
 	}
@@ -129,7 +129,7 @@ func (k Keeper) DistributeSavingsReward(ctx sdk.Context, recipient sdk.AccAddres
 	rewardInt := rewardDec.TruncateInt()
 	rewardLeftover := rewardDec.Sub(rewardInt.ToDec())
 
-	if !rewardLeftover.IsZero() {
+	if ! rewardLeftover.IsZero() {
 		// Current reward leftover is greater than 0.
 		// This means that we need to add it to the existing leftovers and send whole pin while persisting fractions
 
@@ -151,10 +151,10 @@ func (k Keeper) DistributeSavingsReward(ctx sdk.Context, recipient sdk.AccAddres
 		k.SetSavingsRewardLeftover(ctx, recipient, currentLeftover)
 	}
 
-	if !rewardInt.IsZero() {
+	if ! rewardInt.IsZero() {
 		toTransfer := sdk.NewCoins(sdk.NewCoin(config.DefaultDenom, rewardInt))
 
-		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.SavingsDistributionModuleName, recipient, toTransfer)
+		err := k.supplyKeeper.SendCoinsFromModuleToAccount(ctx, types.SavingsDistributionModuleName, recipient , toTransfer)
 		if err != nil {
 			return err
 		}
@@ -177,6 +177,7 @@ func (k Keeper) RefundSavingsStake(ctx sdk.Context, recipient sdk.AccAddress, am
 
 	return nil
 }
+
 
 func (k Keeper) ClaimSavingsStake(ctx sdk.Context, sender sdk.AccAddress, amount sdk.Coins) error {
 	err := k.supplyKeeper.SendCoinsFromAccountToModule(ctx, sender, types.SavingsModuleName, amount)

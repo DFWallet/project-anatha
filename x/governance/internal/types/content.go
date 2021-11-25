@@ -12,6 +12,8 @@ const (
 	MaxTitleLength       int = 140
 )
 
+
+
 //type Handler func(ctx sdk.Context, content Content) error
 
 func ValidateAbstract(c gov.Content) error {

@@ -22,7 +22,7 @@ func (k Keeper) HandleCreateSellOrder(ctx sdk.Context, sender sdk.AccAddress, pi
 
 	dinAmount := sdk.NewCoins(sdk.NewCoin(config.DefaultStableDenom, dinAmountInt))
 
-	if !dinAmount.IsZero() {
+	if ! dinAmount.IsZero() {
 		err := k.TransferToBuyBackFund(ctx, sender, pinAmount)
 		if err != nil {
 			return err
@@ -51,7 +51,7 @@ func (k Keeper) HandleCreateSellOrder(ctx sdk.Context, sender sdk.AccAddress, pi
 }
 
 func (k Keeper) HandleCreateBuyOrder(ctx sdk.Context, buyer sdk.AccAddress, dinAmount sdk.Coins) error {
-	if !k.BankKeeper.HasCoins(ctx, buyer, dinAmount) {
+	if ! k.BankKeeper.HasCoins(ctx, buyer, dinAmount) {
 		return sdkerrors.Wrap(sdkerrors.ErrInsufficientFunds, "Insufficient funds for ANATHA purchase.")
 	}
 

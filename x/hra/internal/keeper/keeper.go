@@ -13,25 +13,25 @@ import (
 )
 
 type Keeper struct {
-	CoinKeeper       bank.Keeper
-	AccountKeeper    auth.AccountKeeper
-	SupplyKeeper     supply.Keeper
-	storeKey         sdk.StoreKey
-	cdc              *codec.Codec
-	paramspace       types.ParamSubspace
+	CoinKeeper bank.Keeper
+	AccountKeeper auth.AccountKeeper
+	SupplyKeeper supply.Keeper
+	storeKey   sdk.StoreKey
+	cdc        *codec.Codec
+	paramspace types.ParamSubspace
 	feeCollectorName string
-	hooks            types.NameHooks
+	hooks types.NameHooks
 }
 
 func NewKeeper(coinKeeper bank.Keeper, accountKeeper auth.AccountKeeper, supplyKeeper supply.Keeper, cdc *codec.Codec, key sdk.StoreKey, paramspace types.ParamSubspace, feeCollectorName string) Keeper {
 
 	keeper := Keeper{
-		CoinKeeper:       coinKeeper,
-		AccountKeeper:    accountKeeper,
-		SupplyKeeper:     supplyKeeper,
-		storeKey:         key,
-		cdc:              cdc,
-		paramspace:       paramspace.WithKeyTable(types.ParamKeyTable()),
+		CoinKeeper:	coinKeeper,
+		AccountKeeper: accountKeeper,
+		SupplyKeeper: supplyKeeper,
+		storeKey:   key,
+		cdc:        cdc,
+		paramspace: paramspace.WithKeyTable(types.ParamKeyTable()),
 		feeCollectorName: feeCollectorName,
 	}
 	return keeper

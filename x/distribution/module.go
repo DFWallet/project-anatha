@@ -8,15 +8,15 @@ import (
 	sdk "github.com/DFWallet/anatha/types"
 	"github.com/DFWallet/anatha/types/module"
 	"github.com/DFWallet/anatha/x/supply"
-	"github.com/DFWallet/project-anatha/x/distribution/client/cli"
 	"github.com/gorilla/mux"
+	"github.com/DFWallet/project-anatha/x/distribution/client/cli"
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
 var (
-	_ module.AppModule      = AppModule{}
-	_ module.AppModuleBasic = AppModuleBasic{}
+	_ module.AppModule           = AppModule{}
+	_ module.AppModuleBasic      = AppModuleBasic{}
 )
 
 type AppModuleBasic struct{}
@@ -57,7 +57,7 @@ func (AppModuleBasic) GetTxCmd(cdc *codec.Codec) *cobra.Command {
 type AppModule struct {
 	AppModuleBasic
 
-	keeper       Keeper
+	keeper Keeper
 	supplyKeeper supply.Keeper
 }
 
@@ -65,7 +65,7 @@ func NewAppModule(keeper Keeper, supplyKeeper supply.Keeper) AppModule {
 	return AppModule{
 		AppModuleBasic: AppModuleBasic{},
 		keeper:         keeper,
-		supplyKeeper:   supplyKeeper,
+		supplyKeeper:  supplyKeeper,
 	}
 }
 

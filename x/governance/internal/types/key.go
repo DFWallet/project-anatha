@@ -19,6 +19,7 @@ const (
 	DefaultParamspace = ModuleName
 )
 
+
 // - 0x00<proposalID_Bytes>: Proposal
 // - 0x01<endTime_Bytes><proposalID_Bytes>: activeProposalID
 // - 0x02<endTime_Bytes><proposalID_Bytes>: inactiveProposalID
@@ -26,13 +27,13 @@ const (
 // - 0x10<proposalID_Bytes><depositorAddr_Bytes>: Deposit
 // - 0x20<proposalID_Bytes><voterAddr_Bytes>: Voter
 var (
-	ProposalsKeyPrefix           = []byte{0x00}
-	ActiveProposalQueuePrefix    = []byte{0x01}
+	ProposalsKeyPrefix          = []byte{0x00}
+	ActiveProposalQueuePrefix   = []byte{0x01}
 	ExpeditedProposalQueuePrefix = []byte{0x04}
-	ProposalIDKey                = []byte{0x02}
-	GovernorCountKey             = []byte{0x03}
+	ProposalIDKey               = []byte{0x02}
+	GovernorCountKey			= []byte{0x03}
 
-	VotesKeyPrefix    = []byte{0x10}
+	VotesKeyPrefix = []byte{0x10}
 	GovernorKeyPrefix = []byte{0x21}
 
 	StatusPresent = []byte{0x01}

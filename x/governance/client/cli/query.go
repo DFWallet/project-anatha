@@ -18,7 +18,7 @@ import (
 func GetQueryCmd(queryRoute string, cdc *codec.Codec) *cobra.Command {
 	govQueryCmd := &cobra.Command{
 		Use:                        types.ModuleName,
-		Aliases:                    []string{"gov"},
+		Aliases: 					[]string{"gov"},
 		Short:                      "Querying commands for the governance module",
 		DisableFlagParsing:         true,
 		SuggestionsMinimumDistance: 2,
@@ -33,7 +33,7 @@ func GetQueryCmd(queryRoute string, cdc *codec.Codec) *cobra.Command {
 			GetCmdQueryVotes(queryRoute, cdc),
 			GetCmdQueryParams(queryRoute, cdc),
 			GetCmdQueryGovernors(queryRoute, cdc),
-		)...,
+		)...
 	)
 
 	return govQueryCmd
@@ -196,3 +196,4 @@ func GetCmdQueryGovernors(queryRoute string, cdc *codec.Codec) *cobra.Command {
 		},
 	}
 }
+

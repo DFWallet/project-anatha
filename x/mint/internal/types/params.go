@@ -16,8 +16,8 @@ var (
 )
 
 type Params struct {
-	PerSecondInflationRate sdk.Dec `json:"per_second_inflation_rate" yaml:"per_second_inflation_rate"` // per second inflation rate
-	MintDenom              string  `json:"mint_denom" yaml:"mint_denom"`                               // type of coin to mint
+	PerSecondInflationRate sdk.Dec `json:"per_second_inflation_rate" yaml:"per_second_inflation_rate"` 	// per second inflation rate
+	MintDenom              string  `json:"mint_denom" yaml:"mint_denom"`            		// type of coin to mint
 }
 
 func ParamKeyTable() params.KeyTable {

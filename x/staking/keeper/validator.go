@@ -130,7 +130,7 @@ func (k Keeper) AddValidatorTokensAndShares(ctx sdk.Context, validator types.Val
 	validator, addedShares = validator.AddTokensFromDel(tokensToAdd)
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket+1)
+	k.SetLastTicket(ctx, validator.Ticket + 1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)
@@ -149,7 +149,7 @@ func (k Keeper) RemoveValidatorTokensAndShares(ctx sdk.Context, validator types.
 	validator, removedTokens = validator.RemoveDelShares(sharesToRemove)
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket+1)
+	k.SetLastTicket(ctx, validator.Ticket + 1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)
@@ -172,7 +172,7 @@ func (k Keeper) RemoveValidatorTokens(ctx sdk.Context,
 	validator = validator.RemoveTokens(tokensToRemove)
 
 	validator.Ticket = k.GetLastTicket(ctx)
-	k.SetLastTicket(ctx, validator.Ticket+1)
+	k.SetLastTicket(ctx, validator.Ticket + 1)
 
 	k.SetValidator(ctx, validator)
 	k.SetValidatorByPowerIndex(ctx, validator)

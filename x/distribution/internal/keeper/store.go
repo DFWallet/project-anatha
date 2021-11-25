@@ -20,7 +20,7 @@ func (k Keeper) GetValidatorAccumulatedRewards(ctx sdk.Context, val sdk.ValAddre
 func (k Keeper) SetValidatorAccumulatedRewards(ctx sdk.Context, val sdk.ValAddress, rewards sdk.DecCoins) {
 	store := ctx.KVStore(k.storeKey)
 
-	if !rewards.IsZero() {
+	if ! rewards.IsZero() {
 		store.Set(types.GetValidatorAccumulatedRewardsKey(val), k.cdc.MustMarshalBinaryBare(rewards))
 	} else {
 		store.Delete(types.GetValidatorAccumulatedRewardsKey(val))
@@ -65,7 +65,7 @@ func (k Keeper) GetNvrpRemainder(ctx sdk.Context) sdk.DecCoins {
 func (k Keeper) SetNvrpRemainder(ctx sdk.Context, remainder sdk.DecCoins) {
 	store := ctx.KVStore(k.storeKey)
 
-	if !remainder.IsZero() {
+	if ! remainder.IsZero() {
 		store.Set(types.GetNvrpdRemainderKey(), k.cdc.MustMarshalBinaryBare(remainder))
 	} else {
 		store.Delete(types.GetNvrpdRemainderKey())

@@ -35,7 +35,7 @@ func (k Keeper) DeleteExpiredNameInfo(ctx sdk.Context, nameInfo types.NameInfo) 
 	k.DeleteNameInfoStatusMap(ctx, nameInfo.Owner, nameInfo.Name)
 
 	// if last HRA remove all associated addresses
-	if !k.OwnsAnyName(ctx, nameInfo.Owner) {
+	if ! k.OwnsAnyName(ctx, nameInfo.Owner) {
 		k.RemoveAllAddresses(ctx, nameInfo.Owner)
 		k.SetCredits(ctx, nameInfo.Owner, sdk.ZeroInt())
 		err := k.AfterLastNameRemoved(ctx, nameInfo.Owner)

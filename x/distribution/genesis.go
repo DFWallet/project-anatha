@@ -71,7 +71,7 @@ func ExportGenesis(ctx sdk.Context, keeper Keeper) GenesisState {
 	keeper.IterateValidatorAccumulatedRewards(ctx, func(address sdk.ValAddress, accumulated sdk.DecCoins) (stop bool) {
 		validatorRewards = append(validatorRewards, types.ValidatorAccumulatedRewardRecord{
 			ValidatorAddress: address,
-			Accumulated:      accumulated,
+			Accumulated: accumulated,
 		})
 		return false
 	})
@@ -107,7 +107,7 @@ func ExportGenesis(ctx sdk.Context, keeper Keeper) GenesisState {
 	keeper.IterateNameRewardLeftover(ctx, func(address sdk.AccAddress, amount sdk.Dec) (stop bool) {
 		nameRewardLeftover = append(nameRewardLeftover, types.NameRewardLeftoverRecord{
 			Address: address,
-			Amount:  amount,
+			Amount: amount,
 		})
 		return false
 	})
@@ -130,6 +130,7 @@ func ExportGenesis(ctx sdk.Context, keeper Keeper) GenesisState {
 		return false
 	})
 
+
 	savingsRewardEscrow := make([]types.SavingsRewardEscrowRecord, 0)
 	keeper.IterateSavingsRewardEscrow(ctx, func(address sdk.AccAddress, amount sdk.DecCoins) (stop bool) {
 		savingsRewardEscrow = append(savingsRewardEscrow, types.SavingsRewardEscrowRecord{
@@ -143,7 +144,7 @@ func ExportGenesis(ctx sdk.Context, keeper Keeper) GenesisState {
 	keeper.IterateSavingsRewardLeftover(ctx, func(address sdk.AccAddress, amount sdk.Dec) (stop bool) {
 		savingsRewardLeftover = append(savingsRewardLeftover, types.SavingsRewardLeftoverRecord{
 			Address: address,
-			Amount:  amount,
+			Amount: amount,
 		})
 		return false
 	})

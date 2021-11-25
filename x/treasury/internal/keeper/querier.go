@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	QueryParameters         = "parameters"
-	QueryTreasury           = "treasury"
-	QueryOperators          = "operators"
-	QueryDisbursements      = "disbursements"
-	QueryPrice              = "price"
+	QueryParameters = "parameters"
+	QueryTreasury = "treasury"
+	QueryOperators = "operators"
+	QueryDisbursements = "disbursements"
+	QueryPrice = "price"
 	QueryDisbursementEscrow = "disbursement-escrow"
 )
 
@@ -123,7 +123,7 @@ func queryDisbursementEscrow(ctx sdk.Context, path []string, req abci.RequestQue
 
 	found, amount := k.GetDisbursementReferenceAmount(ctx, reference)
 
-	if !found {
+	if ! found {
 		return nil, types.ErrInvalidReference
 	}
 

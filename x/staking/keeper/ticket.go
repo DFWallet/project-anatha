@@ -24,6 +24,7 @@ func (k Keeper) SetLastTicket(ctx sdk.Context, ticket uint64) {
 	store.Set(types.TicketKey, types.GetTicketBytes(ticket))
 }
 
+
 // validator index
 func (k Keeper) SetValidatorByTicket(ctx sdk.Context, validator types.Validator) {
 	// jailed validators are not kept in the power index
@@ -65,12 +66,12 @@ func (k Keeper) DumpTickets(ctx sdk.Context) {
 		ticket, operator := types.ParseValidatorTicketKey(iterator.Key())
 
 		validator, found := k.GetValidator(ctx, sdk.ValAddress(operator))
-		if !found {
+		if ! found {
 			continue
 		}
 
 		k.Logger(ctx).Debug(
-			fmt.Sprintf("%d (%s) %s", ticket, validator.GetMoniker(), sdk.AccAddress(operator)),
+			fmt.Sprintf("%d (%s) %s", ticket, validator.GetMoniker() ,sdk.AccAddress(operator)),
 		)
 	}
 }

@@ -62,10 +62,10 @@ func (AppModuleBasic) GetTxCmd(cdc *codec.Codec) *cobra.Command {
 
 type AppModule struct {
 	AppModuleBasic
-	keeper        Keeper
-	coinKeeper    bank.Keeper
+	keeper     Keeper
+	coinKeeper bank.Keeper
 	accountKeeper auth.AccountKeeper
-	supplyKeeper  supply.Keeper
+	supplyKeeper supply.Keeper
 }
 
 func NewAppModule(k Keeper, bankKeeper bank.Keeper, accountKeeper auth.AccountKeeper, supplyKeeper supply.Keeper) AppModule {
@@ -73,8 +73,8 @@ func NewAppModule(k Keeper, bankKeeper bank.Keeper, accountKeeper auth.AccountKe
 		AppModuleBasic: AppModuleBasic{},
 		keeper:         k,
 		coinKeeper:     bankKeeper,
-		accountKeeper:  accountKeeper,
-		supplyKeeper:   supplyKeeper,
+		accountKeeper: accountKeeper,
+		supplyKeeper:  supplyKeeper,
 	}
 }
 

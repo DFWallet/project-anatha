@@ -23,3 +23,4 @@ func RegisterRoutes(cliCtx context.CLIContext, r *mux.Router, storeName string) 
 	r.HandleFunc(fmt.Sprintf("/%s/addresses", storeName), registerAddressHandler(cliCtx)).Methods("POST")
 	r.HandleFunc(fmt.Sprintf("/%s/addresses", storeName), removeAddressHandler(cliCtx)).Methods("DELETE")
 }
+

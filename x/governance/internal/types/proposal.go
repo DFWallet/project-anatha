@@ -52,7 +52,7 @@ func (p Proposal) String() string {
   Expedited: 	      %s
   Description:        %s`,
 		p.ProposalID, p.GetTitle(), p.ProposalType(),
-		p.Status, p.VotingStartTime, p.VotingEndTime, p.ExecutionTime, p.Expedited, p.GetDescription(),
+		p.Status, p.VotingStartTime, p.VotingEndTime, p.ExecutionTime, p.Expedited , p.GetDescription(),
 	)
 }
 
@@ -73,12 +73,12 @@ type (
 )
 
 const (
-	StatusNil          ProposalStatus = 0x00
-	StatusVotingPeriod ProposalStatus = 0x01
-	StatusExpediting   ProposalStatus = 0x05
-	StatusPassed       ProposalStatus = 0x02
-	StatusRejected     ProposalStatus = 0x03
-	StatusFailed       ProposalStatus = 0x04
+	StatusNil           ProposalStatus = 0x00
+	StatusVotingPeriod  ProposalStatus = 0x01
+	StatusExpediting	ProposalStatus = 0x05
+	StatusPassed        ProposalStatus = 0x02
+	StatusRejected      ProposalStatus = 0x03
+	StatusFailed        ProposalStatus = 0x04
 )
 
 func ProposalStatusFromString(str string) (ProposalStatus, error) {
@@ -171,8 +171,8 @@ func (status ProposalStatus) Format(s fmt.State, verb rune) {
 }
 
 var validProposalTypes = map[string]struct{}{
-	ProposalTypeText:           {},
-	ProposalTypeAddGovernor:    {},
+	ProposalTypeText: {},
+	ProposalTypeAddGovernor: {},
 	ProposalTypeRemoveGovernor: {},
 }
 
@@ -200,9 +200,9 @@ func IsValidProposalType(ty string) bool {
 }
 
 const (
-	ProposalTypeText           string = "Text"
-	ProposalTypeAddGovernor           = "AddGovernor"
-	ProposalTypeRemoveGovernor        = "RemoveGovernor"
+	ProposalTypeText string = "Text"
+	ProposalTypeAddGovernor = "AddGovernor"
+	ProposalTypeRemoveGovernor = "RemoveGovernor"
 )
 
 type TextProposal struct {
@@ -219,11 +219,11 @@ func NewTextProposal(title, description string) gov.Content {
 
 var _ gov.Content = TextProposal{}
 
-func (tp TextProposal) GetTitle() string       { return tp.Title }
+func (tp TextProposal) GetTitle() string { return tp.Title }
 func (tp TextProposal) GetDescription() string { return tp.Description }
-func (tp TextProposal) ProposalRoute() string  { return RouterKey }
-func (tp TextProposal) ProposalType() string   { return ProposalTypeText }
-func (tp TextProposal) ValidateBasic() error   { return ValidateAbstract(tp) }
+func (tp TextProposal) ProposalRoute() string { return RouterKey }
+func (tp TextProposal) ProposalType() string { return ProposalTypeText }
+func (tp TextProposal) ValidateBasic() error { return ValidateAbstract(tp) }
 
 func (tp TextProposal) String() string {
 	return fmt.Sprintf(`Text Proposal:
@@ -233,26 +233,26 @@ func (tp TextProposal) String() string {
 }
 
 type AddGovernorProposal struct {
-	Title       string         `json:"title" yaml:"title"`
-	Description string         `json:"description" yaml:"description"`
-	Governor    sdk.AccAddress `json:"governor" yaml:"governor"`
+	Title       string `json:"title" yaml:"title"`
+	Description string `json:"description" yaml:"description"`
+	Governor sdk.AccAddress `json:"governor" yaml:"governor"`
 }
 
 func NewAddGovernorProposal(title string, description string, governor sdk.AccAddress) gov.Content {
 	return AddGovernorProposal{
-		Title:       title,
+		Title: title,
 		Description: description,
-		Governor:    governor,
+		Governor: governor,
 	}
 }
 
 var _ gov.Content = AddGovernorProposal{}
 
-func (p AddGovernorProposal) GetTitle() string       { return p.Title }
+func (p AddGovernorProposal) GetTitle() string { return p.Title }
 func (p AddGovernorProposal) GetDescription() string { return p.Description }
-func (p AddGovernorProposal) ProposalRoute() string  { return RouterKey }
-func (p AddGovernorProposal) ProposalType() string   { return ProposalTypeAddGovernor }
-func (p AddGovernorProposal) ValidateBasic() error   { return ValidateAbstract(p) }
+func (p AddGovernorProposal) ProposalRoute() string { return RouterKey }
+func (p AddGovernorProposal) ProposalType() string { return ProposalTypeAddGovernor }
+func (p AddGovernorProposal) ValidateBasic() error { return ValidateAbstract(p) }
 
 func (p AddGovernorProposal) String() string {
 	return fmt.Sprintf(`Add Governor Proposal:
@@ -263,26 +263,26 @@ func (p AddGovernorProposal) String() string {
 }
 
 type RemoveGovernorProposal struct {
-	Title       string         `json:"title" yaml:"title"`
-	Description string         `json:"description" yaml:"description"`
-	Governor    sdk.AccAddress `json:"governor" yaml:"governor"`
+	Title       string `json:"title" yaml:"title"`
+	Description string `json:"description" yaml:"description"`
+	Governor sdk.AccAddress `json:"governor" yaml:"governor"`
 }
 
 func NewRemoveGovernorProposal(title string, description string, governor sdk.AccAddress) gov.Content {
 	return RemoveGovernorProposal{
-		Title:       title,
+		Title: title,
 		Description: description,
-		Governor:    governor,
+		Governor: governor,
 	}
 }
 
 var _ gov.Content = RemoveGovernorProposal{}
 
-func (p RemoveGovernorProposal) GetTitle() string       { return p.Title }
+func (p RemoveGovernorProposal) GetTitle() string { return p.Title }
 func (p RemoveGovernorProposal) GetDescription() string { return p.Description }
-func (p RemoveGovernorProposal) ProposalRoute() string  { return RouterKey }
-func (p RemoveGovernorProposal) ProposalType() string   { return ProposalTypeRemoveGovernor }
-func (p RemoveGovernorProposal) ValidateBasic() error   { return ValidateAbstract(p) }
+func (p RemoveGovernorProposal) ProposalRoute() string { return RouterKey }
+func (p RemoveGovernorProposal) ProposalType() string { return ProposalTypeRemoveGovernor }
+func (p RemoveGovernorProposal) ValidateBasic() error { return ValidateAbstract(p) }
 
 func (p RemoveGovernorProposal) String() string {
 	return fmt.Sprintf(`Remove Governor Proposal:

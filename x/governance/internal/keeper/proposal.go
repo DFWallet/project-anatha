@@ -10,10 +10,10 @@ import (
 )
 
 func (k Keeper) SubmitProposal(ctx sdk.Context, proposer sdk.AccAddress, content gov.Content) error {
-	if !k.IsGovernor(ctx, proposer) {
+	if ! k.IsGovernor(ctx, proposer) {
 		return sdkerrors.Wrap(types.ErrNotGovernor, proposer.String())
 	}
-	if !k.router.HasRoute(content.ProposalRoute()) {
+	if ! k.router.HasRoute(content.ProposalRoute()) {
 		return sdkerrors.Wrap(types.ErrNoProposalHandlerExists, content.ProposalRoute())
 	}
 
@@ -39,7 +39,7 @@ func (k Keeper) SubmitProposal(ctx sdk.Context, proposer sdk.AccAddress, content
 	k.SetProposal(ctx, proposal)
 	k.InsertActiveProposalQueue(ctx, proposal.ProposalID, proposal.VotingEndTime)
 
-	k.SetProposalID(ctx, proposalID+1)
+	k.SetProposalID(ctx, proposalID + 1)
 
 	ctx.EventManager().EmitEvents(sdk.Events{
 		sdk.NewEvent(
@@ -226,3 +226,4 @@ func (k Keeper) SetProposalID(ctx sdk.Context, proposalID uint64) {
 	store := ctx.KVStore(k.storeKey)
 	store.Set(types.ProposalIDKey, types.GetProposalIDBytes(proposalID))
 }
+

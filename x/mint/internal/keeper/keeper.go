@@ -13,12 +13,12 @@ import (
 )
 
 type Keeper struct {
-	cdc            *codec.Codec
-	storeKey       sdk.StoreKey
-	paramSpace     params.Subspace
-	supplyKeeper   supply.Keeper
-	amcModuleName  string
-	nvrpModuleName string
+	cdc              *codec.Codec
+	storeKey         sdk.StoreKey
+	paramSpace       params.Subspace
+	supplyKeeper     supply.Keeper
+	amcModuleName 	 string
+	nvrpModuleName   string
 }
 
 func NewKeeper(
@@ -37,12 +37,12 @@ func NewKeeper(
 	}
 
 	return Keeper{
-		cdc:            cdc,
-		storeKey:       key,
-		paramSpace:     paramSpace.WithKeyTable(types.ParamKeyTable()),
-		supplyKeeper:   supplyKeeper,
-		amcModuleName:  amcModuleName,
-		nvrpModuleName: nvrpModuleName,
+		cdc:              cdc,
+		storeKey:         key,
+		paramSpace:       paramSpace.WithKeyTable(types.ParamKeyTable()),
+		supplyKeeper:     supplyKeeper,
+		amcModuleName:    amcModuleName,
+		nvrpModuleName:   nvrpModuleName,
 	}
 }
 

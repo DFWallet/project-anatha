@@ -18,7 +18,7 @@ func (k Keeper) IsManager(ctx sdk.Context, address sdk.AccAddress) bool {
 }
 
 func (k Keeper) HandleAddOperator(ctx sdk.Context, sender sdk.AccAddress, operator sdk.AccAddress) error {
-	if !k.IsManager(ctx, sender) {
+	if ! k.IsManager(ctx, sender) {
 		return types.ErrNotManager
 	}
 
@@ -40,7 +40,7 @@ func (k Keeper) HandleAddOperator(ctx sdk.Context, sender sdk.AccAddress, operat
 }
 
 func (k Keeper) HandleRemoveOperator(ctx sdk.Context, sender sdk.AccAddress, operator sdk.AccAddress) error {
-	if !k.IsManager(ctx, sender) {
+	if ! k.IsManager(ctx, sender) {
 		return types.ErrNotManager
 	}
 

@@ -14,7 +14,7 @@ func ExportGenesis(ctx sdk.Context, k Keeper) GenesisState {
 	params := k.GetParams(ctx)
 
 	return GenesisState{
-		Params:              params,
+		Params: params,
 		FeeExcludedMessages: k.GetFeeExcludedMessages(ctx),
 	}
 }

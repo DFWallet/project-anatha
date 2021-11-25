@@ -12,12 +12,13 @@ import (
 	"github.com/DFWallet/project-anatha/x/treasury"
 )
 
+
 type FeeDecorator struct {
-	feeKeeper          Keeper
-	bankKeeper         bank.Keeper
-	hraKeeper          hra.Keeper
-	supplyKeeper       supply.Keeper
-	feeCollectorModule string
+	feeKeeper			Keeper
+	bankKeeper   		bank.Keeper
+	hraKeeper    		hra.Keeper
+	supplyKeeper 		supply.Keeper
+	feeCollectorModule 	string
 }
 
 func NewFeeDecorator(fk Keeper, bk bank.Keeper, hk hra.Keeper, sk supply.Keeper, feeCollectorModule string) FeeDecorator {
@@ -26,10 +27,10 @@ func NewFeeDecorator(fk Keeper, bk bank.Keeper, hk hra.Keeper, sk supply.Keeper,
 	}
 
 	return FeeDecorator{
-		feeKeeper:          fk,
-		bankKeeper:         bk,
-		hraKeeper:          hk,
-		supplyKeeper:       sk,
+		feeKeeper: fk,
+		bankKeeper: bk,
+		hraKeeper: hk,
+		supplyKeeper: sk,
 		feeCollectorModule: feeCollectorModule,
 	}
 }
@@ -110,14 +111,14 @@ func (d FeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next
 
 		txFees = txFees.Add(msgFee...)
 
-		if !d.feeKeeper.IsMessageFeeExcluded(ctx, msg) {
+		if ! d.feeKeeper.IsMessageFeeExcluded(ctx, msg) {
 			systemFees = systemFees.Add(d.CalculateSystemFee(ctx, msgFee)...)
 		}
 	}
 
 	totalFees := txFees.Add(systemFees...)
 
-	if !d.bankKeeper.HasCoins(ctx, feePayer, totalFees) {
+	if ! d.bankKeeper.HasCoins(ctx, feePayer, totalFees) {
 		return ctx, sdkerrors.Wrapf(sdkerrors.ErrInsufficientFee, "insufficient fees; required: %s", totalFees)
 	}
 
@@ -125,7 +126,7 @@ func (d FeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next
 		ctx,
 		feePayer,
 		d.feeCollectorModule,
-		systemFees, // we deduct only system fees in the ante handler!
+		systemFees,			// we deduct only system fees in the ante handler!
 	)
 
 	if err != nil {

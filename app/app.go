@@ -2,9 +2,9 @@ package app
 
 import (
 	"encoding/json"
+	"github.com/DFWallet/project-anatha/x/evidence"
 	appConfig "github.com/DFWallet/project-anatha/config"
 	"github.com/DFWallet/project-anatha/x/distribution"
-	"github.com/DFWallet/project-anatha/x/evidence"
 	"github.com/DFWallet/project-anatha/x/fee"
 	feeclient "github.com/DFWallet/project-anatha/x/fee/client"
 	"github.com/DFWallet/project-anatha/x/hra"
@@ -28,19 +28,20 @@ import (
 	"github.com/DFWallet/anatha/x/auth/vesting"
 	"github.com/DFWallet/anatha/x/bank"
 	"github.com/DFWallet/anatha/x/crisis"
+	"github.com/DFWallet/project-anatha/x/genutil"
 	govtypes "github.com/DFWallet/anatha/x/gov/types"
 	"github.com/DFWallet/anatha/x/params"
 	"github.com/DFWallet/anatha/x/supply"
 	distributionclient "github.com/DFWallet/project-anatha/x/distribution/client"
-	"github.com/DFWallet/project-anatha/x/genutil"
+	treasuryclient "github.com/DFWallet/project-anatha/x/treasury/client"
 	gov "github.com/DFWallet/project-anatha/x/governance"
 	"github.com/DFWallet/project-anatha/x/mint"
 	"github.com/DFWallet/project-anatha/x/slashing"
 	"github.com/DFWallet/project-anatha/x/staking"
-	treasuryclient "github.com/DFWallet/project-anatha/x/treasury/client"
 	"github.com/DFWallet/project-anatha/x/upgrade"
 	upgradeclient "github.com/DFWallet/project-anatha/x/upgrade/client"
 )
+
 
 var (
 	// default home directories for the application CLI
@@ -84,24 +85,24 @@ var (
 	)
 	// account permissions
 	maccPerms = map[string][]string{
-		auth.FeeCollectorName:                      nil,
-		mint.ModuleName:                            {supply.Minter},
-		treasury.ModuleName:                        {supply.Minter},
-		treasury.BuyBackLiquidityFundModuleName:    {supply.Minter, supply.Burner},
-		treasury.BuyBackFundModuleName:             nil,
-		treasury.DistributionProfitsModuleName:     {supply.Burner},
-		treasury.TreasuryEscrowModuleName:          nil,
-		treasury.SwapEscrowModuleName:              nil,
-		staking.BondedPoolName:                     {supply.Burner, supply.Staking},
-		staking.NotBondedPoolName:                  {supply.Burner, supply.Staking},
-		gov.ModuleName:                             nil,
-		distribution.AmcModuleName:                 nil,
-		distribution.NvrpModuleName:                nil,
-		distribution.NvrpDistributionModuleName:    nil,
-		distribution.HRAHolderRewardModuleName:     nil,
-		distribution.DevelopmentFundModuleName:     nil,
-		distribution.SecurityTokenFundModuleName:   nil,
-		distribution.SavingsModuleName:             nil,
+		auth.FeeCollectorName:           nil,
+		mint.ModuleName:                 {supply.Minter},
+		treasury.ModuleName:             {supply.Minter},
+		treasury.BuyBackLiquidityFundModuleName: {supply.Minter, supply.Burner},
+		treasury.BuyBackFundModuleName:           nil,
+		treasury.DistributionProfitsModuleName:   {supply.Burner},
+		treasury.TreasuryEscrowModuleName:        nil,
+		treasury.SwapEscrowModuleName:            nil,
+		staking.BondedPoolName:                   {supply.Burner, supply.Staking},
+		staking.NotBondedPoolName:                {supply.Burner, supply.Staking},
+		gov.ModuleName:                           nil,
+		distribution.AmcModuleName:               nil,
+		distribution.NvrpModuleName:              nil,
+		distribution.NvrpDistributionModuleName:  nil,
+		distribution.HRAHolderRewardModuleName:   nil,
+		distribution.DevelopmentFundModuleName:   nil,
+		distribution.SecurityTokenFundModuleName: nil,
+		distribution.SavingsModuleName:           nil,
 		distribution.SavingsDistributionModuleName: nil,
 	}
 )
@@ -139,22 +140,22 @@ type AnathaApp struct {
 	subspaces map[string]params.Subspace
 
 	// Keepers
-	accountKeeper      auth.AccountKeeper
-	bankKeeper         bank.Keeper
-	supplyKeeper       supply.Keeper
-	stakingKeeper      staking.Keeper
-	slashingKeeper     slashing.Keeper
-	mintKeeper         mint.Keeper
-	govKeeper          gov.Keeper
-	crisisKeeper       crisis.Keeper
-	paramsKeeper       params.Keeper
-	upgradeKeeper      upgrade.Keeper
-	evidenceKeeper     evidence.Keeper
-	treasuryKeeper     treasury.Keeper
+	accountKeeper  auth.AccountKeeper
+	bankKeeper     bank.Keeper
+	supplyKeeper   supply.Keeper
+	stakingKeeper  staking.Keeper
+	slashingKeeper slashing.Keeper
+	mintKeeper     mint.Keeper
+	govKeeper      gov.Keeper
+	crisisKeeper   crisis.Keeper
+	paramsKeeper   params.Keeper
+	upgradeKeeper  upgrade.Keeper
+	evidenceKeeper evidence.Keeper
+	treasuryKeeper treasury.Keeper
 	distributionKeeper distribution.Keeper
-	feeKeeper          fee.Keeper
+	feeKeeper 		fee.Keeper
 
-	hraKeeper hra.Keeper
+	hraKeeper 		hra.Keeper
 
 	// Module Manager
 	mm *module.Manager
@@ -193,12 +194,12 @@ func NewAnathaApp(logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest
 
 	// Here you initialize your application with the store keys it requires
 	var app = &AnathaApp{
-		BaseApp:        bApp,
-		cdc:            cdc,
+		BaseApp: 		bApp,
+		cdc:     		cdc,
 		invCheckPeriod: invCheckPeriod,
-		keys:           keys,
-		tkeys:          tkeys,
-		subspaces:      make(map[string]params.Subspace),
+		keys:    		keys,
+		tkeys:   		tkeys,
+		subspaces: 		make(map[string]params.Subspace),
 	}
 
 	// The ParamsKeeper handles parameter storage for the application
@@ -524,11 +525,11 @@ func backupGenesisDefaults() {
 
 func setGenesisDefaults() {
 	// Override module defaults for use in testnets and the default init functionality.
-	staking.DefaultGenesisState = func() staking.GenesisState {
+	staking.DefaultGenesisState = func () staking.GenesisState {
 		stakingDefaultGenesisState.Params.BondDenom = appConfig.DefaultDenom
 		return stakingDefaultGenesisState
 	}
-	crisis.DefaultGenesisState = func() crisis.GenesisState {
+	crisis.DefaultGenesisState = func () crisis.GenesisState {
 		crisisDefaultGenesisState.ConstantFee.Denom = appConfig.DefaultDenom
 		crisisDefaultGenesisState.ConstantFee.Amount = sdk.NewInt(50000000000000)
 		return crisisDefaultGenesisState

@@ -7,20 +7,20 @@ import (
 )
 
 type Disbursement struct {
-	Operator     sdk.AccAddress `json:"operator" yaml:"operator"`
-	Recipient    sdk.AccAddress `json:"recipient" yaml:"recipient"`
-	Amount       sdk.Coins      `json:"amount" yaml:"amount"`
-	ScheduledFor time.Time      `json:"scheduled_for" yaml:"scheduled_for"`
-	Reference    string         `json:"reference" yaml:"reference"`
+	Operator 		sdk.AccAddress 	`json:"operator" yaml:"operator"`
+	Recipient 		sdk.AccAddress 	`json:"recipient" yaml:"recipient"`
+	Amount 			sdk.Coins 		`json:"amount" yaml:"amount"`
+	ScheduledFor 	time.Time 		`json:"scheduled_for" yaml:"scheduled_for"`
+	Reference 		string 			`json:"reference" yaml:"reference"`
 }
 
 func NewDisbursement(operator sdk.AccAddress, recipient sdk.AccAddress, amount sdk.Coins, scheduledFor time.Time, reference string) Disbursement {
 	return Disbursement{
-		Operator:     operator,
-		Recipient:    recipient,
-		Amount:       amount,
+		Operator: operator,
+		Recipient: recipient,
+		Amount: amount,
 		ScheduledFor: scheduledFor,
-		Reference:    reference,
+		Reference: reference,
 	}
 }
 
@@ -35,12 +35,12 @@ func (d Disbursement) String() string {
 }
 
 type ReferenceAmountInfo struct {
-	Reference string  `json:"reference" yaml:"reference"`
-	Amount    sdk.Int `json:"amount" yaml:"amount"`
+	Reference string	`json:"reference" yaml:"reference"`
+	Amount sdk.Int		`json:"amount" yaml:"amount"`
 }
 
 func NewReferenceAmountInfo(reference string, amount sdk.Int) ReferenceAmountInfo {
-	return ReferenceAmountInfo{Reference: reference, Amount: amount}
+	return ReferenceAmountInfo{Reference:reference,Amount:amount}
 }
 
 func (a ReferenceAmountInfo) String() string {
